@@ -1,6 +1,8 @@
 # sqflite_worker
 
-A new Flutter application.
+In project you can find work with differts Widget : ListView, DropDownMenu, NavigationAppBar, SearchView.
+There are CRUD command in Sqflite in this project.
+Plan -> work with camera.
 
 ## Getting Started
 
