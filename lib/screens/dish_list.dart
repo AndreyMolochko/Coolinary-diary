@@ -18,15 +18,17 @@ class _DishListState extends State<DishList> {
   DatabaseHelper databaseHelper = new DatabaseHelper();
   List<Dish> dishList;
   List<Dish> filterFullList;
-  List<String>popupItems = ["update", "delete"];
+  List<String> popupItems = ["update", "delete"];
   BuildContext contextSnackbar;
   int id;
   Dish dish;
-  Icon search = new Icon(Icons.search,color: Colors.white,);
+  Icon search = new Icon(
+    Icons.search,
+    color: Colors.white,
+  );
   final TextEditingController filterController = new TextEditingController();
 
   Widget appBarTitle = new Text(title);
-
 
   @override
   void initState() {
@@ -41,99 +43,16 @@ class _DishListState extends State<DishList> {
       updateScreen();
     }
 
+    Widget body;
+    if (dishList.length == 0) {
+      body = noDataAvailable();
+    } else {
+      body = getDishesWidget();
+    }
+
     return Scaffold(
       appBar: appBar(appBarTitle),
-      body: ListView.builder(
-        itemBuilder: (context, position) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: new BorderRadius.all(Radius.circular(6.0))),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                        child: Text(
-                          dishList[position].name,
-                          style: new TextStyle(fontSize: 24.0),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-                        child: PopupMenuButton<String>(
-                          onSelected: onClickPopupMenu,
-                          icon: Icon(Icons.more_horiz),
-                          itemBuilder: (BuildContext context) {
-                            id = dishList[position].id;
-                            dish = dishList[position];
-                            contextSnackbar = context;
-                            return popupItems.map((String choice) {
-                              return PopupMenuItem<String>(value: choice,
-                                child: Text(choice),);
-                            }).toList();
-                          },),
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(),
-                    child: Image.network(
-                        "https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                        child: Text(
-                          "You cooked this dish " +
-                              dishList[position].counterCooking.toString() +
-                              " times",
-                          style: new TextStyle(fontSize: 16.0),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                            dishList[position]
-                                .ingredientList
-                                .replaceAll(r'$', '\n'),
-                            style: new TextStyle(fontSize: 18.0)),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, left: 8.0,
-                      bottom: 8.0,),
-                    child: Row(
-                      children: <Widget>[
-                        InkWell(
-                          child: Text(
-                              "COOK", style: new TextStyle(fontSize: 20.0,
-                              fontWeight:
-                              FontWeight.bold)),
-                          onTap: () {
-                            showCookingScreen(dishList[position]);
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-        itemCount: dishList.length,
-      ),
+      body: body,
       bottomNavigationBar: new Theme(
           data: Theme.of(context).copyWith(canvasColor: Colors.blue),
           child: getBottomNavigationBar()),
@@ -230,7 +149,7 @@ class _DishListState extends State<DishList> {
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database) {
       Future<List<Dish>> dishListFuture =
-      databaseHelper.getDishesByCategory(title);
+          databaseHelper.getDishesByCategory(title);
       dishListFuture.then((dishList) {
         setState(() {
           this.dishList = dishList;
@@ -242,7 +161,7 @@ class _DishListState extends State<DishList> {
 
   Widget appBar(Widget appBarTitle) {
     return AppBar(
-      title: appBarTitle,// = new Text(title),
+      title: appBarTitle, // = new Text(title),
       actions: <Widget>[
         IconButton(
           icon: search,
@@ -280,9 +199,11 @@ class _DishListState extends State<DishList> {
   }
 
   void showSnackbarForDelete() {
-    final snackbar = new SnackBar(content: Text("Do you really want to delete"
-        " dish?"),
-      action: SnackBarAction(label: 'Yes', onPressed: clickOnSnackbar),);
+    final snackbar = new SnackBar(
+      content: Text("Do you really want to delete"
+          " dish?"),
+      action: SnackBarAction(label: 'Yes', onPressed: clickOnSnackbar),
+    );
     Scaffold.of(contextSnackbar).showSnackBar(snackbar);
   }
 
@@ -301,15 +222,13 @@ class _DishListState extends State<DishList> {
   }
 
   void showUpdateDishScreen() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) =>
-    new UpdateDish
-      (dish)));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => new UpdateDish(dish)));
   }
 
   void showCookingScreen(Dish dish) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) =>
-    new CookingDish(
-        (dish))));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => new CookingDish((dish))));
   }
 
   void _searchPressed() {
@@ -337,13 +256,13 @@ class _DishListState extends State<DishList> {
     });
   }
 
-  void _initFilterController(){
-    filterController.addListener((){
-      if(filterController.text.isEmpty || filterController.text.length<1){
+  void _initFilterController() {
+    filterController.addListener(() {
+      if (filterController.text.isEmpty || filterController.text.length < 1) {
         setState(() {
           dishList = filterFullList;
         });
-      }else{
+      } else {
         setState(() {
           dishList = getFilterList(filterController.text);
         });
@@ -351,15 +270,128 @@ class _DishListState extends State<DishList> {
     });
   }
 
-  List<Dish>getFilterList(String title){
+  List<Dish> getFilterList(String title) {
     List<Dish> filterList = new List();
 
-    for(int i=0;i<filterFullList.length;i++){
-      if(filterFullList[i].name.toLowerCase().contains(title.toLowerCase())){
+    for (int i = 0; i < filterFullList.length; i++) {
+      if (filterFullList[i].name.toLowerCase().contains(title.toLowerCase())) {
         filterList.add(filterFullList[i]);
       }
     }
 
     return filterList;
+  }
+
+  Widget getDishesWidget() {
+    return ListView.builder(
+      itemBuilder: (context, position) {
+        return Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: new BorderRadius.all(Radius.circular(6.0))),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                      child: Text(
+                        dishList[position].name,
+                        style: new TextStyle(fontSize: 24.0),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                      child: PopupMenuButton<String>(
+                        onSelected: onClickPopupMenu,
+                        icon: Icon(Icons.more_horiz),
+                        itemBuilder: (BuildContext context) {
+                          id = dishList[position].id;
+                          dish = dishList[position];
+                          contextSnackbar = context;
+                          return popupItems.map((String choice) {
+                            return PopupMenuItem<String>(
+                              value: choice,
+                              child: Text(choice),
+                            );
+                          }).toList();
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(),
+                  child: Image.network(
+                      "https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"),
+                ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                      child: Text(
+                        "You cooked this dish " +
+                            dishList[position].counterCooking.toString() +
+                            " times",
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                          dishList[position]
+                              .ingredientList
+                              .replaceAll(r'$', '\n'),
+                          style: new TextStyle(fontSize: 18.0)),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 8.0,
+                    left: 8.0,
+                    bottom: 8.0,
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      InkWell(
+                        child: Text("COOK",
+                            style: new TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                        onTap: () {
+                          showCookingScreen(dishList[position]);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      itemCount: dishList.length,
+    );
+  }
+
+  Widget noDataAvailable() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(LocalizationEN.noDataAvailable),
+          ],
+        ),
+      ],
+    );
   }
 }
