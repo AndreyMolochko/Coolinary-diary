@@ -1,6 +1,6 @@
 # sqflite_worker
 
-In project you can find work with differts Widget : ListView, DropDownMenu, NavigationAppBar, SearchView.
+In project you can find work with differts Widget : ListView, DropDownMenu, NavigationAppBar, SearchView, AlertDialog.
 There are CRUD command in Sqflite in this project.
 Plan -> work with camera.
 
