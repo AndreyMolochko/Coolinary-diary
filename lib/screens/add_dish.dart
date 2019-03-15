@@ -96,10 +96,7 @@ class _AddDishState extends State<AddDish> {
                     icon: new Icon(Icons.image),
                     onPressed: () {
                       //TODO:work with camera
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => new CustomProgress()));
+                      _showDialog();
                       Fluttertoast.showToast(msg: "In develop");
                     },
                     iconSize: 48,
@@ -239,5 +236,53 @@ class _AddDishState extends State<AddDish> {
     print(dish.ingredientList);
     print(dish.recipe);
     print(dish.path);
+  }
+
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return getAlertDialog();
+        });
+  }
+
+  Widget getAlertDialog() {
+    return AlertDialog(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          InkWell(
+            onTap: _clickOnCamera,
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text("Camera", style: new TextStyle(fontSize: 18.0)),
+                ),
+              ],
+            ),
+          ),
+          InkWell(
+            onTap: _clickOnGallery,
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text("Gallery", style: new TextStyle(fontSize: 18.0)),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  void _clickOnCamera() {
+    Fluttertoast.showToast(msg: "Camera");
+  }
+
+  void _clickOnGallery() {
+    Fluttertoast.showToast(msg: "Gallery");
   }
 }
