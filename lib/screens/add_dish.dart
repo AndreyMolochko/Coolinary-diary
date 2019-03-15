@@ -3,7 +3,8 @@ import 'package:sqflite_worker/resourses/strings.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
-import 'package:sqflite_worker/screens/custom_progress.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class AddDish extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class _AddDishState extends State<AddDish> {
   bool validateName = false;
   bool validateCookingList = false;
   bool validateIngredient = false;
+  File image;
 
   @override
   void initState() {
@@ -93,11 +95,10 @@ class _AddDishState extends State<AddDish> {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: IconButton(
-                    icon: new Icon(Icons.image),
+                    icon: image == null? new Icon(Icons.image):new Image.file
+    (image),
                     onPressed: () {
-                      //TODO:work with camera
                       _showDialog();
-                      Fluttertoast.showToast(msg: "In develop");
                     },
                     iconSize: 48,
                   ),
@@ -219,7 +220,7 @@ class _AddDishState extends State<AddDish> {
         category,
         ingredientListController.text,
         cookingListController.text,
-        testUrlImage);
+        image.path);
 
     int result = await databaseHelper.insertDish(dish);
     if (result != 0) {
@@ -242,11 +243,11 @@ class _AddDishState extends State<AddDish> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return getAlertDialog();
+          return _getAlertDialog();
         });
   }
 
-  Widget getAlertDialog() {
+  Widget _getAlertDialog() {
     return AlertDialog(
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -278,11 +279,20 @@ class _AddDishState extends State<AddDish> {
     );
   }
 
-  void _clickOnCamera() {
-    Fluttertoast.showToast(msg: "Camera");
+  void _clickOnCamera()async {
+    image = await ImagePicker.pickImage(source: ImageSource.camera);
+    print(image.path);
+    setState(() {
+
+    });
   }
 
-  void _clickOnGallery() {
-    Fluttertoast.showToast(msg: "Gallery");
+  void _clickOnGallery()async {
+    image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print(image.path);
+    setState(() {
+
+    });
   }
+
 }
