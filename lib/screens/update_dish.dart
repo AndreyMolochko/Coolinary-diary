@@ -3,6 +3,8 @@ import 'package:sqflite_worker/resourses/strings.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class UpdateDish extends StatefulWidget {
   final Dish dish;
@@ -27,6 +29,7 @@ class _UpdateDishState extends State<UpdateDish> {
   var ingredientListController = new TextEditingController();
   String category = "Soups";
   List<DropdownMenuItem<String>> _dropDownMenuItems;
+  File image;
 
   DatabaseHelper databaseHelper = new DatabaseHelper();
 
@@ -102,8 +105,7 @@ class _UpdateDishState extends State<UpdateDish> {
                   child: IconButton(
                     icon: new Icon(Icons.image),
                     onPressed: () {
-                      //TODO:work with camera
-                      Fluttertoast.showToast(msg: "In develop");
+                      _showDialog();
                     },
                     iconSize: 48,
                   ),
@@ -252,5 +254,61 @@ class _UpdateDishState extends State<UpdateDish> {
     } else {
       return false;
     }
+  }
+
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return _getAlertDialog();
+        });
+  }
+
+  Widget _getAlertDialog() {
+    return AlertDialog(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          InkWell(
+            onTap: _clickOnCamera,
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text("Camera", style: new TextStyle(fontSize: 18.0)),
+                ),
+              ],
+            ),
+          ),
+          InkWell(
+            onTap: _clickOnGallery,
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text("Gallery", style: new TextStyle(fontSize: 18.0)),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  void _clickOnCamera()async {
+    image = await ImagePicker.pickImage(source: ImageSource.camera);
+    print(image.path);
+    setState(() {
+
+    });
+  }
+
+  void _clickOnGallery()async {
+    image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print(image.path);
+    setState(() {
+
+    });
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class CookingDish extends StatefulWidget {
   Dish dish;
@@ -30,10 +32,8 @@ class _CookingDishState extends State<CookingDish> {
               padding: const EdgeInsets.only(top: 8.0, left: 16.0),
               child: Row(
                 children: <Widget>[
-                  new Icon(
-                    Icons.image,
-                    size: 48.0,
-                  ),
+                  dish.path.length>0?Image.file(new File
+                    (dish.path),height: 48,width: 48,):Icon(Icons.image),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: new Text(

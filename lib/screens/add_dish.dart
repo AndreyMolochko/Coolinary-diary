@@ -3,7 +3,8 @@ import 'package:sqflite_worker/resourses/strings.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
-import 'package:sqflite_worker/screens/custom_progress.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class AddDish extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class _AddDishState extends State<AddDish> {
   bool validateName = false;
   bool validateCookingList = false;
   bool validateIngredient = false;
+  File image;
 
   @override
   void initState() {
@@ -93,14 +95,10 @@ class _AddDishState extends State<AddDish> {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: IconButton(
-                    icon: new Icon(Icons.image),
+                    icon: image == null? new Icon(Icons.image):new Image.file
+    (image),
                     onPressed: () {
-                      //TODO:work with camera
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => new CustomProgress()));
-                      Fluttertoast.showToast(msg: "In develop");
+                      _showDialog();
                     },
                     iconSize: 48,
                   ),
@@ -222,7 +220,7 @@ class _AddDishState extends State<AddDish> {
         category,
         ingredientListController.text,
         cookingListController.text,
-        testUrlImage);
+        image.path);
 
     int result = await databaseHelper.insertDish(dish);
     if (result != 0) {
@@ -240,4 +238,61 @@ class _AddDishState extends State<AddDish> {
     print(dish.recipe);
     print(dish.path);
   }
+
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return _getAlertDialog();
+        });
+  }
+
+  Widget _getAlertDialog() {
+    return AlertDialog(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          InkWell(
+            onTap: _clickOnCamera,
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text("Camera", style: new TextStyle(fontSize: 18.0)),
+                ),
+              ],
+            ),
+          ),
+          InkWell(
+            onTap: _clickOnGallery,
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text("Gallery", style: new TextStyle(fontSize: 18.0)),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  void _clickOnCamera()async {
+    image = await ImagePicker.pickImage(source: ImageSource.camera);
+    print(image.path);
+    setState(() {
+
+    });
+  }
+
+  void _clickOnGallery()async {
+    image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print(image.path);
+    setState(() {
+
+    });
+  }
+
 }

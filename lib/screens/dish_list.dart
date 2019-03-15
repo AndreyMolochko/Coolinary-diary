@@ -6,6 +6,7 @@ import 'package:sqflite_worker/resourses/strings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sqflite_worker/screens/update_dish.dart';
 import 'package:sqflite_worker/screens/cooking_dish.dart';
+import 'dart:io';
 
 class DishList extends StatefulWidget {
   @override
@@ -325,8 +326,10 @@ class _DishListState extends State<DishList> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(),
-                  child: Image.network(
-                      "https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg"),
+                  child: dishList[position]
+                      .path.length>0?Image.file(new File
+                (dishList[position]
+                    .path)):Icon(Icons.image),
                 ),
                 Row(
                   children: <Widget>[
