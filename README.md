@@ -2,9 +2,11 @@
 
 In project you can find work with differts Widget : ListView, DropDownMenu, NavigationAppBar, SearchView, AlertDialog.
 There are CRUD command in Sqflite in this project. Application allows to work with camera and gallery.
-![alt text](blob:https://web.telegram.org/00fa69a4-c2b7-4544-9ecf-3224405a040f)
 
-## Getting Started
+<img src="https://user-images.githubusercontent.com/36672245/54521136-8b3b9200-4927-11e9-9140-415635b71ed2.jpg" width = 250> | 
+<img src="https://user-images.githubusercontent.com/36672245/54521210-b2925f00-4927-11e9-9441-26826a8ad5f4.jpg" width = 250> | 
+<img src="https://user-images.githubusercontent.com/36672245/54521259-cb027980-4927-11e9-92c9-7b85f83479bb.jpg" width = 250>
+--- | --- | ---
 
 This project is a starting point for a Flutter application.
 
