@@ -35,6 +35,7 @@ class _UpdateDishState extends State<UpdateDish> {
 
   @override
   void initState() {
+    image = new File(dish.path);
     _initControllers();
     _initWidgets();
   }
@@ -103,7 +104,8 @@ class _UpdateDishState extends State<UpdateDish> {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: IconButton(
-                    icon: new Icon(Icons.image),
+                    icon: image == null? new Icon(Icons.image):new Image.file
+                      (image),
                     onPressed: () {
                       _showDialog();
                     },
@@ -228,7 +230,7 @@ class _UpdateDishState extends State<UpdateDish> {
         category,
         ingredientListController.text,
         cookingListController.text,
-        testUrlImage);
+        image.path);
     int result = await databaseHelper.updateDish(dish);
     Navigator.pop(context);
   }

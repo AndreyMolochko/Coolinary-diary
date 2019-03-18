@@ -1,8 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class CookingDish extends StatefulWidget {
   Dish dish;
