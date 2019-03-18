@@ -65,116 +65,120 @@ class _AddDishState extends State<AddDish> {
       appBar: AppBar(
         title: new Text("Add dish"),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-            child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 16.0, top: 8.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: new TextField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Name",
-                            errorText: validateName ? null : 'Enter something'),
+      body: Builder(
+        builder:(context)=> SingleChildScrollView(
+          child: Container(
+              child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, top: 8.0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: new TextField(
+                          controller: nameController,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: "Name",
+                              errorText: validateName ? null : 'Enter something'),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: IconButton(
-                    icon: image == null? new Icon(Icons.image):new Image.file
-    (image),
-                    onPressed: () {
-                      _showDialog();
-                    },
-                    iconSize: 48,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: DropdownButton(
-                    value: category,
-                    items: _dropDownMenuItems,
-                    onChanged: changeDropDownItem,
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 16.0, top: 8.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: new TextField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 4,
-                        controller: cookingListController,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Cooki"
-                                "ng list",
-                            errorText:
-                                validateCookingList ? null : 'Enter something'),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 16.0, top: 8.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: new TextField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 4,
-                        controller: ingredientListController,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Ingre"
-                                "dient list",
-                            errorText:
-                                validateIngredient ? null : 'Enter something'),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
-              child: SizedBox(
-                height: 48,
-                width: double.infinity,
-                child: RaisedButton(
-                  color: Colors.grey,
-                  child: new Text("Add dish"),
-                  onPressed: onClickAddDish,
-                ),
+                ],
               ),
-            )
-          ],
-        )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: IconButton(
+                      icon: image == null? new Icon(Icons.image):new Image.file
+    (image),
+                      onPressed: () {
+                        _showDialog();
+                      },
+                      iconSize: 48,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: DropdownButton(
+                      value: category,
+                      items: _dropDownMenuItems,
+                      onChanged: changeDropDownItem,
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, top: 8.0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: new TextField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 4,
+                          controller: cookingListController,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: "Cooki"
+                                  "ng list",
+                              errorText:
+                                  validateCookingList ? null : 'Enter something'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, top: 8.0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: new TextField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 4,
+                          controller: ingredientListController,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: "Ingre"
+                                  "dient list",
+                              errorText:
+                                  validateIngredient ? null : 'Enter something'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+                child: SizedBox(
+                  height: 48,
+                  width: double.infinity,
+                  child: RaisedButton(
+                    color: Colors.grey,
+                    child: new Text("Add dish"),
+                    onPressed: (){
+                      onClickAddDish(context);
+                    },
+                  ),
+                ),
+              )
+            ],
+          )),
+        ),
       ),
     );
   }
@@ -207,9 +211,11 @@ class _AddDishState extends State<AddDish> {
     });
   }
 
-  void onClickAddDish() {
-    if (isValidAllField()) {
+  void onClickAddDish(var context) {
+    if (isValidAllField() && image!=null) {
       insertDishFromFields();
+    }else{
+      _showSnackbarError(context);
     }
   }
 
@@ -293,6 +299,13 @@ class _AddDishState extends State<AddDish> {
     setState(() {
 
     });
+  }
+
+  void _showSnackbarError(var context) {
+    final snackbar = new SnackBar(
+      content: Text("You need to fill all fields and add photo"),
+    );
+    Scaffold.of(context).showSnackBar(snackbar);
   }
 
 }
