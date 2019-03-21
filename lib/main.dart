@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       home: DishList(),
       routes: <String,WidgetBuilder>{
         '/dishList':(BuildContext context)=>new DishList(),
-        '/addDish':(BuildContext context)=>new AddDish(),
       },
     );
   }

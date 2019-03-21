@@ -1,24 +1,28 @@
-import 'package:flutter/material.dart';
-import 'package:sqflite_worker/resourses/strings.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sqflite_worker/model/dish.dart';
-import 'package:sqflite_worker/utils/database_helper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:sqflite_worker/model/dish.dart';
+import 'package:sqflite_worker/resourses/strings.dart';
+import 'package:sqflite_worker/utils/database_helper.dart';
+
+typedef void Callback();
 
 class UpdateDish extends StatefulWidget {
   final Dish dish;
+  final Callback callback;
 
-  UpdateDish(this.dish);
+  UpdateDish(this.dish,this.callback);
 
   @override
-  _UpdateDishState createState() => _UpdateDishState(dish);
+  _UpdateDishState createState() => _UpdateDishState(dish,callback);
 }
 
 class _UpdateDishState extends State<UpdateDish> {
   Dish dish;
+  final Callback callback;
 
-  _UpdateDishState(this.dish);
+  _UpdateDishState(this.dish,this.callback);
 
   bool validateName = false;
   bool validateCookingList = false;
@@ -232,6 +236,7 @@ class _UpdateDishState extends State<UpdateDish> {
         cookingListController.text,
         image.path);
     int result = await databaseHelper.updateDish(dish);
+    callback();
     Navigator.pop(context);
   }
 
