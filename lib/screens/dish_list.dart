@@ -6,6 +6,7 @@ import 'package:sqflite_worker/resourses/strings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sqflite_worker/screens/update_dish.dart';
 import 'package:sqflite_worker/screens/cooking_dish.dart';
+import 'package:sqflite_worker/screens/add_dish.dart';
 import 'dart:io';
 
 class DishList extends StatefulWidget {
@@ -162,7 +163,7 @@ class _DishListState extends State<DishList> {
 
   Widget appBar(Widget appBarTitle) {
     return AppBar(
-      title: appBarTitle, // = new Text(title),
+      title: appBarTitle,
       actions: <Widget>[
         IconButton(
           icon: search,
@@ -180,7 +181,9 @@ class _DishListState extends State<DishList> {
   }
 
   void _onClickAdd() {
-    Navigator.of(context).pushNamed('/addDish');
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => new AddDish(updateScreen
+    )));
   }
 
   void onClickPopupMenu(String action) {
@@ -224,7 +227,9 @@ class _DishListState extends State<DishList> {
 
   void showUpdateDishScreen() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => new UpdateDish(dish)));
+        context, MaterialPageRoute(builder: (context) => new UpdateDish(dish,
+        updateScreen
+    )));
   }
 
   void showCookingScreen(Dish dish) {

@@ -1,17 +1,24 @@
-import 'package:flutter/material.dart';
-import 'package:sqflite_worker/resourses/strings.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sqflite_worker/model/dish.dart';
-import 'package:sqflite_worker/utils/database_helper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:sqflite_worker/model/dish.dart';
+import 'package:sqflite_worker/resourses/strings.dart';
+import 'package:sqflite_worker/utils/database_helper.dart';
+
+typedef void Callback();
+
 class AddDish extends StatefulWidget {
+  final Callback callback;
+
+  AddDish(this.callback);
+
   @override
-  _AddDishState createState() => _AddDishState();
+  _AddDishState createState() => _AddDishState(callback);
 }
 
 class _AddDishState extends State<AddDish> {
+  final Callback callback;
   var nameController = new TextEditingController();
   var cookingListController = new TextEditingController();
   var ingredientListController = new TextEditingController();
@@ -23,6 +30,8 @@ class _AddDishState extends State<AddDish> {
   bool validateCookingList = false;
   bool validateIngredient = false;
   File image;
+
+  _AddDishState(this.callback);
 
   @override
   void initState() {
@@ -230,19 +239,13 @@ class _AddDishState extends State<AddDish> {
 
     int result = await databaseHelper.insertDish(dish);
     if (result != 0) {
-      // Success
       print('Dish Saved Successfully');
+      callback();
       Navigator.pop(context);
     } else {
-      // Failure
       print('Problem Saving Dish');
     }
 
-    print(dish.name);
-    print(dish.category);
-    print(dish.ingredientList);
-    print(dish.recipe);
-    print(dish.path);
   }
 
   void _showDialog() {
