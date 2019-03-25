@@ -207,6 +207,7 @@ class _DishListState extends State<DishList> {
       content: Text("Do you really want to delete"
           " dish?"),
       action: SnackBarAction(label: 'Yes', onPressed: clickOnSnackbar),
+      duration: new Duration(days: 1000),
     );
     Scaffold.of(contextSnackbar).showSnackBar(snackbar);
   }
@@ -372,7 +373,8 @@ class _DishListState extends State<DishList> {
                       InkWell(
                         child: Text("COOK",
                             style: new TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                fontSize: 20.0, fontWeight: FontWeight.bold,
+                                color: Colors.blueAccent)),
                         onTap: () {
                           showCookingScreen(dishList[position]);
                         },

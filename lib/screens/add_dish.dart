@@ -289,6 +289,7 @@ class _AddDishState extends State<AddDish> {
   }
 
   void _clickOnCamera()async {
+    Navigator.pop(context);
     image = await ImagePicker.pickImage(source: ImageSource.camera);
     print(image.path);
     setState(() {
@@ -297,6 +298,7 @@ class _AddDishState extends State<AddDish> {
   }
 
   void _clickOnGallery()async {
+    Navigator.pop(context);
     image = await ImagePicker.pickImage(source: ImageSource.gallery);
     print(image.path);
     setState(() {
