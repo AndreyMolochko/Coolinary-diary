@@ -5,7 +5,9 @@ import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/resourses/strings.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
 import 'package:sqflite_worker/utils/utils.dart';
+import 'package:sqflite_worker/widgets/camera_alert_dialog.dart';
 import 'package:sqflite_worker/widgets/image_addition_dish_widget.dart';
+import 'package:sqflite_worker/widgets/add_dish_button.dart';
 
 typedef void Callback();
 
@@ -238,40 +240,9 @@ class _AddDishState extends State<AddDish> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return _getAlertDialog();
+          return CameraAlertDialog(
+              "Camera", "Gallery", _clickOnCamera, _clickOnGallery);
         });
-  }
-
-  Widget _getAlertDialog() {
-    return AlertDialog(
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          InkWell(
-            onTap: _clickOnCamera,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text("Camera", style: new TextStyle(fontSize: 18.0)),
-                ),
-              ],
-            ),
-          ),
-          InkWell(
-            onTap: _clickOnGallery,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text("Gallery", style: new TextStyle(fontSize: 18.0)),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
   }
 
   void _clickOnCamera() async {
