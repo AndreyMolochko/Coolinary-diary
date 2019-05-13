@@ -8,6 +8,7 @@ import 'package:sqflite_worker/utils/utils.dart';
 import 'package:sqflite_worker/widgets/camera_alert_dialog.dart';
 import 'package:sqflite_worker/widgets/image_addition_dish_widget.dart';
 import 'package:sqflite_worker/widgets/add_dish_button.dart';
+import 'package:sqflite_worker/widgets/multiline_text_field.dart';
 
 typedef void Callback();
 
@@ -17,24 +18,20 @@ class AddDish extends StatefulWidget {
   AddDish(this.callback);
 
   @override
-  _AddDishState createState() => _AddDishState(callback);
+  _AddDishState createState() => _AddDishState();
 }
 
 class _AddDishState extends State<AddDish> {
-  final Callback callback;
   var nameController = new TextEditingController();
   var cookingListController = new TextEditingController();
   var ingredientListController = new TextEditingController();
   String category;
   List<DropdownMenuItem<String>> _dropDownMenuItems;
-
   DatabaseHelper databaseHelper = new DatabaseHelper();
   bool validateName = false;
   bool validateCookingList = false;
   bool validateIngredient = false;
   File image;
-
-  _AddDishState(this.callback);
 
   @override
   void initState() {
@@ -109,7 +106,7 @@ class _AddDishState extends State<AddDish> {
                         child: DropdownButton(
                           value: category,
                           items: _dropDownMenuItems,
-                          onChanged: changeDropDownItem,
+                          onChanged: _changeDropDownItem,
                         ),
                       )
                     ],
@@ -117,50 +114,20 @@ class _AddDishState extends State<AddDish> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 16.0, right: 16.0, top: 8.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: new TextField(
-                              keyboardType: TextInputType.multiline,
-                              maxLines: 4,
-                              controller: cookingListController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: "Cooki"
-                                      "ng list",
-                                  errorText: validateCookingList
-                                      ? null
-                                      : 'Enter something'),
-                            ),
-                          ),
-                        ),
+                        child: _getWidgetWithPadding(MultiLineTextField(
+                            "Cooking list",
+                            validateCookingList,
+                            cookingListController)),
                       ),
                     ],
                   ),
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 16.0, right: 16.0, top: 8.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: new TextField(
-                              keyboardType: TextInputType.multiline,
-                              maxLines: 4,
-                              controller: ingredientListController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: "Ingre"
-                                      "dient list",
-                                  errorText: validateIngredient
-                                      ? null
-                                      : 'Enter something'),
-                            ),
-                          ),
-                        ),
+                        child: _getWidgetWithPadding(MultiLineTextField(
+                            "Ingredient list",
+                            validateIngredient,
+                            ingredientListController)),
                       ),
                     ],
                   ),
@@ -174,7 +141,7 @@ class _AddDishState extends State<AddDish> {
                         color: Colors.grey,
                         child: new Text("Add dish"),
                         onPressed: () {
-                          onClickAddDish(context);
+                          _onClickAddDish(context);
                         },
                       ),
                     ),
@@ -200,7 +167,14 @@ class _AddDishState extends State<AddDish> {
     return items;
   }
 
-  bool isValidAllField() {
+  Widget _getWidgetWithPadding(Widget widget) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+      child: widget,
+    );
+  }
+
+  bool _isValidAllField() {
     if (validateName && validateIngredient && validateCookingList) {
       return true;
     } else {
@@ -208,32 +182,31 @@ class _AddDishState extends State<AddDish> {
     }
   }
 
-  void changeDropDownItem(String selectedCategory) {
+  void _changeDropDownItem(String selectedCategory) {
     setState(() {
       category = selectedCategory;
     });
   }
 
-  void onClickAddDish(var context) {
-    if (isValidAllField() && image != null) {
-      insertDishFromFields();
+  void _onClickAddDish(var context) {
+    if (_isValidAllField() && image != null) {
+      _insertDishFromFields();
     } else {
       _showSnackbarError(context);
     }
   }
 
-  void insertDishFromFields() async {
-    Dish dish = new Dish(nameController.text, 0, category,
-        ingredientListController.text, cookingListController.text, image.path);
-
-    int result = await databaseHelper.insertDish(dish);
+  void _insertDishFromFields() async {
+    int result = await databaseHelper.insertDish(_getDishFromField());
     if (result != 0) {
-      print('Dish Saved Successfully');
-      callback();
+      widget.callback();
       Navigator.pop(context);
-    } else {
-      print('Problem Saving Dish');
     }
+  }
+
+  Dish _getDishFromField() {
+    return new Dish(nameController.text, 0, category,
+        ingredientListController.text, cookingListController.text, image.path);
   }
 
   void _showDialog() {
@@ -248,14 +221,12 @@ class _AddDishState extends State<AddDish> {
   void _clickOnCamera() async {
     Navigator.pop(context);
     image = await ImagePicker.pickImage(source: ImageSource.camera);
-    print(image.path);
     setState(() {});
   }
 
   void _clickOnGallery() async {
     Navigator.pop(context);
     image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    print(image.path);
     setState(() {});
   }
 
