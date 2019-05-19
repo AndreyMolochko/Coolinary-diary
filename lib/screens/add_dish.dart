@@ -7,7 +7,6 @@ import 'package:sqflite_worker/utils/database_helper.dart';
 import 'package:sqflite_worker/utils/utils.dart';
 import 'package:sqflite_worker/widgets/camera_alert_dialog.dart';
 import 'package:sqflite_worker/widgets/image_addition_dish_widget.dart';
-import 'package:sqflite_worker/widgets/add_dish_button.dart';
 import 'package:sqflite_worker/widgets/multiline_text_field.dart';
 
 typedef void Callback();
@@ -74,21 +73,8 @@ class _AddDishState extends State<AddDish> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 16.0, right: 16.0, top: 8.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: new TextField(
-                              controller: nameController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: "Name",
-                                  errorText:
-                                      validateName ? null : 'Enter something'),
-                            ),
-                          ),
-                        ),
+                        child: _getWidgetWithPadding(MultiLineTextField(
+                            "Name", validateName, nameController, 1)),
                       ),
                     ],
                   ),
@@ -117,7 +103,8 @@ class _AddDishState extends State<AddDish> {
                         child: _getWidgetWithPadding(MultiLineTextField(
                             "Cooking list",
                             validateCookingList,
-                            cookingListController)),
+                            cookingListController,
+                            4)),
                       ),
                     ],
                   ),
@@ -127,7 +114,8 @@ class _AddDishState extends State<AddDish> {
                         child: _getWidgetWithPadding(MultiLineTextField(
                             "Ingredient list",
                             validateIngredient,
-                            ingredientListController)),
+                            ingredientListController,
+                            4)),
                       ),
                     ],
                   ),

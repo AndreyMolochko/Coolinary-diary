@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 
-class MultiLineTextField extends StatefulWidget {
+class MultiLineTextField extends StatelessWidget{
+
   final String labelText;
   final bool validateCookingList;
   final TextEditingController cookingListController;
+  final int maxLines;
 
   MultiLineTextField(
-      this.labelText, this.validateCookingList, this.cookingListController);
+      this.labelText, this.validateCookingList, this.cookingListController,this.maxLines);
 
-  @override
-  _MultiLineTextFieldState createState() => _MultiLineTextFieldState();
-}
-
-class _MultiLineTextFieldState extends State<MultiLineTextField> {
-  final int maxLines = 4;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +18,11 @@ class _MultiLineTextFieldState extends State<MultiLineTextField> {
       child: new TextField(
         keyboardType: TextInputType.multiline,
         maxLines: maxLines,
-        controller: widget.cookingListController,
+        controller: cookingListController,
         decoration: InputDecoration(
             border: OutlineInputBorder(),
-            labelText: widget.labelText,
-            errorText: widget.validateCookingList ? null : 'Enter something'),
+            labelText: labelText,
+            errorText: validateCookingList ? null : 'Enter something'),
       ),
     );
   }
