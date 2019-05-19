@@ -17,13 +17,6 @@ class DatabaseHelper {
   String columnRecipe = 'recipe';
   String columnPath = 'path';
 
-  /*this._name = map['name'];
-  this._counterCooking = map['counterCooking'];
-  this._category = map['category'];
-  this._ingredientList = map['ingredients'];
-  this._recipe = map['_recipe'];
-  this._path = map['path'];*/
-
   DatabaseHelper._createInstance();
 
   factory DatabaseHelper() {
@@ -97,17 +90,4 @@ class DatabaseHelper {
     return result;
   }
 
-  void insertTestData() async {
-    int a;
-
-    List<String> ingredientList = new List();
-    ingredientList.add("Salmon 300 gr.");
-    ingredientList.add("Water 400 ml.");
-    ingredientList.add("Carrot 100 gr.");
-    String ing = ingredientList[0];
-    for (int i = 1; i < ingredientList.length; i++) {
-      ing += r'$';
-      ing += ingredientList[i];
-    }
-  }
 }
