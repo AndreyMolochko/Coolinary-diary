@@ -185,14 +185,14 @@ class _AddDishState extends State<AddDish> {
   }
 
   void _insertDishFromFields() async {
-    int result = await databaseHelper.insertDish(_getDishFromField());
+    int result = await databaseHelper.insertDish(_getDishFromFields());
     if (result != 0) {
       widget.callback();
       Navigator.pop(context);
     }
   }
 
-  Dish _getDishFromField() {
+  Dish _getDishFromFields() {
     return new Dish(nameController.text, 0, category,
         ingredientListController.text, cookingListController.text, image.path);
   }
