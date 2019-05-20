@@ -21,6 +21,7 @@ class _DishListState extends State<DishList> {
   List<Dish> dishList;
   List<Dish> filterFullList;
   List<String> popupItems = ["update", "delete"];
+  List<String> settingsPopupItems = ["Language"];
   BuildContext contextSnackbar;
   int id;
   Dish dish;
@@ -151,10 +152,17 @@ class _DishListState extends State<DishList> {
           ),
           onPressed: _onClickAdd,
         ),
-        IconButton(
-          icon:  new Icon(Icons.more_vert,
-          color: Colors.white,),
-          onPressed: _openPopupSettings,
+        PopupMenuButton<String>(
+          onSelected: _openPopupSettings,
+          icon: Icon(Icons.more_vert),
+          itemBuilder: (BuildContext context) {
+            return settingsPopupItems.map((String choice) {
+              return PopupMenuItem<String>(
+                value: choice,
+                child: Text(choice),
+              );
+            }).toList();
+          },
         )
       ],
     );
@@ -398,7 +406,9 @@ class _DishListState extends State<DishList> {
     indexNavBar = index;
   }
 
-  void _openPopupSettings(){
-
+  void _openPopupSettings(String action){
+    if (action == settingsPopupItems[0]) {
+     print("language");
+    }
   }
 }
