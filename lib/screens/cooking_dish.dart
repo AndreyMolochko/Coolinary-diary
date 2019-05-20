@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
+import 'package:sqflite_worker/widgets/line.dart';
 
 class CookingDish extends StatefulWidget {
   Dish dish;
@@ -115,13 +116,7 @@ class _CookingDishState extends State<CookingDish> {
     return Padding(
       padding:
           const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 16.0, right: 16.0),
-      child: Container(
-        child: SizedBox(
-          width: double.infinity,
-          height: 1.0,
-        ),
-        color: Colors.grey,
-      ),
+      child: LineWidget()
     );
   }
 
