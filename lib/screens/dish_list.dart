@@ -45,12 +45,7 @@ class _DishListState extends State<DishList> {
       updateScreen();
     }
 
-    Widget body;
-    if (dishList.length == 0) {
-      body = noDataAvailable();
-    } else {
-      body = getDishesWidget();
-    }
+    Widget body = _getBody();
 
     return Scaffold(
       appBar: appBar(appBarTitle),
@@ -65,44 +60,24 @@ class _DishListState extends State<DishList> {
     setState(() {
       switch (index) {
         case 0:
-          title = listCategories[0];
-          appBarTitle = new Text(title);
-          search = new Icon(Icons.search);
-          filterController.clear();
-          indexNavBar = 0;
+          _switchNewTapItem(0);
           updateScreen();
           break;
 
         case 1:
-          title = listCategories[1];
-          appBarTitle = new Text(title);
-          search = new Icon(Icons.search);
-          filterController.clear();
-          indexNavBar = 1;
+          _switchNewTapItem(1);
           updateScreen();
           break;
         case 2:
-          title = listCategories[2];
-          appBarTitle = new Text(title);
-          search = new Icon(Icons.search);
-          filterController.clear();
-          indexNavBar = 2;
+          _switchNewTapItem(2);
           updateScreen();
           break;
         case 3:
-          title = listCategories[3];
-          appBarTitle = new Text(title);
-          search = new Icon(Icons.search);
-          filterController.clear();
-          indexNavBar = 3;
+          _switchNewTapItem(3);
           updateScreen();
           break;
         case 4:
-          title = listCategories[4];
-          appBarTitle = new Text(title);
-          search = new Icon(Icons.search);
-          filterController.clear();
-          indexNavBar = 4;
+          _switchNewTapItem(4);
           updateScreen();
           break;
       }
@@ -218,12 +193,6 @@ class _DishListState extends State<DishList> {
 
   void deleteDish(int id) async {
     int result = await databaseHelper.deleteDish(id);
-    if (result != 0) {
-      print('Dish deleted Successfully');
-      updateScreen();
-    } else {
-      print('Problem deleted dish');
-    }
   }
 
   void showUpdateDishScreen() {
@@ -391,6 +360,17 @@ class _DishListState extends State<DishList> {
     );
   }
 
+  Widget _getBody(){
+    Widget body;
+    if (dishList.length == 0) {
+      body = noDataAvailable();
+    } else {
+      body = getDishesWidget();
+    }
+
+    return body;
+  }
+
   Widget noDataAvailable() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -403,5 +383,13 @@ class _DishListState extends State<DishList> {
         ),
       ],
     );
+  }
+
+  void _switchNewTapItem(int index){
+    title = listCategories[index];
+    appBarTitle = new Text(title);
+    search = new Icon(Icons.search);
+    filterController.clear();
+    indexNavBar = index;
   }
 }
