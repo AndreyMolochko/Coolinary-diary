@@ -151,6 +151,11 @@ class _DishListState extends State<DishList> {
           ),
           onPressed: _onClickAdd,
         ),
+        IconButton(
+          icon:  new Icon(Icons.more_vert,
+          color: Colors.white,),
+          onPressed: _openPopupSettings,
+        )
       ],
     );
   }
@@ -391,5 +396,9 @@ class _DishListState extends State<DishList> {
     search = new Icon(Icons.search);
     filterController.clear();
     indexNavBar = index;
+  }
+
+  void _openPopupSettings(){
+
   }
 }
