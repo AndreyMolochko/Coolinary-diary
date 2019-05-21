@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/dish.dart';
+import 'package:sqflite_worker/screens/settings.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_worker/resourses/strings.dart';
@@ -34,7 +35,7 @@ class _DishListState extends State<DishList> {
 
   @override
   void initState() {
-    updateScreen();
+    _updateScreen();
     _initFilterController();
   }
 
@@ -42,17 +43,17 @@ class _DishListState extends State<DishList> {
   Widget build(BuildContext context) {
     if (dishList == null) {
       dishList = new List<Dish>();
-      updateScreen();
+      _updateScreen();
     }
 
     Widget body = _getBody();
 
     return Scaffold(
-      appBar: appBar(appBarTitle),
+      appBar: _appBar(appBarTitle),
       body: body,
       bottomNavigationBar: new Theme(
           data: Theme.of(context).copyWith(canvasColor: Colors.blue),
-          child: getBottomNavigationBar()),
+          child: _getBottomNavigationBar()),
     );
   }
 
@@ -61,30 +62,30 @@ class _DishListState extends State<DishList> {
       switch (index) {
         case 0:
           _switchNewTapItem(0);
-          updateScreen();
+          _updateScreen();
           break;
 
         case 1:
           _switchNewTapItem(1);
-          updateScreen();
+          _updateScreen();
           break;
         case 2:
           _switchNewTapItem(2);
-          updateScreen();
+          _updateScreen();
           break;
         case 3:
           _switchNewTapItem(3);
-          updateScreen();
+          _updateScreen();
           break;
         case 4:
           _switchNewTapItem(4);
-          updateScreen();
+          _updateScreen();
           break;
       }
     });
   }
 
-  BottomNavigationBar getBottomNavigationBar() {
+  BottomNavigationBar _getBottomNavigationBar() {
     return BottomNavigationBar(
         onTap: onTapBottomNavigationBar,
         currentIndex: indexNavBar,
@@ -122,7 +123,7 @@ class _DishListState extends State<DishList> {
         ]);
   }
 
-  void updateScreen() {
+  void _updateScreen() {
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database) {
       Future<List<Dish>> dishListFuture =
@@ -136,7 +137,7 @@ class _DishListState extends State<DishList> {
     });
   }
 
-  Widget appBar(Widget appBarTitle) {
+  Widget _appBar(Widget appBarTitle) {
     return AppBar(
       title: appBarTitle,
       actions: <Widget>[
@@ -151,60 +152,72 @@ class _DishListState extends State<DishList> {
           ),
           onPressed: _onClickAdd,
         ),
+        IconButton(
+          icon: new Icon(
+            Icons.more_vert,
+            color: Colors.white,
+          ),
+          onPressed: _clickSettingsItem,
+        ),
       ],
     );
   }
 
   void _onClickAdd() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => new AddDish(updateScreen
+        context, MaterialPageRoute(builder: (context) => new AddDish(_updateScreen
     )));
   }
 
   void onClickPopupMenu(String action) {
     if (action == popupItems[0]) {
-      onClickUpdateDish();
+      _onClickUpdateDish();
     } else if (action == popupItems[1]) {
-      onClickDeleteDish();
+      _onClickDeleteDish();
     }
   }
 
-  void onClickUpdateDish() {
-    showUpdateDishScreen();
+  void _onClickUpdateDish() {
+    _showUpdateDishScreen();
   }
 
-  void onClickDeleteDish() {
-    showSnackbarForDelete();
+  void _onClickDeleteDish() {
+    _showSnackbarForDelete();
   }
 
-  void showSnackbarForDelete() {
+  void _showSnackbarForDelete() {
     final snackbar = new SnackBar(
       content: Text("Do you really want to delete"
           " dish?"),
-      action: SnackBarAction(label: 'Yes', onPressed: clickOnSnackbar),
+      action: SnackBarAction(label: 'Yes', onPressed: _clickOnSnackbar),
       duration: new Duration(days: 1000),
     );
     Scaffold.of(contextSnackbar).showSnackBar(snackbar);
   }
 
-  void clickOnSnackbar() {
-    deleteDish(id);
+  void _clickOnSnackbar() {
+    _deleteDish(id);
   }
 
-  void deleteDish(int id) async {
+  void _deleteDish(int id) async {
     int result = await databaseHelper.deleteDish(id);
   }
 
-  void showUpdateDishScreen() {
+  void _showUpdateDishScreen() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => new UpdateDish(dish,
-        updateScreen
+        _updateScreen
     )));
   }
 
-  void showCookingScreen(Dish dish) {
+  void _showCookingScreen(Dish dish) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => new CookingDish((dish))));
+  }
+
+  void _showSettings(){
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => new SettingsWidget()));
   }
 
   void _searchPressed() {
@@ -240,13 +253,13 @@ class _DishListState extends State<DishList> {
         });
       } else {
         setState(() {
-          dishList = getFilterList(filterController.text);
+          dishList = _getFilterList(filterController.text);
         });
       }
     });
   }
 
-  List<Dish> getFilterList(String title) {
+  List<Dish> _getFilterList(String title) {
     List<Dish> filterList = new List();
 
     for (int i = 0; i < filterFullList.length; i++) {
@@ -258,7 +271,7 @@ class _DishListState extends State<DishList> {
     return filterList;
   }
 
-  Widget getDishesWidget() {
+  Widget _getDishesWidget() {
     return ListView.builder(
       itemBuilder: (context, position) {
         return Padding(
@@ -345,7 +358,7 @@ class _DishListState extends State<DishList> {
                                 fontSize: 20.0, fontWeight: FontWeight.bold,
                                 color: Colors.blueAccent)),
                         onTap: () {
-                          showCookingScreen(dishList[position]);
+                          _showCookingScreen(dishList[position]);
                         },
                       ),
                     ],
@@ -363,15 +376,15 @@ class _DishListState extends State<DishList> {
   Widget _getBody(){
     Widget body;
     if (dishList.length == 0) {
-      body = noDataAvailable();
+      body = _noDataAvailable();
     } else {
-      body = getDishesWidget();
+      body = _getDishesWidget();
     }
 
     return body;
   }
 
-  Widget noDataAvailable() {
+  Widget _noDataAvailable() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -391,5 +404,9 @@ class _DishListState extends State<DishList> {
     search = new Icon(Icons.search);
     filterController.clear();
     indexNavBar = index;
+  }
+
+  void _clickSettingsItem(){
+     _showSettings();
   }
 }
