@@ -11,6 +11,14 @@
   "drinks": "Напитки",
   "search": "Поиск...",
   "no_data_available": "Вы не добавили блюда в этой категории. Для добавления нажмите +",
-  "delete_dish": "Do you really want to delete the dish?"
+  "delete_dish": "Вы действительно хотите удалить блюдо?",
+  "camera": "Камера",
+  "gallery": "Галерея",
+  "add_dish": "Добавить блюдо",
+  "ingredient_list": "Список ингридиентов",
+  "cooking_list": "Способ приготовления",
+  "name": "Название",
+  "fill_fields": "Тебе нужно заполнить все поля и добавить фото",
+  "enter_something": "Введите что-нибудь"
 
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 
 class MultiLineTextField extends StatelessWidget{
 
@@ -22,7 +23,7 @@ class MultiLineTextField extends StatelessWidget{
         decoration: InputDecoration(
             border: OutlineInputBorder(),
             labelText: labelText,
-            errorText: validateCookingList ? null : 'Enter something'),
+            errorText: validateCookingList ? null : AppTranslations.translate(context, "enter_something")),
       ),
     );
   }

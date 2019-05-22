@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/resourses/strings.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
@@ -63,7 +64,7 @@ class _AddDishState extends State<AddDish> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: new Text("Add dish"),
+        title: new Text(AppTranslations.translate(context, "add_dish")),
       ),
       body: Builder(
         builder: (context) => SingleChildScrollView(
@@ -74,7 +75,7 @@ class _AddDishState extends State<AddDish> {
                     children: <Widget>[
                       Expanded(
                         child: _getWidgetWithPadding(MultiLineTextField(
-                            "Name", validateName, nameController, 1)),
+                            AppTranslations.translate(context, "name"), validateName, nameController, 1)),
                       ),
                     ],
                   ),
@@ -101,7 +102,7 @@ class _AddDishState extends State<AddDish> {
                     children: <Widget>[
                       Expanded(
                         child: _getWidgetWithPadding(MultiLineTextField(
-                            "Cooking list",
+                            AppTranslations.translate(context, "cooking_list"),
                             validateCookingList,
                             cookingListController,
                             4)),
@@ -112,7 +113,7 @@ class _AddDishState extends State<AddDish> {
                     children: <Widget>[
                       Expanded(
                         child: _getWidgetWithPadding(MultiLineTextField(
-                            "Ingredient list",
+                            AppTranslations.translate(context, "ingredient_list"),
                             validateIngredient,
                             ingredientListController,
                             4)),
@@ -127,7 +128,7 @@ class _AddDishState extends State<AddDish> {
                       width: double.infinity,
                       child: RaisedButton(
                         color: Colors.grey,
-                        child: new Text("Add dish"),
+                        child: new Text(AppTranslations.translate(context, "add_dish")),
                         onPressed: () {
                           _onClickAddDish(context);
                         },
@@ -202,7 +203,7 @@ class _AddDishState extends State<AddDish> {
         context: context,
         builder: (BuildContext context) {
           return CameraAlertDialog(
-              "Camera", "Gallery", _clickOnCamera, _clickOnGallery);
+              AppTranslations.translate(context, "camera"), AppTranslations.translate(context, "gallery"), _clickOnCamera, _clickOnGallery);
         });
   }
 
@@ -220,7 +221,7 @@ class _AddDishState extends State<AddDish> {
 
   void _showSnackbarError(var context) {
     final snackbar = new SnackBar(
-      content: Text("You need to fill all fields and add photo"),
+      content: Text(AppTranslations.translate(context, "fill_fields")),
     );
     Scaffold.of(context).showSnackBar(snackbar);
   }
