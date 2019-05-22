@@ -1,10 +1,10 @@
 
 class SettingsItem{
 
-  String title;
+  String titleIdJson;
   List<String> subItem = new List();
 
-  SettingsItem(this.title, this.subItem);
+  SettingsItem(this.titleIdJson, this.subItem);
 
 
 }
