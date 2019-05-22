@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
 import 'package:sqflite_worker/widgets/line.dart';
@@ -25,7 +26,7 @@ class _CookingDishState extends State<CookingDish> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(title: new Text("Cooking dish")),
+      appBar: new AppBar(title: new Text(AppTranslations.translate(context, "cooking_dish")),),
       body: Builder(
         builder:(context)=> Column(
           children: <Widget>[
@@ -45,7 +46,7 @@ class _CookingDishState extends State<CookingDish> {
                 ],
               ),
             ),
-            Text("Ingredient list",
+            Text(AppTranslations.translate(context, "ingredient_list"),
                 style:
                     new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
             line(),
@@ -63,7 +64,7 @@ class _CookingDishState extends State<CookingDish> {
               ),
             ),
             line(),
-            Text("Recipe",
+            Text(AppTranslations.translate(context,"cooking_list"),
                 style:
                     new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
             Padding(
@@ -87,7 +88,7 @@ class _CookingDishState extends State<CookingDish> {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: RaisedButton(
-                    child: new Text("END COOKING"),
+                    child: new Text(AppTranslations.translate(context,"end_cooking")),
                     onPressed: (){
                       contextSnackbar = context;
                       _showSnackbarForFinish();
@@ -97,7 +98,7 @@ class _CookingDishState extends State<CookingDish> {
                 Padding(
                   padding: const EdgeInsets.only(right: 16.0),
                   child: RaisedButton(
-                    child: new Text("CANCEL COOKING"),
+                    child: new Text(AppTranslations.translate(context,"cancel_cooking")),
                     onPressed: (){
                       contextSnackbar = context;
                       _showSnackbarForCancel();
@@ -108,7 +109,7 @@ class _CookingDishState extends State<CookingDish> {
             )
           ],
         ),
-      ),
+      )
     );
   }
 
@@ -122,16 +123,16 @@ class _CookingDishState extends State<CookingDish> {
 
   void _showSnackbarForFinish() {
     final snackbar = new SnackBar(
-      content: Text("Do you really want to finish dish?"),
-      action: SnackBarAction(label: 'Yes', onPressed: _clickOnFinishSnackbar),
+      content: Text(AppTranslations.translate(context,"want_finish_dish")),
+      action: SnackBarAction(label: AppTranslations.translate(context,"yes"), onPressed: _clickOnFinishSnackbar),
     );
     Scaffold.of(contextSnackbar).showSnackBar(snackbar);
   }
 
   void _showSnackbarForCancel() {
     final snackbar = new SnackBar(
-      content: Text("Do you really want to cancel dish?"),
-      action: SnackBarAction(label: 'Yes', onPressed: _clickOnCancelSnackbar),
+      content: Text(AppTranslations.translate(context,"want_cancel_dish")),
+      action: SnackBarAction(label: AppTranslations.translate(context,"yes"), onPressed: _clickOnCancelSnackbar),
     );
     Scaffold.of(contextSnackbar).showSnackBar(snackbar);
   }
