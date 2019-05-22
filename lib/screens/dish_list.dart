@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/screens/settings.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
@@ -17,11 +18,12 @@ class DishList extends StatefulWidget {
 
 class _DishListState extends State<DishList> {
   int indexNavBar = 0;
-  static String title = listCategories[0];
+  static String title = "";
   DatabaseHelper databaseHelper = new DatabaseHelper();
   List<Dish> dishList;
   List<Dish> filterFullList;
   List<String> popupItems = ["update", "delete"];
+  List<String> categoriesList = new List();
   BuildContext contextSnackbar;
   int id;
   Dish dish;
@@ -33,11 +35,18 @@ class _DishListState extends State<DishList> {
 
   Widget appBarTitle = new Text(title);
 
-
   @override
   void initState() {
     _updateScreen();
     _initFilterController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _initCategories();
+    title = categoriesList[0];
   }
 
   @override
@@ -96,31 +105,31 @@ class _DishListState extends State<DishList> {
                 "assets/soup.svg",
                 height: 24,
               ),
-              title: Text(listCategories[0])),
+              title: Text(categoriesList[0])),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/wedding-dinner.svg",
                 height: 24,
               ),
-              title: new Text(listCategories[1])),
+              title: new Text(categoriesList[1])),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/salad.svg",
                 height: 24,
               ),
-              title: new Text(listCategories[2])),
+              title: new Text(categoriesList[2])),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/birthday-cake.svg",
                 height: 24,
               ),
-              title: new Text(listCategories[3])),
+              title: new Text(categoriesList[3])),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/lemonade.svg",
                 height: 24,
               ),
-              title: new Text(listCategories[4]))
+              title: new Text(categoriesList[4]))
         ]);
   }
 
@@ -165,9 +174,8 @@ class _DishListState extends State<DishList> {
   }
 
   void _onClickAdd() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => new AddDish(_updateScreen
-    )));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => new AddDish(_updateScreen)));
   }
 
   void onClickPopupMenu(String action) {
@@ -206,9 +214,9 @@ class _DishListState extends State<DishList> {
 
   void _showUpdateDishScreen() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => new UpdateDish(dish,
-        _updateScreen
-    )));
+        context,
+        MaterialPageRoute(
+            builder: (context) => new UpdateDish(dish, _updateScreen)));
   }
 
   void _showCookingScreen(Dish dish) {
@@ -216,9 +224,9 @@ class _DishListState extends State<DishList> {
         MaterialPageRoute(builder: (context) => new CookingDish((dish))));
   }
 
-  void _showSettings(){
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => new SettingsWidget()));
+  void _showSettings() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => new SettingsWidget()));
   }
 
   void _searchPressed() {
@@ -233,9 +241,7 @@ class _DishListState extends State<DishList> {
                 Icons.search,
                 color: Colors.white,
               ),
-              hintText: ''
-                  'Sea'
-                  'rch...',
+              hintText: AppTranslations.translate(context, "search"),
               hintStyle: new TextStyle(color: Colors.white)),
         );
       } else {
@@ -315,10 +321,9 @@ class _DishListState extends State<DishList> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(),
-                  child: dishList[position]
-                      .path.length>0?Image.file(new File
-                (dishList[position]
-                    .path)):Icon(Icons.image),
+                  child: dishList[position].path.length > 0
+                      ? Image.file(new File(dishList[position].path))
+                      : Icon(Icons.image),
                 ),
                 Row(
                   children: <Widget>[
@@ -354,9 +359,10 @@ class _DishListState extends State<DishList> {
                   child: Row(
                     children: <Widget>[
                       InkWell(
-                        child: Text("COOK",
+                        child: Text(AppTranslations.translate(context, "cook"),
                             style: new TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.blueAccent)),
                         onTap: () {
                           _showCookingScreen(dishList[position]);
@@ -374,7 +380,7 @@ class _DishListState extends State<DishList> {
     );
   }
 
-  Widget _getBody(){
+  Widget _getBody() {
     Widget body;
     if (dishList.length == 0) {
       body = _noDataAvailable();
@@ -392,22 +398,35 @@ class _DishListState extends State<DishList> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(LocalizationEN.noDataAvailable),
+            Flexible(
+              child: Text(
+                AppTranslations.translate(context, "no_data_available"),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ],
         ),
       ],
     );
   }
 
-  void _switchNewTapItem(int index){
-    title = listCategories[index];
+  void _switchNewTapItem(int index) {
+    title = categoriesList[index];
     appBarTitle = new Text(title);
     search = new Icon(Icons.search);
     filterController.clear();
     indexNavBar = index;
   }
 
-  void _clickSettingsItem(){
-     _showSettings();
+  void _clickSettingsItem() {
+    _showSettings();
+  }
+
+  void _initCategories() {
+    categoriesList.add(AppTranslations.translate(context, "soups"));
+    categoriesList.add(AppTranslations.translate(context, "main"));
+    categoriesList.add(AppTranslations.translate(context, "salads"));
+    categoriesList.add(AppTranslations.translate(context, "dessert"));
+    categoriesList.add(AppTranslations.translate(context, "drinks"));
   }
 }

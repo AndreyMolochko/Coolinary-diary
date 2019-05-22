@@ -1,4 +1,15 @@
 {
   "settings": "Settings",
-  "language": "Language"
+  "language": "Language",
+  "update": "update",
+  "delete": "delete",
+  "cook": "COOK",
+  "soups": "Soups",
+  "main": "Main",
+  "salads": "Salads",
+  "dessert": "Dessert",
+  "drinks": "Drinks",
+  "search": "Search...",
+  "no_data_available": "You didn't add dishes in this category. To add, click on +",
+  "delete_dish": "Do you really want to delete the dish?"
 }

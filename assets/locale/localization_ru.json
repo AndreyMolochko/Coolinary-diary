@@ -1,4 +1,16 @@
 {
   "settings": " Настройки",
-  "language": "Язык"
+  "language": "Язык",
+  "update": "Обновить",
+  "delete": "Удалить",
+  "cook": "ГОТОВИТЬ",
+  "soups": "Супы",
+  "main": "Главное",
+  "salads": "Салаты",
+  "dessert": "Десерты",
+  "drinks": "Напитки",
+  "search": "Поиск...",
+  "no_data_available": "Вы не добавили блюда в этой категории. Для добавления нажмите +",
+  "delete_dish": "Do you really want to delete the dish?"
+
 }
