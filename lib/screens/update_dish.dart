@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/resourses/strings.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
@@ -78,7 +79,7 @@ class _UpdateDishState extends State<UpdateDish> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: new Text("Change dish"),
+        title: new Text(AppTranslations.translate(context, "editing_dish")),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -88,7 +89,7 @@ class _UpdateDishState extends State<UpdateDish> {
               children: <Widget>[
                 Expanded(
                   child: _getWidgetWithPadding(MultiLineTextField(
-                      "Name", validateName, nameController, 1)),
+                      AppTranslations.translate(context, "name"), validateName, nameController, 1)),
                 ),
               ],
             ),
@@ -115,7 +116,7 @@ class _UpdateDishState extends State<UpdateDish> {
               children: <Widget>[
                 Expanded(
                   child: _getWidgetWithPadding(MultiLineTextField(
-                      "Cooking list",
+                      AppTranslations.translate(context, "cooking_list"),
                       validateCookingList,
                       cookingListController,
                       4)),
@@ -126,7 +127,7 @@ class _UpdateDishState extends State<UpdateDish> {
               children: <Widget>[
                 Expanded(
                   child: _getWidgetWithPadding(MultiLineTextField(
-                      "Ingredient list",
+                      AppTranslations.translate(context, "ingredient_list"),
                       validateIngredient,
                       ingredientListController,
                       4)),
@@ -140,7 +141,7 @@ class _UpdateDishState extends State<UpdateDish> {
                 width: double.infinity,
                 child: RaisedButton(
                   color: Colors.grey,
-                  child: new Text("Change dish"),
+                  child: new Text(AppTranslations.translate(context, "edit_dish")),
                   onPressed: onClickChangeDish,
                 ),
               ),
@@ -236,7 +237,7 @@ class _UpdateDishState extends State<UpdateDish> {
         context: context,
         builder: (BuildContext context) {
           return CameraAlertDialog(
-              "Camera", "Gallery", _clickOnCamera, _clickOnGallery);
+              AppTranslations.translate(context, "camera"), AppTranslations.translate(context, "gallery"), _clickOnCamera, _clickOnGallery);
         });
   }
 
