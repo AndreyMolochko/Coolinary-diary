@@ -35,10 +35,12 @@ class _DishListState extends State<DishList> {
   );
   final TextEditingController filterController = new TextEditingController();
 
-  Widget appBarTitle = new Text(title);
+  Widget appBarTitle;
 
   @override
   void initState() {
+    super.initState();
+
     _updateScreen();
     _initFilterController();
   }
@@ -48,9 +50,13 @@ class _DishListState extends State<DishList> {
     super.didChangeDependencies();
 
     _initCategories();
-    setState(() {
-      title = categoriesList[0];
-    });
+    if (appBarTitle == null) {
+      print("currentCategory = " + currentCategory);
+      setState(() {
+        appBarTitle =
+            new Text(currentCategory);
+      });
+    }
   }
 
   @override
@@ -258,7 +264,7 @@ class _DishListState extends State<DishList> {
       } else {
         filterController.clear();
         search = new Icon(Icons.search);
-        appBarTitle = new Text(title);
+        appBarTitle = new Text(currentCategory);
       }
     });
   }
@@ -425,10 +431,13 @@ class _DishListState extends State<DishList> {
   void _switchNewTapItem(int index) {
     title = categoriesList[index];
     currentCategory = listCategories[index];
-    appBarTitle = new Text(title);
     search = new Icon(Icons.search);
     filterController.clear();
     indexNavBar = index;
+    setState(() {
+      appBarTitle =
+          new Text(AppTranslations.translate(context, currentCategory));
+    });
   }
 
   void _clickSettingsItem() {
