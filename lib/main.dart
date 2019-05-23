@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'applications.dart';
+import 'localization/app_translations.dart';
 import 'localization/app_translations_delegate.dart';
 import 'screens/dish_list.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,6 +19,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
+    _setLanguageIfNeed();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = _onLocaleChange;
   }
@@ -43,6 +46,12 @@ class _MyAppState extends State<MyApp> {
   void _onLocaleChange(Locale locale){
     setState(() {
       _newLocaleDelegate = AppTranslationsDelegate(newLocale: locale);
+    });
+  }
+
+  void _setLanguageIfNeed(){
+    AppTranslations.getCurrentLanguage().then((currentLanguage){
+      application.onLocaleChanged(Locale(currentLanguage));
     });
   }
 }

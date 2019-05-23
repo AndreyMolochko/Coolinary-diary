@@ -3,6 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sqflite_worker/resourses/strings.dart';
 
 class AppTranslations {
   static const englishLanguage = "en";
@@ -41,5 +43,20 @@ class AppTranslations {
       return "";
     }
     return _localisedValues[key] ?? "$key not found";
+  }
+
+  static Future<String> getCurrentLanguage() async {
+    var prefs = await SharedPreferences.getInstance();
+
+    if (prefs.getString(LANGUAGE_CODE) == null) {
+      return AppTranslations.englishLanguage;
+    } else {
+      return prefs.getString(LANGUAGE_CODE);
+    }
+  }
+
+  static Future<bool> saveCurrentLanguage(String language) async {
+    var prefs = await SharedPreferences.getInstance();
+    return prefs.setString(LANGUAGE_CODE, language);
   }
 }

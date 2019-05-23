@@ -16,7 +16,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
 
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -24,14 +23,17 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: new Text(AppTranslations.translate(context, "settings"),)
-        ),
+            title: new Text(
+          AppTranslations.translate(context, "settings"),
+        )),
         body: Column(
           children: <Widget>[
             ExpansionTile(
               title: Padding(
                 padding: const EdgeInsets.only(left: 16.0, top: 8.0),
-                child: new Text(AppTranslations.translate(context, _settingsRepository.settingsItemsList[0].titleIdJson),
+                child: new Text(
+                    AppTranslations.translate(context,
+                        _settingsRepository.settingsItemsList[0].titleIdJson),
                     style: new TextStyle(fontSize: 24.0)),
               ),
               children: <Widget>[
@@ -54,22 +56,25 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       switch (_radioLanguage) {
         case 0:
           print("english");
-          application.onLocaleChanged(Locale(application.supportedLanguagesCodes[0]));
-          //print(AppTranslations.translate(context, "settings"));
+          application
+              .onLocaleChanged(Locale(application.supportedLanguagesCodes[0]));
+          AppTranslations.saveCurrentLanguage(
+              application.supportedLanguagesCodes[0]);
           break;
         case 1:
           print("russian");
-          application.onLocaleChanged(Locale(AppTranslations.russianLanguage));
-          //print(AppTranslations.translate(context, "settings"));
+          application.onLocaleChanged(Locale(application.supportedLanguagesCodes[1]));
+          AppTranslations.saveCurrentLanguage(
+              application.supportedLanguagesCodes[1]);
           break;
         case 2:
           print("belarussian");
-          application.onLocaleChanged(Locale(AppTranslations.belarussianLanguage));
-          //print(AppTranslations.translate(context, "settings"));
+          application
+              .onLocaleChanged(Locale(application.supportedLanguagesCodes[2]));
+          AppTranslations.saveCurrentLanguage(
+              application.supportedLanguagesCodes[2]);
           break;
       }
-
-
     });
   }
 
@@ -96,5 +101,28 @@ class _SettingsWidgetState extends State<SettingsWidget> {
     }
 
     return answers;
+  }
+
+  _onChangeLanguage(int index) {
+    switch (index) {
+      case 0:
+        application
+            .onLocaleChanged(Locale(application.supportedLanguagesCodes[0]));
+        AppTranslations.saveCurrentLanguage(
+            application.supportedLanguagesCodes[0]);
+        break;
+      case 1:
+        application
+            .onLocaleChanged(Locale(application.supportedLanguagesCodes[1]));
+        AppTranslations.saveCurrentLanguage(
+            application.supportedLanguagesCodes[1]);
+        break;
+      case 2:
+        application
+            .onLocaleChanged(Locale(application.supportedLanguagesCodes[2]));
+        AppTranslations.saveCurrentLanguage(
+            application.supportedLanguagesCodes[2]);
+        break;
+    }
   }
 }

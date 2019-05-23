@@ -138,7 +138,6 @@ class _DishListState extends State<DishList> {
   void _updateScreen() {
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database) {
-      print("dishlist current category = " + currentCategory);
       Future<List<Dish>> dishListFuture =
           databaseHelper.getDishesByCategory(currentCategory);
       dishListFuture.then((dishList) {
