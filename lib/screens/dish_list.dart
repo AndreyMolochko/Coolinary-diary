@@ -20,6 +20,7 @@ class _DishListState extends State<DishList> {
   int indexNavBar = 0;
   static String title = "";
   DatabaseHelper databaseHelper = new DatabaseHelper();
+  String currentCategory = listCategories[0];
   List<Dish> dishList;
   List<Dish> filterFullList;
   List<String> popupItems = ["update", "delete"];
@@ -46,7 +47,9 @@ class _DishListState extends State<DishList> {
     super.didChangeDependencies();
 
     _initCategories();
-    title = categoriesList[0];
+    setState(() {
+      title = categoriesList[0];
+    });
   }
 
   @override
@@ -137,7 +140,7 @@ class _DishListState extends State<DishList> {
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database) {
       Future<List<Dish>> dishListFuture =
-          databaseHelper.getDishesByCategory(title);
+          databaseHelper.getDishesByCategory(currentCategory);
       dishListFuture.then((dishList) {
         setState(() {
           this.dishList = dishList;

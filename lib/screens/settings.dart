@@ -55,17 +55,17 @@ class _SettingsWidgetState extends State<SettingsWidget> {
         case 0:
           print("english");
           application.onLocaleChanged(Locale(application.supportedLanguagesCodes[0]));
-          print(AppTranslations.translate(context, "settings"));
+          //print(AppTranslations.translate(context, "settings"));
           break;
         case 1:
           print("russian");
           application.onLocaleChanged(Locale(AppTranslations.russianLanguage));
-          print(AppTranslations.translate(context, "settings"));
+          //print(AppTranslations.translate(context, "settings"));
           break;
         case 2:
           print("belarussian");
           application.onLocaleChanged(Locale(AppTranslations.belarussianLanguage));
-          print(AppTranslations.translate(context, "settings"));
+          //print(AppTranslations.translate(context, "settings"));
           break;
       }
 

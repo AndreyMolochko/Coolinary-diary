@@ -35,6 +35,8 @@ class _AddDishState extends State<AddDish> {
 
   @override
   void initState() {
+    super.initState();
+
     _initControllers();
     _dropDownMenuItems = getDropDownMenuItems();
     category = _dropDownMenuItems[0].value;
