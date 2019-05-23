@@ -51,6 +51,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
 
   void _handleRadioValueChange(int value) {
     _radioLanguage = value;
+    print(value);
 
     setState(() {
       switch (_radioLanguage) {
@@ -101,28 +102,5 @@ class _SettingsWidgetState extends State<SettingsWidget> {
     }
 
     return answers;
-  }
-
-  _onChangeLanguage(int index) {
-    switch (index) {
-      case 0:
-        application
-            .onLocaleChanged(Locale(application.supportedLanguagesCodes[0]));
-        AppTranslations.saveCurrentLanguage(
-            application.supportedLanguagesCodes[0]);
-        break;
-      case 1:
-        application
-            .onLocaleChanged(Locale(application.supportedLanguagesCodes[1]));
-        AppTranslations.saveCurrentLanguage(
-            application.supportedLanguagesCodes[1]);
-        break;
-      case 2:
-        application
-            .onLocaleChanged(Locale(application.supportedLanguagesCodes[2]));
-        AppTranslations.saveCurrentLanguage(
-            application.supportedLanguagesCodes[2]);
-        break;
-    }
   }
 }
