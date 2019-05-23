@@ -107,31 +107,31 @@ class _DishListState extends State<DishList> {
                 "assets/soup.svg",
                 height: 24,
               ),
-              title: Text(categoriesList[0])),
+              title: Text(AppTranslations.translate(context, listCategories[0]))),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/wedding-dinner.svg",
                 height: 24,
               ),
-              title: new Text(categoriesList[1])),
+              title: new Text(AppTranslations.translate(context, listCategories[1]))),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/salad.svg",
                 height: 24,
               ),
-              title: new Text(categoriesList[2])),
+              title: new Text(AppTranslations.translate(context, listCategories[2]))),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/birthday-cake.svg",
                 height: 24,
               ),
-              title: new Text(categoriesList[3])),
+              title: new Text(AppTranslations.translate(context, listCategories[3]))),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/lemonade.svg",
                 height: 24,
               ),
-              title: new Text(categoriesList[4]))
+              title: new Text(AppTranslations.translate(context, listCategories[4])))
         ]);
   }
 
