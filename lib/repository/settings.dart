@@ -5,7 +5,7 @@ class SettingsRepository{
   List<SettingsItem>settingsItemsList = new List();
 
   SettingsRepository(){
-    settingsItemsList.add(new SettingsItem("Language", ["English","Russian","Belarussian"]));
+    settingsItemsList.add(new SettingsItem("language", ["English","Russian","Belarussian"]));
   }
 
 }

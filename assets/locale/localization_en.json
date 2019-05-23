@@ -1,0 +1,33 @@
+{
+  "settings": "Settings",
+  "language": "Language",
+  "update": "Update",
+  "delete": "Delete",
+  "cook": "COOK",
+  "soups": "Soups",
+  "main": "Main",
+  "salads": "Salads",
+  "dessert": "Dessert",
+  "drinks": "Drinks",
+  "search": "Search...",
+  "no_data_available": "You didn't add dishes in this category. To add, click on +",
+  "delete_dish": "Do you really want to delete the dish?",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "add_dish": "Add dish",
+  "ingredient_list": "Ingredient list",
+  "cooking_list": "Cooking list",
+  "name": "Name",
+  "fill_fields": "You need to fill all fields and add photo",
+  "enter_something": "Enter something",
+
+  "cooking_dish": "Cooking dish",
+  "end_cooking": "End cooking",
+  "cancel_cooking": "Cancel cooking",
+  "yes": "Yes",
+  "want_finish_dish": "Do you really want to finish cooking dish?",
+  "want_cancel_dish": "Do you really want to cancel cooking dish?",
+  "editing_dish": "Dish editing",
+  "edit_dish": "Edit dish"
+
+}
