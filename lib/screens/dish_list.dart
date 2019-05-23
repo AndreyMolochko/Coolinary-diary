@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sqflite_worker/screens/update_dish.dart';
 import 'package:sqflite_worker/screens/cooking_dish.dart';
 import 'package:sqflite_worker/screens/add_dish.dart';
+import 'package:sprintf/sprintf.dart';
 import 'dart:io';
 
 class DishList extends StatefulWidget {
@@ -107,31 +108,36 @@ class _DishListState extends State<DishList> {
                 "assets/soup.svg",
                 height: 24,
               ),
-              title: Text(AppTranslations.translate(context, listCategories[0]))),
+              title:
+                  Text(AppTranslations.translate(context, listCategories[0]))),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/wedding-dinner.svg",
                 height: 24,
               ),
-              title: new Text(AppTranslations.translate(context, listCategories[1]))),
+              title: new Text(
+                  AppTranslations.translate(context, listCategories[1]))),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/salad.svg",
                 height: 24,
               ),
-              title: new Text(AppTranslations.translate(context, listCategories[2]))),
+              title: new Text(
+                  AppTranslations.translate(context, listCategories[2]))),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/birthday-cake.svg",
                 height: 24,
               ),
-              title: new Text(AppTranslations.translate(context, listCategories[3]))),
+              title: new Text(
+                  AppTranslations.translate(context, listCategories[3]))),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/lemonade.svg",
                 height: 24,
               ),
-              title: new Text(AppTranslations.translate(context, listCategories[4])))
+              title: new Text(
+                  AppTranslations.translate(context, listCategories[4])))
         ]);
   }
 
@@ -198,9 +204,12 @@ class _DishListState extends State<DishList> {
 
   void _showSnackbarForDelete() {
     final snackbar = new SnackBar(
-      content: Text("Do you really want to delete"
-          " dish?"),
-      action: SnackBarAction(label: 'Yes', onPressed: _clickOnSnackbar),
+      content: Text(
+        AppTranslations.translate(context, "delete_dish"),
+      ),
+      action: SnackBarAction(
+          label: AppTranslations.translate(context, "yes"),
+          onPressed: _clickOnSnackbar),
       duration: new Duration(days: 1000),
     );
     Scaffold.of(contextSnackbar).showSnackBar(snackbar);
@@ -332,9 +341,10 @@ class _DishListState extends State<DishList> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                       child: Text(
-                        "You cooked this dish " +
-                            dishList[position].counterCooking.toString() +
-                            " times",
+                        sprintf(
+                            AppTranslations.translate(
+                                context, "cooked_dish_time"),
+                            [dishList[position].counterCooking]),
                         style: new TextStyle(fontSize: 16.0),
                       ),
                     ),
