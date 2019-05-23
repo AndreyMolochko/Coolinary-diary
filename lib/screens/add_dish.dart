@@ -25,7 +25,7 @@ class _AddDishState extends State<AddDish> {
   var nameController = new TextEditingController();
   var cookingListController = new TextEditingController();
   var ingredientListController = new TextEditingController();
-  String category;
+  String category = "soups";
   List<DropdownMenuItem<String>> _dropDownMenuItems;
   DatabaseHelper databaseHelper = new DatabaseHelper();
   bool validateName = false;
@@ -38,8 +38,13 @@ class _AddDishState extends State<AddDish> {
     super.initState();
 
     _initControllers();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
     _dropDownMenuItems = getDropDownMenuItems();
-    category = _dropDownMenuItems[0].value;
   }
 
   void _initControllers() {
@@ -77,7 +82,10 @@ class _AddDishState extends State<AddDish> {
                     children: <Widget>[
                       Expanded(
                         child: _getWidgetWithPadding(MultiLineTextField(
-                            AppTranslations.translate(context, "name"), validateName, nameController, 1)),
+                            AppTranslations.translate(context, "name"),
+                            validateName,
+                            nameController,
+                            1)),
                       ),
                     ],
                   ),
@@ -115,7 +123,8 @@ class _AddDishState extends State<AddDish> {
                     children: <Widget>[
                       Expanded(
                         child: _getWidgetWithPadding(MultiLineTextField(
-                            AppTranslations.translate(context, "ingredient_list"),
+                            AppTranslations.translate(
+                                context, "ingredient_list"),
                             validateIngredient,
                             ingredientListController,
                             4)),
@@ -130,7 +139,8 @@ class _AddDishState extends State<AddDish> {
                       width: double.infinity,
                       child: RaisedButton(
                         color: Colors.grey,
-                        child: new Text(AppTranslations.translate(context, "add_dish")),
+                        child: new Text(
+                            AppTranslations.translate(context, "add_dish")),
                         onPressed: () {
                           _onClickAddDish(context);
                         },
@@ -150,7 +160,7 @@ class _AddDishState extends State<AddDish> {
       items.add(new DropdownMenuItem(
           value: category,
           child: new Text(
-            category,
+            AppTranslations.translate(context, category),
             style: new TextStyle(fontSize: 18.0),
           )));
     }
@@ -189,6 +199,7 @@ class _AddDishState extends State<AddDish> {
 
   void _insertDishFromFields() async {
     int result = await databaseHelper.insertDish(_getDishFromFields());
+
     if (result != 0) {
       widget.callback();
       Navigator.pop(context);
@@ -205,7 +216,10 @@ class _AddDishState extends State<AddDish> {
         context: context,
         builder: (BuildContext context) {
           return CameraAlertDialog(
-              AppTranslations.translate(context, "camera"), AppTranslations.translate(context, "gallery"), _clickOnCamera, _clickOnGallery);
+              AppTranslations.translate(context, "camera"),
+              AppTranslations.translate(context, "gallery"),
+              _clickOnCamera,
+              _clickOnGallery);
         });
   }
 

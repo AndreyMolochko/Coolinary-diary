@@ -42,9 +42,18 @@ class _UpdateDishState extends State<UpdateDish> {
 
   @override
   void initState() {
+    super.initState();
+
     image = new File(dish.path);
     _initControllers();
-    _initWidgets();
+    _initFields();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _initDropDownMenu();
   }
 
   void _initControllers() {
@@ -89,7 +98,10 @@ class _UpdateDishState extends State<UpdateDish> {
               children: <Widget>[
                 Expanded(
                   child: _getWidgetWithPadding(MultiLineTextField(
-                      AppTranslations.translate(context, "name"), validateName, nameController, 1)),
+                      AppTranslations.translate(context, "name"),
+                      validateName,
+                      nameController,
+                      1)),
                 ),
               ],
             ),
@@ -141,7 +153,8 @@ class _UpdateDishState extends State<UpdateDish> {
                 width: double.infinity,
                 child: RaisedButton(
                   color: Colors.grey,
-                  child: new Text(AppTranslations.translate(context, "edit_dish")),
+                  child:
+                      new Text(AppTranslations.translate(context, "edit_dish")),
                   onPressed: onClickChangeDish,
                 ),
               ),
@@ -164,12 +177,15 @@ class _UpdateDishState extends State<UpdateDish> {
     }
   }
 
-  void _initWidgets() {
+  void _initDropDownMenu() {
     _dropDownMenuItems = getDropDownMenuItems();
+    category = _getMenuItemByCategory(dish.category).value;
+  }
+
+  void _initFields() {
     nameController.text = dish.name;
     cookingListController.text = dish.recipe;
     ingredientListController.text = dish.ingredientList;
-    category = _getMenuItemByCategory(dish.category).value;
   }
 
   List<DropdownMenuItem<String>> getDropDownMenuItems() {
@@ -178,7 +194,7 @@ class _UpdateDishState extends State<UpdateDish> {
       items.add(new DropdownMenuItem(
           value: category,
           child: new Text(
-            category,
+            AppTranslations.translate(context, category),
             style: new TextStyle(fontSize: 18.0),
           )));
     }
@@ -193,7 +209,8 @@ class _UpdateDishState extends State<UpdateDish> {
   }
 
   Dish _getDishFromFields() {
-    return new Dish.withId(this.dish.id,
+    return new Dish.withId(
+        this.dish.id,
         nameController.text,
         this.dish.counterCooking,
         category,
@@ -204,15 +221,15 @@ class _UpdateDishState extends State<UpdateDish> {
 
   DropdownMenuItem<String> _getMenuItemByCategory(String category) {
     switch (category) {
-      case "Soups":
+      case "soups":
         return _dropDownMenuItems[0];
-      case "Main":
+      case "main":
         return _dropDownMenuItems[1];
-      case "Salads":
+      case "salads":
         return _dropDownMenuItems[2];
-      case "Dessert":
+      case "dessert":
         return _dropDownMenuItems[3];
-      case "Drink":
+      case "drink":
         return _dropDownMenuItems[4];
     }
   }
@@ -237,7 +254,10 @@ class _UpdateDishState extends State<UpdateDish> {
         context: context,
         builder: (BuildContext context) {
           return CameraAlertDialog(
-              AppTranslations.translate(context, "camera"), AppTranslations.translate(context, "gallery"), _clickOnCamera, _clickOnGallery);
+              AppTranslations.translate(context, "camera"),
+              AppTranslations.translate(context, "gallery"),
+              _clickOnCamera,
+              _clickOnGallery);
         });
   }
 

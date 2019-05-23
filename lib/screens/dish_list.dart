@@ -77,7 +77,6 @@ class _DishListState extends State<DishList> {
           _switchNewTapItem(0);
           _updateScreen();
           break;
-
         case 1:
           _switchNewTapItem(1);
           _updateScreen();
@@ -139,6 +138,7 @@ class _DishListState extends State<DishList> {
   void _updateScreen() {
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database) {
+      print("dishlist current category = " + currentCategory);
       Future<List<Dish>> dishListFuture =
           databaseHelper.getDishesByCategory(currentCategory);
       dishListFuture.then((dishList) {
@@ -415,6 +415,7 @@ class _DishListState extends State<DishList> {
 
   void _switchNewTapItem(int index) {
     title = categoriesList[index];
+    currentCategory = listCategories[index];
     appBarTitle = new Text(title);
     search = new Icon(Icons.search);
     filterController.clear();
