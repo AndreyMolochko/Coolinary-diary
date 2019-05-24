@@ -32,7 +32,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           children: <Widget>[
             ExpansionTile(
               title: Padding(
-                padding: const EdgeInsets.only(left: 16.0, top: 8.0),
+                padding: const EdgeInsets.only(left: 16, top: 8),
                 child: new Text(
                     AppTranslations.translate(context,
                         _settingsRepository.settingsItemsList[0].titleIdJson),
@@ -84,23 +84,33 @@ class _SettingsWidgetState extends State<SettingsWidget> {
     for (int i = 0; i < settingsItem.subItem.length; i++) {
       answers.add(Padding(
         padding: const EdgeInsets.only(left: 16.0, top: 8.0),
-        child: Row(
-          children: <Widget>[
-            new Radio(
-              value: i,
-              groupValue: _radioLanguage,
-              onChanged: _handleRadioValueChange,
+        child: InkWell(
+          child: Padding(
+            padding: const EdgeInsets.only(right:16.0),
+            child: Row(
+              children: <Widget>[
+                new Radio(
+                  value: i,
+                  groupValue: _radioLanguage,
+                  onChanged: _handleRadioValueChange,
+                ),
+                new Text(
+                  settingsItem.subItem[i],
+                  style: new TextStyle(fontSize: 18.0),
+                ),
+              ],
             ),
-            new Text(
-              settingsItem.subItem[i],
-              style: new TextStyle(fontSize: 18.0),
-            ),
-          ],
+          ),
+          onTap: _onClickLanguage(i),
         ),
       ));
     }
 
     return answers;
+  }
+
+  _onClickLanguage(int i) {
+    //_handleRadioValueChange(i);
   }
 
   void _initValueRadio() {
