@@ -17,6 +17,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   @override
   void initState() {
     super.initState();
+
+    _initValueRadio();
   }
 
   @override
@@ -51,25 +53,22 @@ class _SettingsWidgetState extends State<SettingsWidget> {
 
   void _handleRadioValueChange(int value) {
     _radioLanguage = value;
-    print(value);
 
     setState(() {
       switch (_radioLanguage) {
         case 0:
-          print("english");
           application
               .onLocaleChanged(Locale(application.supportedLanguagesCodes[0]));
           AppTranslations.saveCurrentLanguage(
               application.supportedLanguagesCodes[0]);
           break;
         case 1:
-          print("russian");
-          application.onLocaleChanged(Locale(application.supportedLanguagesCodes[1]));
+          application
+              .onLocaleChanged(Locale(application.supportedLanguagesCodes[1]));
           AppTranslations.saveCurrentLanguage(
               application.supportedLanguagesCodes[1]);
           break;
         case 2:
-          print("belarussian");
           application
               .onLocaleChanged(Locale(application.supportedLanguagesCodes[2]));
           AppTranslations.saveCurrentLanguage(
@@ -102,5 +101,22 @@ class _SettingsWidgetState extends State<SettingsWidget> {
     }
 
     return answers;
+  }
+
+  void _initValueRadio() {
+    AppTranslations.getCurrentLanguage().then((currentLanguage) {
+      switch (currentLanguage) {
+        case "en":
+          _radioLanguage = 0;
+          break;
+        case "ru":
+          _radioLanguage = 1;
+          break;
+        case "be":
+          _radioLanguage = 2;
+          break;
+      }
+      _handleRadioValueChange(_radioLanguage);
+    });
   }
 }
