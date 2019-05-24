@@ -28,6 +28,7 @@ dependencies:
   fluttertoast: ^3.0.3
   image_picker: ^0.6.0+3
   shared_preferences: ^0.5.2+1
+  sprintf: ^4.0.0
 
 dev_dependencies:
   flutter_test:

@@ -12,6 +12,7 @@
   "search": "Search...",
   "no_data_available": "You didn't add dishes in this category. To add, click on +",
   "delete_dish": "Do you really want to delete the dish?",
+  "cooked_dish_time": "You cooked this dish %s times",
   "camera": "Camera",
   "gallery": "Gallery",
   "add_dish": "Add dish",
@@ -29,5 +30,4 @@
   "want_cancel_dish": "Do you really want to cancel cooking dish?",
   "editing_dish": "Dish editing",
   "edit_dish": "Edit dish"
-
 }
