@@ -11,6 +11,7 @@ import 'package:sqflite_worker/screens/cooking_dish.dart';
 import 'package:sqflite_worker/screens/add_dish.dart';
 import 'package:sprintf/sprintf.dart';
 import 'dart:io';
+import 'package:sqflite_worker/app_theme.dart' as AppTheme;
 
 class DishList extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _DishListState extends State<DishList> {
   Dish dish;
   Icon search = new Icon(
     Icons.search,
-    color: Colors.white,
+    color: AppTheme.Colors.black,
   );
   final TextEditingController filterController = new TextEditingController();
 
@@ -51,10 +52,8 @@ class _DishListState extends State<DishList> {
 
     _initCategories();
     if (appBarTitle == null) {
-      print("currentCategory = " + currentCategory);
       setState(() {
-        appBarTitle =
-            new Text(currentCategory);
+        appBarTitle = new Text(currentCategory);
       });
     }
   }
@@ -71,8 +70,10 @@ class _DishListState extends State<DishList> {
     return Scaffold(
       appBar: _appBar(appBarTitle),
       body: body,
+      backgroundColor: AppTheme.Colors.orangePrimary,
       bottomNavigationBar: new Theme(
-          data: Theme.of(context).copyWith(canvasColor: Colors.blue),
+          data: Theme.of(context)
+              .copyWith(canvasColor: AppTheme.Colors.orangeLight),
           child: _getBottomNavigationBar()),
     );
   }
@@ -113,37 +114,52 @@ class _DishListState extends State<DishList> {
               icon: new SvgPicture.asset(
                 "assets/soup.svg",
                 height: 24,
+                color: AppTheme.Colors.black,
               ),
-              title:
-                  Text(AppTranslations.translate(context, listCategories[0]))),
+              title: Text(
+                AppTranslations.translate(context, listCategories[0]),
+                style: new TextStyle(color: AppTheme.Colors.black),
+              )),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/wedding-dinner.svg",
                 height: 24,
+                color: AppTheme.Colors.black,
               ),
               title: new Text(
-                  AppTranslations.translate(context, listCategories[1]))),
+                AppTranslations.translate(context, listCategories[1]),
+                style: new TextStyle(color: AppTheme.Colors.black),
+              )),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/salad.svg",
                 height: 24,
+                color: AppTheme.Colors.black,
               ),
               title: new Text(
-                  AppTranslations.translate(context, listCategories[2]))),
+                AppTranslations.translate(context, listCategories[2]),
+                style: new TextStyle(color: AppTheme.Colors.black),
+              )),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/birthday-cake.svg",
                 height: 24,
+                color: AppTheme.Colors.black,
               ),
               title: new Text(
-                  AppTranslations.translate(context, listCategories[3]))),
+                AppTranslations.translate(context, listCategories[3]),
+                style: new TextStyle(color: AppTheme.Colors.black),
+              )),
           BottomNavigationBarItem(
               icon: new SvgPicture.asset(
                 "assets/lemonade.svg",
                 height: 24,
+                color: AppTheme.Colors.black,
               ),
               title: new Text(
-                  AppTranslations.translate(context, listCategories[4])))
+                AppTranslations.translate(context, listCategories[4]),
+                style: new TextStyle(color: AppTheme.Colors.black),
+              ))
         ]);
   }
 
@@ -168,22 +184,24 @@ class _DishListState extends State<DishList> {
         IconButton(
           icon: search,
           onPressed: _searchPressed,
+          color: AppTheme.Colors.black,
         ),
         IconButton(
           icon: new Icon(
             Icons.add,
-            color: Colors.white,
+            color: AppTheme.Colors.black,
           ),
           onPressed: _onClickAdd,
         ),
         IconButton(
           icon: new Icon(
             Icons.more_vert,
-            color: Colors.white,
+            color: AppTheme.Colors.black,
           ),
           onPressed: _clickSettingsItem,
         ),
       ],
+      backgroundColor: AppTheme.Colors.orangeDark,
     );
   }
 
@@ -251,20 +269,23 @@ class _DishListState extends State<DishList> {
       if (search.icon == Icons.search) {
         search = new Icon(Icons.close);
         appBarTitle = new TextField(
-          style: new TextStyle(color: Colors.white, fontSize: 18.0),
+          style: new TextStyle(color: AppTheme.Colors.black, fontSize: 18.0),
           controller: filterController,
           decoration: new InputDecoration(
               prefixIcon: new Icon(
                 Icons.search,
-                color: Colors.white,
+                color: AppTheme.Colors.black,
               ),
               hintText: AppTranslations.translate(context, "search"),
-              hintStyle: new TextStyle(color: Colors.white)),
+              hintStyle: new TextStyle(color: AppTheme.Colors.black)),
         );
       } else {
         filterController.clear();
         search = new Icon(Icons.search);
-        appBarTitle = new Text(currentCategory);
+        appBarTitle = new Text(
+          currentCategory,
+          style: TextStyle(color: AppTheme.Colors.black),
+        );
       }
     });
   }
@@ -302,7 +323,7 @@ class _DishListState extends State<DishList> {
           padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.grey,
+                color: AppTheme.Colors.white,
                 borderRadius: new BorderRadius.all(Radius.circular(6.0))),
             child: Column(
               children: <Widget>[
@@ -345,7 +366,7 @@ class _DishListState extends State<DishList> {
                 Row(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                      padding: const EdgeInsets.only(left: 16.0, top: 8.0),
                       child: Text(
                         sprintf(
                             AppTranslations.translate(
@@ -357,7 +378,7 @@ class _DishListState extends State<DishList> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                  padding: const EdgeInsets.only(top: 8.0, left: 16.0),
                   child: Row(
                     children: <Widget>[
                       Text(
@@ -371,11 +392,21 @@ class _DishListState extends State<DishList> {
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 8.0,
-                    left: 8.0,
+                    left: 16.0,
                     bottom: 8.0,
                   ),
                   child: Row(
                     children: <Widget>[
+                      RaisedButton(
+                          child: Text(
+                            AppTranslations.translate(context, "cook"),
+                          ),
+                          color: AppTheme.Colors.orangePrimary,
+                          onPressed: () {
+                            _showCookingScreen(dishList[position]);
+                          }),
+                    ],
+                    /*children: <Widget>[
                       InkWell(
                         child: Text(AppTranslations.translate(context, "cook"),
                             style: new TextStyle(
@@ -386,7 +417,7 @@ class _DishListState extends State<DishList> {
                           _showCookingScreen(dishList[position]);
                         },
                       ),
-                    ],
+                    ],*/
                   ),
                 ),
               ],
@@ -420,6 +451,7 @@ class _DishListState extends State<DishList> {
               child: Text(
                 AppTranslations.translate(context, "no_data_available"),
                 textAlign: TextAlign.center,
+                style: new TextStyle(fontSize: 18.0),
               ),
             ),
           ],
@@ -435,8 +467,10 @@ class _DishListState extends State<DishList> {
     filterController.clear();
     indexNavBar = index;
     setState(() {
-      appBarTitle =
-          new Text(AppTranslations.translate(context, currentCategory));
+      appBarTitle = new Text(
+        AppTranslations.translate(context, currentCategory),
+        style: TextStyle(color: AppTheme.Colors.black),
+      );
     });
   }
 

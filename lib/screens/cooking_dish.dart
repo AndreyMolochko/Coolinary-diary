@@ -5,6 +5,7 @@ import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/utils/database_helper.dart';
 import 'package:sqflite_worker/widgets/line.dart';
+import 'package:sqflite_worker/app_theme.dart' as AppTheme;
 
 class CookingDish extends StatefulWidget {
   Dish dish;
@@ -97,24 +98,28 @@ class _CookingDishState extends State<CookingDish> {
                           padding:
                               const EdgeInsets.only(left: 16.0, right: 8.0),
                           child: RaisedButton(
-                            child: Row(children: <Widget>[
-                              Flexible(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, bottom: 8.0),
-                                  child: new Text(
-                                    AppTranslations.translate(
-                                        context, "end_cooking"),
-                                    textAlign: TextAlign.center,
+                              child: Row(children: <Widget>[
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8.0, bottom: 8.0),
+                                    child: new Text(
+                                      AppTranslations.translate(
+                                          context, "end_cooking"),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
-                                ),
-                              )
-                            ]),
-                            onPressed: () {
-                              contextSnackbar = context;
-                              _showSnackbarForFinish();
-                            },
-                          ),
+                                )
+                              ]),
+                              color: AppTheme.Colors.orangePrimary,
+                              onPressed: () {
+                                contextSnackbar = context;
+                                _showSnackbarForFinish();
+                              },
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      const Radius.circular(
+                                          AppTheme.Dimens.radiusButton)))),
                         ),
                       ),
                       Flexible(
@@ -122,20 +127,24 @@ class _CookingDishState extends State<CookingDish> {
                           padding:
                               const EdgeInsets.only(right: 16.0, left: 8.0),
                           child: RaisedButton(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                              child: new Text(
-                                AppTranslations.translate(
-                                    context, "cancel_cooking"),
-                                textAlign: TextAlign.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8.0, bottom: 8.0),
+                                child: new Text(
+                                  AppTranslations.translate(
+                                      context, "cancel_cooking"),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                            ),
-                            onPressed: () {
-                              contextSnackbar = context;
-                              _showSnackbarForCancel();
-                            },
-                          ),
+                              color: AppTheme.Colors.orangePrimary,
+                              onPressed: () {
+                                contextSnackbar = context;
+                                _showSnackbarForCancel();
+                              },
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      const Radius.circular(
+                                          AppTheme.Dimens.radiusButton)))),
                         ),
                       )
                     ],

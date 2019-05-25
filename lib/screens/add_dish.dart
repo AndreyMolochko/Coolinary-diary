@@ -9,6 +9,7 @@ import 'package:sqflite_worker/utils/utils.dart';
 import 'package:sqflite_worker/widgets/camera_alert_dialog.dart';
 import 'package:sqflite_worker/widgets/image_addition_dish_widget.dart';
 import 'package:sqflite_worker/widgets/multiline_text_field.dart';
+import 'package:sqflite_worker/app_theme.dart' as AppTheme;
 
 typedef void Callback();
 
@@ -138,12 +139,16 @@ class _AddDishState extends State<AddDish> {
                       height: 48,
                       width: double.infinity,
                       child: RaisedButton(
-                        color: Colors.grey,
+                        color: AppTheme.Colors.orangePrimary,
                         child: new Text(
-                            AppTranslations.translate(context, "add_dish")),
+                            AppTranslations.translate(context, "add_dish"),),
                         onPressed: () {
                           _onClickAddDish(context);
                         },
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.all(
+                                const Radius.circular(
+                                    AppTheme.Dimens.radiusButton))),
                       ),
                     ),
                   )
