@@ -8,3 +8,8 @@ class Colors{
   static const Color orangeDark = const Color(0xffc56200);
   static const Color orangeLight = const Color(0xffffc246);
 }
+
+class Dimens{
+
+  static const double radiusButton = 24.0;
+}
