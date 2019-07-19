@@ -57,7 +57,7 @@ class DatabaseHelper {
     var dishesMap = await db.query(tableDishName,
         where: columnCategory +
             ' =? '
-            '',
+                '',
         whereArgs: [category]);
     List<Dish> dishesList = new List();
     for (int i = 0; i < dishesMap.length; i++) {
@@ -74,10 +74,12 @@ class DatabaseHelper {
     return result;
   }
 
-  Future<int>updateDish(Dish dish)async{
+  Future<int> updateDish(Dish dish) async {
     Database db = await this.database;
-    var result = await db.update(tableDishName,dish.toMap(),where: '$columnId'
-        ' = ?',whereArgs: [dish.id] );
+    var result = await db.update(tableDishName, dish.toMap(),
+        where: '$columnId'
+            ' = ?',
+        whereArgs: [dish.id]);
 
     return result;
   }
@@ -89,5 +91,4 @@ class DatabaseHelper {
 
     return result;
   }
-
 }

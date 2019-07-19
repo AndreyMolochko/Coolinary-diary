@@ -28,6 +28,7 @@ class _DishListState extends State<DishList> {
   List<String> popupItems = ["update", "delete"];
   List<String> categoriesList = new List();
   BuildContext contextSnackbar;
+  Color backgroundColor = Colors.white;
   int id;
   Dish dish;
   Icon search = new Icon(
@@ -53,7 +54,8 @@ class _DishListState extends State<DishList> {
     _initCategories();
     if (appBarTitle == null) {
       setState(() {
-        appBarTitle = new Text(currentCategory);
+        appBarTitle = new Text(AppTranslations.translate(context,
+            currentCategory));
       });
     }
   }
@@ -66,11 +68,15 @@ class _DishListState extends State<DishList> {
     }
 
     Widget body = _getBody();
+    if(appBarTitle != null && appBarTitle is !TextField){
+      appBarTitle = new Text(AppTranslations.translate(context,
+          currentCategory));
+    }
 
     return Scaffold(
       appBar: _appBar(appBarTitle),
       body: body,
-      backgroundColor: AppTheme.Colors.orangePrimary,
+      backgroundColor: backgroundColor,
       bottomNavigationBar: new Theme(
           data: Theme.of(context)
               .copyWith(canvasColor: AppTheme.Colors.orangeLight),
@@ -245,6 +251,7 @@ class _DishListState extends State<DishList> {
 
   void _deleteDish(int id) async {
     int result = await databaseHelper.deleteDish(id);
+    _updateScreen();
   }
 
   void _showUpdateDishScreen() {
@@ -349,7 +356,8 @@ class _DishListState extends State<DishList> {
                           return popupItems.map((String choice) {
                             return PopupMenuItem<String>(
                               value: choice,
-                              child: Text(choice),
+                              child: Text(AppTranslations.translate
+                                (context,choice),)
                             );
                           }).toList();
                         },
@@ -433,8 +441,11 @@ class _DishListState extends State<DishList> {
     Widget body;
     if (dishList.length == 0) {
       body = _noDataAvailable();
+      backgroundColor = Colors.white;
+
     } else {
       body = _getDishesWidget();
+      backgroundColor = AppTheme.Colors.orangePrimary;
     }
 
     return body;

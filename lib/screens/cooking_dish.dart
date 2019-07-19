@@ -98,7 +98,9 @@ class _CookingDishState extends State<CookingDish> {
                           padding:
                               const EdgeInsets.only(left: 16.0, right: 8.0),
                           child: RaisedButton(
-                              child: Row(children: <Widget>[
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
                                 Flexible(
                                   child: Padding(
                                     padding: const EdgeInsets.only(
@@ -127,14 +129,21 @@ class _CookingDishState extends State<CookingDish> {
                           padding:
                               const EdgeInsets.only(right: 16.0, left: 8.0),
                           child: RaisedButton(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8.0, bottom: 8.0),
-                                child: new Text(
-                                  AppTranslations.translate(
-                                      context, "cancel_cooking"),
-                                  textAlign: TextAlign.center,
-                                ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 8.0, bottom: 8.0),
+                                      child: new Text(
+                                        AppTranslations.translate(
+                                            context, "cancel_cooking"),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               color: AppTheme.Colors.orangePrimary,
                               onPressed: () {
