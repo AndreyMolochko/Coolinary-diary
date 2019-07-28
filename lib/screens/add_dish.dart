@@ -9,6 +9,7 @@ import 'package:sqflite_worker/utils/utils.dart';
 import 'package:sqflite_worker/widgets/camera_alert_dialog.dart';
 import 'package:sqflite_worker/widgets/image_addition_dish_widget.dart';
 import 'package:sqflite_worker/widgets/multiline_text_field.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:sqflite_worker/app_theme.dart' as AppTheme;
 
 typedef void Callback();
@@ -34,11 +35,47 @@ class _AddDishState extends State<AddDish> {
   bool validateIngredient = false;
   File image;
 
+  static const APP_ID = "ca-app-pub-5996416754533238~1194599427";
+
+  static final MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+    testDevices: APP_ID != null ? [APP_ID] : null,
+    keywords: ['Kitchen', 'Food'],
+  );
+
+  BannerAd bannerAd;
+  InterstitialAd interstitialAd;
+  RewardedVideoAd rewardedVideoAd;
+
+  BannerAd buildBanner() {
+    return BannerAd(
+        adUnitId: APP_ID,
+        size: AdSize.banner,
+        listener: (MobileAdEvent event) {
+          print(event);
+        });
+  }
+
+  InterstitialAd buildInterstitial() {
+    return InterstitialAd(
+        adUnitId: APP_ID,
+        targetingInfo: targetingInfo,
+        listener: (MobileAdEvent event) {
+          if (event == MobileAdEvent.failedToLoad) {
+            interstitialAd..load();
+          } else if (event == MobileAdEvent.closed) {
+            interstitialAd = buildInterstitial()
+              ..load();
+          }
+          print(event);
+        });
+  }
+
   @override
   void initState() {
     super.initState();
 
     _initControllers();
+    _initAdMobBanner();
   }
 
   @override
@@ -70,6 +107,9 @@ class _AddDishState extends State<AddDish> {
 
   @override
   Widget build(BuildContext context) {
+    bannerAd
+      ..load()
+      ..show();
     return Scaffold(
       appBar: AppBar(
         title: new Text(AppTranslations.translate(context, "add_dish")),
@@ -159,6 +199,13 @@ class _AddDishState extends State<AddDish> {
     );
   }
 
+  @override
+  void dispose() {
+    bannerAd?.dispose();
+    interstitialAd?.dispose();
+    super.dispose();
+  }
+
   List<DropdownMenuItem<String>> getDropDownMenuItems() {
     List<DropdownMenuItem<String>> items = new List();
     for (String category in listCategories) {
@@ -245,5 +292,13 @@ class _AddDishState extends State<AddDish> {
       content: Text(AppTranslations.translate(context, "fill_fields")),
     );
     Scaffold.of(context).showSnackBar(snackbar);
+  }
+
+  void _initAdMobBanner() {
+    FirebaseAdMob.instance.initialize(appId: APP_ID);
+    bannerAd = buildBanner()
+      ..load();
+    interstitialAd = buildInterstitial()
+      ..load();
   }
 }
