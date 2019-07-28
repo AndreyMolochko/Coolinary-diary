@@ -68,7 +68,7 @@ class _DishListState extends State<DishList> {
     }
 
     Widget body = _getBody();
-    if(appBarTitle != null && appBarTitle is !TextField){
+    if (appBarTitle != null && appBarTitle is! TextField) {
       appBarTitle = new Text(AppTranslations.translate(context,
           currentCategory));
     }
@@ -173,7 +173,7 @@ class _DishListState extends State<DishList> {
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database) {
       Future<List<Dish>> dishListFuture =
-          databaseHelper.getDishesByCategory(currentCategory);
+      databaseHelper.getDishesByCategory(currentCategory);
       dishListFuture.then((dishList) {
         setState(() {
           this.dishList = dishList;
@@ -355,9 +355,9 @@ class _DishListState extends State<DishList> {
                           contextSnackbar = context;
                           return popupItems.map((String choice) {
                             return PopupMenuItem<String>(
-                              value: choice,
-                              child: Text(AppTranslations.translate
-                                (context,choice),)
+                                value: choice,
+                                child: Text(AppTranslations.translate
+                                  (context, choice),)
                             );
                           }).toList();
                         },
@@ -442,7 +442,6 @@ class _DishListState extends State<DishList> {
     if (dishList.length == 0) {
       body = _noDataAvailable();
       backgroundColor = Colors.white;
-
     } else {
       body = _getDishesWidget();
       backgroundColor = AppTheme.Colors.orangePrimary;
@@ -496,4 +495,5 @@ class _DishListState extends State<DishList> {
     categoriesList.add(AppTranslations.translate(context, "dessert"));
     categoriesList.add(AppTranslations.translate(context, "drinks"));
   }
+
 }
