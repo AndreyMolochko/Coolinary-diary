@@ -1,7 +1,7 @@
 # sqflite_worker
 
 ## Install App
-[Link Google Play](https://play.google.com/store/apps/details?id=com.ostrovec.sqfliteworker)
+[Link Google Play](https://play.google.com/store/apps/details?id=com.culinary.diary)
 
 ## About App 
 
