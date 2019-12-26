@@ -3,12 +3,42 @@
 //
 
 #import "GeneratedPluginRegistrant.h"
-#import <firebase_admob/FirebaseAdMobPlugin.h>
+
+#if __has_include(<firebase_admob/FLTFirebaseAdMobPlugin.h>)
+#import <firebase_admob/FLTFirebaseAdMobPlugin.h>
+#else
+@import firebase_admob;
+#endif
+
+#if __has_include(<fluttertoast/FluttertoastPlugin.h>)
 #import <fluttertoast/FluttertoastPlugin.h>
-#import <image_picker/ImagePickerPlugin.h>
-#import <path_provider/PathProviderPlugin.h>
-#import <shared_preferences/SharedPreferencesPlugin.h>
+#else
+@import fluttertoast;
+#endif
+
+#if __has_include(<image_picker/FLTImagePickerPlugin.h>)
+#import <image_picker/FLTImagePickerPlugin.h>
+#else
+@import image_picker;
+#endif
+
+#if __has_include(<path_provider/FLTPathProviderPlugin.h>)
+#import <path_provider/FLTPathProviderPlugin.h>
+#else
+@import path_provider;
+#endif
+
+#if __has_include(<shared_preferences/FLTSharedPreferencesPlugin.h>)
+#import <shared_preferences/FLTSharedPreferencesPlugin.h>
+#else
+@import shared_preferences;
+#endif
+
+#if __has_include(<sqflite/SqflitePlugin.h>)
 #import <sqflite/SqflitePlugin.h>
+#else
+@import sqflite;
+#endif
 
 @implementation GeneratedPluginRegistrant
 
