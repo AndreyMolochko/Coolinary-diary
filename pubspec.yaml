@@ -57,9 +57,9 @@ flutter:
     - assets/birthday-cake.svg
     - assets/wedding-dinner.svg
     - assets/soup.svg
-    - assets/add_receipts_icon.svg
-    - assets/cooking.svg
-    - assets/dishes_list.svg
+    - assets/add_receipts_icon.png
+    - assets/dishes_list.png
+    - assets/cooking.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
