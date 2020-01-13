@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'applications.dart';
 import 'localization/app_translations.dart';
@@ -26,6 +28,7 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
+    FirebaseAnalytics analytics = FirebaseAnalytics();
     return MaterialApp(
       title: 'Culinary Diary',
       theme: ThemeData(
@@ -38,6 +41,9 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: application.supportedLocales(),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics)
+      ],
       routes: <String, WidgetBuilder>{
         '/dishList': (BuildContext context) => new DishList(),
       },

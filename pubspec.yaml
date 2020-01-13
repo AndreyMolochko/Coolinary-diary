@@ -30,6 +30,7 @@ dependencies:
   shared_preferences: ^0.5.2+1
   sprintf: ^4.0.0
   firebase_admob: ^0.9.0+2
+  firebase_analytics: ^5.0.9
 
 
 dev_dependencies:
