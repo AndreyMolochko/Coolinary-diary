@@ -36,6 +36,7 @@ class _AddDishState extends State<AddDish> {
   File image;
 
   static const APP_ID = "ca-app-pub-5996416754533238~1194599427";
+  static const UNIT_ID = "ca-app-pub-5996416754533238/3208736282";
 
   static final MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     testDevices: APP_ID != null ? [APP_ID] : null,
@@ -48,7 +49,7 @@ class _AddDishState extends State<AddDish> {
 
   BannerAd buildBanner() {
     return BannerAd(
-        adUnitId: APP_ID,
+        adUnitId: UNIT_ID,
         size: AdSize.banner,
         listener: (MobileAdEvent event) {
           print(event);
@@ -57,7 +58,7 @@ class _AddDishState extends State<AddDish> {
 
   InterstitialAd buildInterstitial() {
     return InterstitialAd(
-        adUnitId: APP_ID,
+        adUnitId: UNIT_ID,
         targetingInfo: targetingInfo,
         listener: (MobileAdEvent event) {
           if (event == MobileAdEvent.failedToLoad) {
