@@ -34,28 +34,47 @@ class _GuidePageState extends State<GuidePage> {
             ),
           ],
         ),
-        _buildCircleTabs()
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            _buildOkButton(),
+            _buildCircleTabs(),
+          ],
+        )
       ],
     );
   }
 
   Widget _buildCircleTabs() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.center, //doesn't work
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: CustomPaint(
-                painter: CircleTabsPainter(_indexCurrentPage),
-              ),
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.only(bottom: 16.0, top: 16.0),
+          child: CustomPaint(
+            painter: CircleTabsPainter(_indexCurrentPage),
+          ),
         ),
       ],
+    );
+  }
+
+  Widget _buildOkButton() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+      child: Container(
+        width: double.maxFinite,
+        child: RaisedButton(
+          color: Colors.black,
+          textColor: Colors.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0), side: BorderSide(color: Colors.white)),
+          onPressed: () {
+            print("click on the button");
+          },
+          child: Text("Continue"),
+        ),
+      ),
     );
   }
 
