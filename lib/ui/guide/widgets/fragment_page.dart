@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 
-class FragmentPage extends StatefulWidget {
+class FragmentPage extends StatelessWidget {
   final String imagePath;
   final String text;
 
   const FragmentPage({Key key, this.imagePath, this.text}) : super(key: key);
 
   @override
-  _FragmentPageState createState() => _FragmentPageState();
-}
-
-class _FragmentPageState extends State<FragmentPage> {
-  @override
   Widget build(BuildContext context) {
-    return _buildBody(context, widget.imagePath, widget.text);
+    return _buildBody(context, imagePath, text);
   }
 
   Widget _buildBody(BuildContext context, String imagePath, String text) {
