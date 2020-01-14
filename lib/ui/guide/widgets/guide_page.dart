@@ -34,20 +34,24 @@ class _GuidePageState extends State<GuidePage> {
             ),
           ],
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,//doesn't work
+        _buildCircleTabs()
+      ],
+    );
+  }
+
+  Widget _buildCircleTabs() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center, //doesn't work
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: CustomPaint(
-                    painter: CircleTabsPainter(_indexCurrentPage),
-                  ),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: CustomPaint(
+                painter: CircleTabsPainter(_indexCurrentPage),
+              ),
             ),
           ],
         ),
