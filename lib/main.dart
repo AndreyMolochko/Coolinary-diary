@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/ui/guide/module.dart';
 import 'applications.dart';
 import 'localization/app_translations.dart';
 import 'localization/app_translations_delegate.dart';
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: DishList(),
+      home: GuidePage(),
       localizationsDelegates: [
         _newLocaleDelegate,
         GlobalMaterialLocalizations.delegate,
