@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/core/application/culinary_diary.dart';
 
-void main()=> Runner();
+void main() => Runner();
 
 class Runner {
   Runner() {

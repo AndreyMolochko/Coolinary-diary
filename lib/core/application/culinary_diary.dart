@@ -1,4 +1,3 @@
-
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:injector/injector.dart';
 
@@ -8,8 +7,7 @@ import 'package:sqflite_worker/ui/guide/module.dart';
 
 import 'application.dart';
 
-class CulinaryDiary implements Application{
-
+class CulinaryDiary implements Application {
   final Injector _injector;
 
   CulinaryDiary(this._injector);
@@ -26,12 +24,8 @@ class CulinaryDiary implements Application{
     session.registerDependencies(_injector);
     firstWidget = GuidePage();
     appComponent = AppComponent(this);
-
   }
 
   @override
-  void onTerminate() {
-
-  }
-
+  void onTerminate() {}
 }

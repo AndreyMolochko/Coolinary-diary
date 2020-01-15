@@ -9,7 +9,6 @@ import 'package:sqflite_worker/screens/dish_list.dart';
 
 import '../applications.dart';
 
-
 class AppComponent extends StatefulWidget {
   final CulinaryDiary _application;
 
@@ -20,7 +19,6 @@ class AppComponent extends StatefulWidget {
 }
 
 class _AppComponentState extends State<AppComponent> {
-
   AppTranslationsDelegate _newLocaleDelegate;
   final CulinaryDiary _application;
 
@@ -45,7 +43,7 @@ class _AppComponentState extends State<AppComponent> {
     super.dispose();
   }
 
-  AppProvider _runApp(Widget widget){
+  AppProvider _runApp(Widget widget) {
     final app = MaterialApp(
       title: 'Culinary Diary',
       theme: ThemeData(
@@ -65,14 +63,14 @@ class _AppComponentState extends State<AppComponent> {
     return AppProvider(app, _application);
   }
 
-  void _onLocaleChange(Locale locale){
+  void _onLocaleChange(Locale locale) {
     setState(() {
       _newLocaleDelegate = AppTranslationsDelegate(newLocale: locale);
     });
   }
 
-  void _setLanguageIfNeed(){
-    AppTranslations.getCurrentLanguage().then((currentLanguage){
+  void _setLanguageIfNeed() {
+    AppTranslations.getCurrentLanguage().then((currentLanguage) {
       application.onLocaleChanged(Locale(currentLanguage));
     });
   }
