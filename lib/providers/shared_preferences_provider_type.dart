@@ -1,3 +1,6 @@
-abstract class SharedPreferencesProviderType{
+abstract class SharedPreferencesProviderType {
 
+  Future<bool> getShowingGuidePage();
+
+  void saveShowingGuidePage(bool isShowing);
 }

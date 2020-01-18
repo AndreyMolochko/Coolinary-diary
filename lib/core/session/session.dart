@@ -5,6 +5,7 @@ import 'package:sqflite_worker/providers/module.dart';
 class Session implements SessionType {
   @override
   void registerDependencies(Injector injector) {
-    injector.registerSingleton<SharedPreferencesProviderType>((_) => SharedPreferencesProvider());
+    injector.registerSingleton<SharedPreferencesProviderType>(
+        (_) => SharedPreferencesProvider());
   }
 }
