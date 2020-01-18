@@ -1,15 +1,14 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/providers/module.dart';
 
 import '../module.dart';
 
 class GuideViewModel implements GuideViewModelType {
-
   final Injector _injector;
   SharedPreferencesProviderType _sharedPreferencesProvider;
 
-  GuideViewModel(this._injector){
+  GuideViewModel(this._injector) {
     _sharedPreferencesProvider = _injector.getDependency<SharedPreferencesProviderType>();
   }
 

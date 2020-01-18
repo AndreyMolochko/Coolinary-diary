@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/resourses/module.dart';
 
 class FragmentPage extends StatelessWidget {
   final String imagePath;
@@ -25,7 +26,7 @@ class FragmentPage extends StatelessWidget {
               height: 200,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 32.0),
+              padding: const EdgeInsets.only(top: Dimens.bigPadding),
               child: Text(
                 text,
                 style: TextStyle(color: Colors.white, fontSize: 18.0),

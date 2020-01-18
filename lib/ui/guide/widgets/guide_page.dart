@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
+import 'package:sqflite_worker/resourses/module.dart';
 import 'package:sqflite_worker/ui/guide/module.dart';
 
 class GuidePage extends StatefulWidget {
-
   final GuideViewModelType _viewModel;
 
   const GuidePage(this._viewModel);
+
   @override
   _GuidePageState createState() => _GuidePageState();
 }
@@ -55,7 +56,7 @@ class _GuidePageState extends State<GuidePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(bottom: 16.0, top: 16.0),
+          padding: const EdgeInsets.only(bottom: Dimens.normalPadding, top: Dimens.normalPadding),
           child: CustomPaint(
             painter: CircleTabsPainter(_indexCurrentPage),
           ),
@@ -66,14 +67,14 @@ class _GuidePageState extends State<GuidePage> {
 
   Widget _buildOkButton() {
     return Padding(
-      padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+      padding: const EdgeInsets.only(left: Dimens.bigPadding, right: Dimens.bigPadding),
       child: Container(
         width: double.maxFinite,
         child: RaisedButton(
           color: Colors.black,
           textColor: Colors.white,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0), side: BorderSide(color: Colors.white)),
+              borderRadius: BorderRadius.circular(Dimens.borderRadiusButton), side: BorderSide(color: Colors.white)),
           onPressed: () {
             widget._viewModel.continueButtonAction(context);
           },
