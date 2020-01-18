@@ -10,6 +10,7 @@ class Runner {
   }
 
   void _run() async {
+    WidgetsFlutterBinding.ensureInitialized();
     final injector = Injector();
     var application = CulinaryDiary(injector);
     await application.onCreate();

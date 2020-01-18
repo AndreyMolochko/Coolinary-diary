@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: GuidePage(),
+      home: DishList(),
       localizationsDelegates: [
         _newLocaleDelegate,
         GlobalMaterialLocalizations.delegate,
