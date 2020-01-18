@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/ui/guide/module.dart';
 
 class GuidePage extends StatefulWidget {
@@ -26,15 +27,15 @@ class _GuidePageState extends State<GuidePage> {
           children: <Widget>[
             FragmentPage(
               imagePath: 'assets/add_receipts.png',
-              text: 'Add receipts',
+              text: AppTranslations.translate(context, "guide_screen_add_recipes"),
             ),
             FragmentPage(
               imagePath: 'assets/cooking.png',
-              text: 'Cooking',
+              text: AppTranslations.translate(context, "guide_screen_cooking"),
             ),
             FragmentPage(
               imagePath: 'assets/dishes_list.png',
-              text: 'Look other receipts',
+              text: AppTranslations.translate(context, "guide_screen_browse_other_recipes"),
             ),
           ],
         ),
@@ -76,7 +77,7 @@ class _GuidePageState extends State<GuidePage> {
           onPressed: () {
             widget._viewModel.continueButtonAction(context);
           },
-          child: Text("Continue"),
+          child: Text(AppTranslations.translate(context, "guide_screen_continue")),
         ),
       ),
     );

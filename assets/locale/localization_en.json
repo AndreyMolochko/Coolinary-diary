@@ -1,4 +1,8 @@
 {
+  "guide_screen_continue": "Continue",
+  "guide_screen_add_recipes": "Add recipes with photos",
+  "guide_screen_cooking": "Cooking with the application",
+  "guide_screen_browse_other_recipes": "Browse ready-made recipes",
   "settings": "Settings",
   "language": "Language",
   "update": "Update",
