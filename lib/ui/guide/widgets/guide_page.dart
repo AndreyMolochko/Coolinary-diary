@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sqflite_worker/ui/guide/module.dart';
 
 class GuidePage extends StatefulWidget {
+
+  final GuideViewModelType _viewModel;
+
+  const GuidePage(this._viewModel);
   @override
   _GuidePageState createState() => _GuidePageState();
 }
@@ -70,7 +74,7 @@ class _GuidePageState extends State<GuidePage> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0), side: BorderSide(color: Colors.white)),
           onPressed: () {
-            print("click on the button");
+            widget._viewModel.continueButtonAction(context);
           },
           child: Text("Continue"),
         ),
