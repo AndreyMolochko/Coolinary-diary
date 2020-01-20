@@ -22,14 +22,14 @@ class FragmentPage extends StatelessWidget {
           children: <Widget>[
             Image(
               image: AssetImage(imagePath),
-              width: 200,
-              height: 200,
+              width: Dimens.sizeImageGuidePage,
+              height: Dimens.sizeImageGuidePage,
             ),
             Padding(
               padding: const EdgeInsets.only(top: Dimens.bigPadding),
               child: Text(
                 text,
-                style: TextStyle(color: Colors.white, fontSize: 18.0),
+                style: TextStyle(color: Colors.white, fontSize: Dimens.mediumFontSize),
               ),
             ),
           ],
