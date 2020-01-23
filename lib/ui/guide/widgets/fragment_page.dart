@@ -29,7 +29,7 @@ class FragmentPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: Dimens.bigPadding),
               child: Text(
                 text,
-                style: TextStyle(color: Colors.white, fontSize: Dimens.mediumFontSize),
+                style: TextStyles.mediumWhiteText,
               ),
             ),
           ],
