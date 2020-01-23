@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'module.dart';
+import 'module.dart' as App;
 
 class TextStyles {
   static const TextStyle mediumWhiteText =
-      TextStyle(color: Colors.white, fontSize: Dimens.mediumFontSize, fontFamily: 'Latine');
+      TextStyle(color: App.Colors.white, fontSize: App.Dimens.mediumFontSize, fontFamily: 'Latine');
 }

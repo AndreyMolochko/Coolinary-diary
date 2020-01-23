@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:sqflite_worker/resourses/module.dart';
 
 class CircleTabsPainter extends CustomPainter {
-  static const WHITE = Color(0xffffffff);
   int position;
   double radiusLittleCircle = Dimens.radiusSmallCircleTab;
   double radiusBigCircle = Dimens.radiusBigCircleTab;
@@ -12,7 +11,7 @@ class CircleTabsPainter extends CustomPainter {
 
   var painter = Paint()
     ..style = PaintingStyle.fill
-    ..color = WHITE
+    ..color = Colors.white
     ..isAntiAlias = true;
 
   @override
