@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sqflite_worker/resourses/module.dart';
 
 class CircleTabsPainter extends CustomPainter {
   static const WHITE = Color(0xffffffff);
   int position;
-  double radiusLittleCircle = 4;
-  double radiusBigCircle = 6;
-  double distanceBetweenCircles = 25;
+  double radiusLittleCircle = Dimens.radiusSmallCircleTab;
+  double radiusBigCircle = Dimens.radiusBigCircleTab;
+  double distanceBetweenCircles = Dimens.distanceBetweenCircleTabs;
 
   CircleTabsPainter(this.position);
 
