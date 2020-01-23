@@ -1,0 +1,4 @@
+enum RequestDishType {
+  addDish,
+  updateDish
+}
