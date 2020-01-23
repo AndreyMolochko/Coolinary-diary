@@ -71,10 +71,9 @@ class _GuidePageState extends State<GuidePage> {
       child: Container(
         width: double.maxFinite,
         child: RaisedButton(
-          color: Colors.black,
-          textColor: Colors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(App.Dimens.borderRadiusButton), side: BorderSide(color: Colors.white)),
+          color: App.Colors.black,
+          textColor: App.Colors.white,
+          shape: App.Shapes.primaryButton,
           onPressed: () {
             widget._viewModel.continueButtonAction(context);
           },
