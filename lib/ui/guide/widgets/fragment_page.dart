@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite_worker/resourses/module.dart';
+import 'package:sqflite_worker/resourses/module.dart' as App;
 
 class FragmentPage extends StatelessWidget {
   final String imagePath;
@@ -22,14 +22,14 @@ class FragmentPage extends StatelessWidget {
           children: <Widget>[
             Image(
               image: AssetImage(imagePath),
-              width: Dimens.sizeImageGuidePage,
-              height: Dimens.sizeImageGuidePage,
+              width: App.Dimens.sizeImageGuidePage,
+              height: App.Dimens.sizeImageGuidePage,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: Dimens.bigPadding),
+              padding: const EdgeInsets.only(top: App.Dimens.bigPadding),
               child: Text(
                 text,
-                style: TextStyles.mediumWhiteText,
+                style: App.TextStyles.mediumWhiteText,
               ),
             ),
           ],
