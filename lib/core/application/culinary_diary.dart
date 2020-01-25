@@ -5,6 +5,7 @@ import 'package:sqflite_worker/core/app_component.dart';
 import 'package:sqflite_worker/core/session/session.dart';
 import 'package:sqflite_worker/providers/module.dart';
 import 'package:sqflite_worker/screens/dish_list.dart';
+import 'package:sqflite_worker/ui/dish_list/module.dart';
 import 'package:sqflite_worker/ui/guide/module.dart';
 
 import 'application.dart';
@@ -36,7 +37,7 @@ class CulinaryDiary implements Application {
     if (!isShowingGuidePage) {
       firstWidget = GuidePage(GuideViewModel(_injector));
     } else {
-      firstWidget = DishList();
+      firstWidget = DishListPage(DishListViewModel(_injector));
     }
 
     appComponent = AppComponent(this);
