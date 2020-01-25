@@ -1,0 +1,3 @@
+enum RequestDishListType {
+  myDishes, otherDishes
+}
