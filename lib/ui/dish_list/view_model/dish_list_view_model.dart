@@ -13,12 +13,10 @@ class DishListViewModel implements DishListViewModelType {
 
   @override
   void initState() {
-    if(_dishListType == RequestDishListType.myDishes) {
+    if (_dishListType == RequestDishListType.myDishes) {
       testData = "My dishes";
-    } else {
+    } else if (_dishListType == RequestDishListType.otherDishes) {
       testData = "Other dishes";
     }
   }
-
-
 }
