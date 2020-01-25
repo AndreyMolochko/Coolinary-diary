@@ -4,7 +4,7 @@ import 'package:sqflite_worker/ui/home/module.dart';
 class HomePage extends StatefulWidget {
   final HomeViewModelType _viewModel;
 
-  const HomePage(this._viewModel);
+  HomePage(this._viewModel);
 
   @override
   _HomePageState createState() => _HomePageState();
