@@ -10,16 +10,21 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
-
-  final List<Tab> tabsList = <Tab>[
-    Tab(text: "My dishes"),
-    Tab(text: "Other dishes")];
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  final List<Tab> tabsList = <Tab>[Tab(text: "My dishes"), Tab(text: "Other dishes")];
   TabController _tabController;
 
   @override
   void initState() {
+    widget._viewModel.initState();
     _tabController = TabController(vsync: this, length: tabsList.length);
+    _tabController.addListener(() {
+      setState(() {
+        if (_tabController.indexIsChanging) {
+          widget._viewModel.onTabChange(_tabController.index);
+        }
+      });
+    });
     super.initState();
   }
 
@@ -37,13 +42,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 
-
   @override
   void dispose() {
     _tabController.dispose();
   }
 
   Widget _buildBody(BuildContext context) {
-    return Center(child: Text("My dishes"));
+    return IndexedStack(
+        index: widget._viewModel.currentPageIndex, children: widget._viewModel.tabBarViews);
   }
 }

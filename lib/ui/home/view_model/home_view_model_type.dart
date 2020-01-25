@@ -1,7 +1,11 @@
-import 'package:sqflite_worker/model/module.dart';
+import 'package:flutter/material.dart';
 
 abstract class HomeViewModelType {
-  List<RequestDishListType> dishListTypes;
+  List<Widget> tabBarViews;
+
+  int get currentPageIndex;
 
   void initState();
+
+  void onTabChange(int index);
 }
