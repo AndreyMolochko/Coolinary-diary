@@ -30,4 +30,9 @@ class HomeViewModel implements HomeViewModelType {
   void onTabChange(int index) {
     _currentTabBarView = index;
   }
+
+  @override
+  void onClickSettingsIcon(BuildContext context) {
+    print("onClick on settings screen");
+  }
 }
