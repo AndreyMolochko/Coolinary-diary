@@ -1,0 +1,4 @@
+enum RequestDishScreenType {
+  addDish,
+  updateDish
+}
