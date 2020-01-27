@@ -3,6 +3,7 @@ import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/ui/dish_list/module.dart';
 import 'package:sqflite_worker/ui/home/module.dart';
+import 'package:sqflite_worker/ui/request_dish/module.dart';
 
 class HomeViewModel implements HomeViewModelType {
   @override
@@ -38,6 +39,9 @@ class HomeViewModel implements HomeViewModelType {
 
   @override
   void onClickAdditionIcon(BuildContext context) {
-    print("onClick on addition screen");
+    RequestDishViewModelType requestDishViewModel = RequestDishViewModel(
+        _injector, RequestDishScreenType.addDish);
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => RequestDishPage(requestDishViewModel)));
   }
 }
