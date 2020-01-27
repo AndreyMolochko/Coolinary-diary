@@ -9,4 +9,5 @@ abstract class HomeViewModelType {
 
   void onTabChange(int index);
   void onClickSettingsIcon(BuildContext context);
+  void onClickAdditionIcon(BuildContext context);
 }

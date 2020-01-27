@@ -35,4 +35,9 @@ class HomeViewModel implements HomeViewModelType {
   void onClickSettingsIcon(BuildContext context) {
     print("onClick on settings screen");
   }
+
+  @override
+  void onClickAdditionIcon(BuildContext context) {
+    print("onClick on addition screen");
+  }
 }

@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         ),
         title: Text("Culinary diary"),
         actions: <Widget>[
+          _buildAdditionIcon(context),
           _buildSettingsIcon(context)
         ],
       ),
@@ -55,11 +56,20 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         index: widget._viewModel.currentPageIndex, children: widget._viewModel.tabBarViews);
   }
 
-  Widget _buildSettingsIcon(BuildContext context){
+  Widget _buildSettingsIcon(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.settings),
       onPressed: () {
         widget._viewModel.onClickSettingsIcon(context);
+      },
+    );
+  }
+
+  Widget _buildAdditionIcon(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.add),
+      onPressed: () {
+        widget._viewModel.onClickAdditionIcon(context);
       },
     );
   }
