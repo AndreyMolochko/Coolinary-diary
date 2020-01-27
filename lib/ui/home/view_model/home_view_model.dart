@@ -4,6 +4,7 @@ import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/ui/dish_list/module.dart';
 import 'package:sqflite_worker/ui/home/module.dart';
 import 'package:sqflite_worker/ui/request_dish/module.dart';
+import 'package:sqflite_worker/ui/settings/module.dart';
 
 class HomeViewModel implements HomeViewModelType {
   @override
@@ -34,7 +35,9 @@ class HomeViewModel implements HomeViewModelType {
 
   @override
   void onClickSettingsIcon(BuildContext context) {
-    print("onClick on settings screen");
+    SettingsViewModelType settingsViewModel = SettingsViewModel(_injector);
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => SettingsPage(settingsViewModel)));
   }
 
   @override
