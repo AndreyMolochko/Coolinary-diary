@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/ui/settings/module.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Settings"),
+          title: Text(AppTranslations.translate(context, "settings_title_screen")),
         ),
         body: _buildBody());
   }
