@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
+import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/ui/settings/module.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -13,6 +14,12 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   @override
+  void initState() {
+    widget._viewModel.initState();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -21,7 +28,41 @@ class _SettingsPageState extends State<SettingsPage> {
         body: _buildBody());
   }
 
+  @override
+  void dispose() {
+    widget._viewModel.dispose();
+  }
+
   Widget _buildBody() {
-    return Text("Settings screen");
+    return StreamBuilder(
+        stream: widget._viewModel.items,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<SettingsItem> listSettingsItems = snapshot.data;
+            return ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return _buildListItem(listSettingsItems[index]);
+              },
+              itemCount: listSettingsItems == null ? 0 : listSettingsItems.length,
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        });
+  }
+
+  Widget _buildListItem(SettingsItem settingsItem) {
+    return ExpansionTile(
+      title: Text(settingsItem.title),
+      children: _buildSubItemsList(settingsItem),
+    );
+  }
+
+  List<Widget> _buildSubItemsList(SettingsItem settingsItem) {
+    if (settingsItem is LanguageItem) {
+      return [Text("Language subItem")];
+    } else if (settingsItem is MoreItem) {
+      return [Text("More subItem")];
+    }
   }
 }

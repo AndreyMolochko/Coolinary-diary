@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/module.dart';
+import 'package:sqflite_worker/providers/menu_item_provider.dart';
+import 'package:sqflite_worker/providers/menu_item_provider_type.dart';
 import 'package:sqflite_worker/ui/dish_list/module.dart';
 import 'package:sqflite_worker/ui/home/module.dart';
 import 'package:sqflite_worker/ui/request_dish/module.dart';
@@ -35,7 +37,8 @@ class HomeViewModel implements HomeViewModelType {
 
   @override
   void onClickSettingsIcon(BuildContext context) {
-    SettingsViewModelType settingsViewModel = SettingsViewModel(_injector);
+    MenuItemProviderType menuItemProvider = MenuItemProvider();
+    SettingsViewModelType settingsViewModel = SettingsViewModel(_injector, menuItemProvider);
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => SettingsPage(settingsViewModel)));
   }
