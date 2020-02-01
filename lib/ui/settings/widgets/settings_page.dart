@@ -78,7 +78,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 Radio(value: languageItem.subItems[i],
                   groupValue: snapshot.data,
                   onChanged: widget._viewModel.handleLanguageRadio,),
-                Text(widget._viewModel.getLanguageByType(languageItem.subItems[i]))
+                InkWell(child: Padding(
+                  padding: const EdgeInsets.only(top: Dimens.smallPadding, bottom: Dimens.smallPadding),
+                  child: Text(widget._viewModel.getLanguageByType(languageItem.subItems[i])),
+                ),
+                    onTap: () {
+                      widget._viewModel.handleLanguageRadio(languageItem.subItems[i]);
+                    })
               ],
             );
           }
