@@ -63,16 +63,19 @@ class _SettingsPageState extends State<SettingsPage> {
     if (settingsItem is LanguageItem) {
       return [Text("Language subItem")];
     } else if (settingsItem is AboutItem) {
-      return [Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: Dimens.normalPadding, bottom: Dimens.smallPadding),
-            child: Text("More subItem", style: TextStyles.smallBlackText),
-          ),
-        ],
-      )
-      ];
+      return [_getAboutItem()];
     }
+  }
+
+  Widget _getAboutItem() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: Dimens.normalPadding, bottom: Dimens.smallPadding),
+          child: Text("About subItem", style: TextStyles.smallBlackText),
+        ),
+      ],
+    );
   }
 }
