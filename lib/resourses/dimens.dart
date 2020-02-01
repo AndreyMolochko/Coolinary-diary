@@ -10,6 +10,7 @@ class Dimens {
   static const double radiusBigCircleTab = 6.0;
   static const double distanceBetweenCircleTabs = 25.0;
 
+  static const double smallFontSize = 14.0;
   static const double normalFontSize = 16.0;
   static const double mediumFontSize = 18.0;
 }

@@ -7,4 +7,7 @@ class TextStyles {
 
   static const TextStyle normalBlackText =
       TextStyle(color: App.Colors.black, fontSize: App.Dimens.normalFontSize, fontFamily: 'Latine');
+
+  static const TextStyle smallBlackText =
+      TextStyle(color: App.Colors.black, fontSize: App.Dimens.smallFontSize, fontFamily: 'Latine');
 }
