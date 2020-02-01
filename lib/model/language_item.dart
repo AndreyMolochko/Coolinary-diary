@@ -1,11 +1,11 @@
 import 'module.dart';
 
 class LanguageItem implements SettingsItem {
-  LanguageItem(this.title, this.subItems);
-
   @override
-  List<String> subItems;
+  List<dynamic> subItems;
 
   @override
   String title;
+
+  LanguageItem(this.title, this.subItems);
 }
