@@ -79,11 +79,15 @@ class _SettingsPageState extends State<SettingsPage> {
                   groupValue: snapshot.data,
                   onChanged: widget._viewModel.handleLanguageRadio,),
                 InkWell(child: Padding(
-                  padding: const EdgeInsets.only(top: Dimens.smallPadding, bottom: Dimens.smallPadding),
-                  child: Text(widget._viewModel.getLanguageByType(languageItem.subItems[i])),
+                  padding: const EdgeInsets.only(
+                      top: Dimens.smallPadding, bottom: Dimens.smallPadding),
+                  child: Text(widget._viewModel.getLanguageByType(
+                      languageItem.subItems[i]),
+                    style: TextStyles.smallBlackText,),
                 ),
                     onTap: () {
-                      widget._viewModel.handleLanguageRadio(languageItem.subItems[i]);
+                      widget._viewModel.handleLanguageRadio(
+                          languageItem.subItems[i]);
                     })
               ],
             );
