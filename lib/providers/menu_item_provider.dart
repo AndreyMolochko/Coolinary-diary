@@ -7,7 +7,7 @@ class MenuItemProvider implements MenuItemProviderType {
     List<SettingsItem> items = [];
 
     //TODO: localization
-    items.add(LanguageItem('Language', ['English', 'Русский', 'Беларусская']));
+    items.add(LanguageItem('Language', [LanguageType.English, LanguageType.Russian, LanguageType.Belarussian]));
     items.add(AboutItem('About', ['This app is 2.0.0 version']));
 
     return items;

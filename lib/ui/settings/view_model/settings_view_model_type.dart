@@ -5,7 +5,13 @@ abstract class SettingsViewModelType {
 
   Stream<String> get appVersion;
 
+  Stream<LanguageType> get radioGroupLanguage;
+
   void initState();
 
   void dispose();
+
+  void handleLanguageRadio(dynamic value);
+
+  String getLanguageByType(LanguageType languageType);
 }

@@ -61,10 +61,31 @@ class _SettingsPageState extends State<SettingsPage> {
 
   List<Widget> _buildSubitemsList(SettingsItem settingsItem) {
     if (settingsItem is LanguageItem) {
-      return [Text("Language subItem")];
+      return _buildLanguageItems(settingsItem);
     } else if (settingsItem is AboutItem) {
       return [_getAboutItem()];
     }
+  }
+
+  List<Widget> _buildLanguageItems(LanguageItem languageItem) {
+    List<Widget> languagesList = [];
+    for (int i = 0; i < languageItem.subItems.length; i++) {
+      languagesList.add(StreamBuilder(
+          stream: widget._viewModel.radioGroupLanguage,
+          builder: (context, snapshot) {
+            return Row(
+              children: <Widget>[
+                Radio(value: languageItem.subItems[i],
+                  groupValue: snapshot.data,
+                  onChanged: widget._viewModel.handleLanguageRadio,),
+                Text(widget._viewModel.getLanguageByType(languageItem.subItems[i]))
+              ],
+            );
+          }
+      ));
+    }
+
+    return languagesList;
   }
 
   Widget _getAboutItem() {
