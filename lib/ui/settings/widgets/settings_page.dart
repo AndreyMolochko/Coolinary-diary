@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/module.dart';
+import 'package:sqflite_worker/resourses/module.dart';
 import 'package:sqflite_worker/ui/settings/module.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -53,7 +54,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildListItem(SettingsItem settingsItem) {
     return ExpansionTile(
-      title: Text(settingsItem.title),
+      title: Text(settingsItem.title, style: TextStyles.normalBlackText),
       children: _buildSubItemsList(settingsItem),
     );
   }
