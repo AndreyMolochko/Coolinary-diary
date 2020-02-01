@@ -7,5 +7,6 @@ class Session implements SessionType {
   void registerDependencies(Injector injector) {
     injector.registerSingleton<SharedPreferencesProviderType>(
         (_) => SharedPreferencesProvider());
+    injector.registerSingleton<PackageInfoProviderType>((_) => PackageInfoProvider());
   }
 }

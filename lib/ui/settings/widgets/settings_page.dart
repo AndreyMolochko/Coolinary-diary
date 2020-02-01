@@ -68,14 +68,24 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget _getAboutItem() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(left: Dimens.normalPadding, bottom: Dimens.smallPadding),
-          child: Text("About subItem", style: TextStyles.smallBlackText),
-        ),
-      ],
-    );
+    return StreamBuilder(
+        stream: widget._viewModel.appVersion,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: Dimens.normalPadding, bottom: Dimens.smallPadding),
+                  child: Text("Application version : ${snapshot.data}",
+                      style: TextStyles.smallBlackText),
+                ),
+              ],
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        });
   }
 }
