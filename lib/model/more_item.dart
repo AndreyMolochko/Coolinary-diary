@@ -1,7 +1,7 @@
 import 'module.dart';
 
-class MoreItem implements SettingsItem {
-  MoreItem(this.title, this.subItems);
+class AboutItem implements SettingsItem {
+  AboutItem(this.title, this.subItems);
 
   @override
   List<String> subItems;

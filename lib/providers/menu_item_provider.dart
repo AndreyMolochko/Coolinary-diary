@@ -8,7 +8,7 @@ class MenuItemProvider implements MenuItemProviderType {
 
     //TODO: localization
     items.add(LanguageItem('Language', ['English', 'Русский', 'Беларусская']));
-    items.add(MoreItem('About', ['This app is 2.0.0 version']));
+    items.add(AboutItem('About', ['This app is 2.0.0 version']));
 
     return items;
   }

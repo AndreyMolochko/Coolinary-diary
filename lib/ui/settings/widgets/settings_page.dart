@@ -55,14 +55,14 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget _buildListItem(SettingsItem settingsItem) {
     return ExpansionTile(
       title: Text(settingsItem.title, style: TextStyles.normalBlackText),
-      children: _buildSubItemsList(settingsItem),
+      children: _buildSubitemsList(settingsItem),
     );
   }
 
-  List<Widget> _buildSubItemsList(SettingsItem settingsItem) {
+  List<Widget> _buildSubitemsList(SettingsItem settingsItem) {
     if (settingsItem is LanguageItem) {
       return [Text("Language subItem")];
-    } else if (settingsItem is MoreItem) {
+    } else if (settingsItem is AboutItem) {
       return [Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -71,7 +71,8 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Text("More subItem", style: TextStyles.smallBlackText),
           ),
         ],
-      )];
+      )
+      ];
     }
   }
 }
