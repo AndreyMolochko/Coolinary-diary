@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:injector/injector.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:sqflite_worker/applications.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/providers/menu_item_provider_type.dart';

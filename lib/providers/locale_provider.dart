@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/module.dart';
 
 import '../applications.dart';
@@ -7,19 +9,36 @@ import 'module.dart';
 class LocaleProvider implements LocaleProviderType {
   @override
   void onLocaleChanges(LanguageType languageType) {
-    switch (languageType) {
+    application.onLocaleChanged(Locale(getLocaleCodeByLanguageType(languageType)));
+  }
+
+  @override
+  void saveLocale(LanguageType languageType) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString('languageCode', getLocaleCodeByLanguageType(languageType));
+  }
+
+  @override
+  LanguageType getLanguageTypeByLocaleCode(String localeCode) {
+    switch (localeCode) {
+      case AppTranslations.englishLanguage:
+        return LanguageType.English;
+      case AppTranslations.russianLanguage:
+        return LanguageType.Russian;
+      case AppTranslations.belarussianLanguage:
+        return LanguageType.Belarussian;
+    }
+  }
+
+  @override
+  String getLocaleCodeByLanguageType(LanguageType languageType) {
+    switch(languageType) {
       case LanguageType.English:
-        application.onLocaleChanged(
-            Locale(application.supportedLanguagesCodes[0]));
-        break;
+        return AppTranslations.englishLanguage;
       case LanguageType.Russian:
-        application.onLocaleChanged(
-            Locale(application.supportedLanguagesCodes[1]));
-        break;
+        return AppTranslations.russianLanguage;
       case LanguageType.Belarussian:
-        application.onLocaleChanged(
-            Locale(application.supportedLanguagesCodes[2]));
-        break;
+        return AppTranslations.belarussianLanguage;
     }
   }
 }
