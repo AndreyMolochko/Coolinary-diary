@@ -5,6 +5,8 @@ abstract class LocaleProviderType {
 
   void saveLocale(LanguageType languageType);
 
+  Future<String> getLocale();
+
   LanguageType getLanguageTypeByLocaleCode(String localeCode);
 
   String getLocaleCodeByLanguageType(LanguageType languageType);

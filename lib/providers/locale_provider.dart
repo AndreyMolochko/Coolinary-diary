@@ -9,13 +9,26 @@ import 'module.dart';
 class LocaleProvider implements LocaleProviderType {
   @override
   void onLocaleChanges(LanguageType languageType) {
-    application.onLocaleChanged(Locale(getLocaleCodeByLanguageType(languageType)));
+    application
+        .onLocaleChanged(Locale(getLocaleCodeByLanguageType(languageType)));
   }
 
   @override
   void saveLocale(LanguageType languageType) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString('languageCode', getLocaleCodeByLanguageType(languageType));
+    await sharedPreferences.setString(
+        'languageCode', getLocaleCodeByLanguageType(languageType));
+  }
+
+  @override
+  Future<String> getLocale() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String localeCode = sharedPreferences.getString('languageCode');
+    if (localeCode == null) {
+      return AppTranslations.englishLanguage;
+    } else {
+      return localeCode;
+    }
   }
 
   @override
@@ -32,7 +45,7 @@ class LocaleProvider implements LocaleProviderType {
 
   @override
   String getLocaleCodeByLanguageType(LanguageType languageType) {
-    switch(languageType) {
+    switch (languageType) {
       case LanguageType.English:
         return AppTranslations.englishLanguage;
       case LanguageType.Russian:

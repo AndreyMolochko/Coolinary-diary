@@ -1,6 +1,5 @@
 import 'package:injector/injector.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/providers/menu_item_provider_type.dart';
 import 'package:sqflite_worker/providers/module.dart';
@@ -36,19 +35,9 @@ class SettingsViewModel implements SettingsViewModelType {
     listItemsController.sink.add(_menuItemProvider.getSettingsItems());
     String _appVersion = await _packageInfoProvider.getAppVersion();
     appVersionController.sink.add(_appVersion);
-    AppTranslations.getCurrentLanguage().then((currentLanguage) {
-      switch (currentLanguage) {
-        case "en":
-          languageRadioController.sink.add(LanguageType.English);
-          break;
-        case "ru":
-          languageRadioController.sink.add(LanguageType.Russian);
-          break;
-        case "be":
-          languageRadioController.sink.add(LanguageType.Belarussian);
-          break;
-      }
-    });
+    LanguageType currentLanguage = _localeProvider
+        .getLanguageTypeByLocaleCode(await _localeProvider.getLocale());
+    languageRadioController.add(currentLanguage);
   }
 
   @override
@@ -62,6 +51,7 @@ class SettingsViewModel implements SettingsViewModelType {
   void handleLanguageRadio(dynamic value) {
     languageRadioController.sink.add(value);
     _localeProvider.onLocaleChanges(value);
+    _localeProvider.saveLocale(value);
   }
 
   @override
