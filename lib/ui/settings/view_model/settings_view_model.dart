@@ -26,9 +26,11 @@ class SettingsViewModel implements SettingsViewModelType {
   final appVersionController = BehaviorSubject<String>();
   final languageRadioController = BehaviorSubject<LanguageType>();
   PackageInfoProviderType _packageInfoProvider;
+  LocaleProviderType _localeProvider;
 
   SettingsViewModel(this._injector, this._menuItemProvider) {
     _packageInfoProvider = _injector.getDependency<PackageInfoProviderType>();
+    _localeProvider = _injector.getDependency<LocaleProviderType>();
   }
 
   @override
@@ -61,20 +63,7 @@ class SettingsViewModel implements SettingsViewModelType {
   @override
   void handleLanguageRadio(dynamic value) {
     languageRadioController.sink.add(value);
-    switch (value) {
-      case LanguageType.English:
-        application.onLocaleChanged(
-            Locale(application.supportedLanguagesCodes[0]));
-        break;
-      case LanguageType.Russian:
-        application.onLocaleChanged(
-            Locale(application.supportedLanguagesCodes[1]));
-        break;
-      case LanguageType.Belarussian:
-        application.onLocaleChanged(
-            Locale(application.supportedLanguagesCodes[2]));
-        break;
-    }
+    _localeProvider.onLocaleChanges(value);
   }
 
   @override
