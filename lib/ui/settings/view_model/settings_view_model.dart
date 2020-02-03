@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:injector/injector.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sqflite_worker/applications.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/providers/menu_item_provider_type.dart';
 import 'package:sqflite_worker/providers/module.dart';
@@ -48,13 +50,16 @@ class SettingsViewModel implements SettingsViewModelType {
     languageRadioController.sink.add(value);
     switch (value) {
       case LanguageType.English:
-        print("click on english");
+        application.onLocaleChanged(
+            Locale(application.supportedLanguagesCodes[0]));
         break;
       case LanguageType.Russian:
-        print("click on russian");
+        application.onLocaleChanged(
+            Locale(application.supportedLanguagesCodes[1]));
         break;
       case LanguageType.Belarussian:
-        print(" click on belarussian");
+        application.onLocaleChanged(
+            Locale(application.supportedLanguagesCodes[2]));
         break;
     }
   }
