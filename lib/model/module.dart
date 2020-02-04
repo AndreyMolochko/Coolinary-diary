@@ -5,3 +5,4 @@ export 'package:sqflite_worker/model/language_item.dart';
 export 'package:sqflite_worker/model/more_item.dart';
 export 'package:sqflite_worker/model/language_type.dart';
 export 'package:sqflite_worker/model/contact_item.dart';
+export 'package:sqflite_worker/model/contact_type.dart';
