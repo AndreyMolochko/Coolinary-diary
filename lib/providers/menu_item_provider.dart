@@ -12,9 +12,9 @@ class MenuItemProvider implements MenuItemProviderType {
     items.add(AboutItem('About', ['This app is 2.0.0 version']));
     //TODO: named parameters in constructor
     items.add(ContactItem('Contacts',
-        [ContactResources(ContactType.linkedin, "url", "assets/linkedin.png"),
-          ContactResources(ContactType.skype, "url", "assets/skype.png"),
-          ContactResources(ContactType.instagram, "url", "assets/instagram.png")]));
+        [ContactResources(ContactType.linkedin, "https://www.linkedin.com/in/andrey-molochko-27b628158", "assets/linkedin.png"),
+          ContactResources(ContactType.skype, "skype:live:molochko.andrey?chat", "assets/skype.png"),
+          ContactResources(ContactType.instagram, "https://www.instagram.com/molochko.andrey", "assets/instagram.png")]));
 
     return items;
   }
