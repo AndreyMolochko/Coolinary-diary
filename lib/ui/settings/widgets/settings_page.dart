@@ -156,7 +156,7 @@ class _SettingsPageState extends State<SettingsPage> {
       iconButtonsList.add(
           IconButton(icon: Image.asset(contactResources.imagePath),
             onPressed: () {
-
+              widget._viewModel.handleClickByNetwork(contactResources);
             },)
       );
     }

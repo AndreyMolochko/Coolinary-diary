@@ -13,5 +13,7 @@ abstract class SettingsViewModelType {
 
   void handleLanguageRadio(dynamic value);
 
+  void handleClickByNetwork(ContactResources contactResources);
+
   String getLanguageByType(LanguageType languageType);
 }

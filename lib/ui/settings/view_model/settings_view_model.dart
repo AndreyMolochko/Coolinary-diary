@@ -3,6 +3,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/providers/menu_item_provider_type.dart';
 import 'package:sqflite_worker/providers/module.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../module.dart';
 
@@ -55,6 +56,11 @@ class SettingsViewModel implements SettingsViewModelType {
   }
 
   @override
+  void handleClickByNetwork(ContactResources contactResources) {
+    _launchSocialNetworkByUrl(contactResources.url);
+  }
+
+  @override
   String getLanguageByType(LanguageType languageType) {
     switch (languageType) {
       case LanguageType.English:
@@ -64,5 +70,14 @@ class SettingsViewModel implements SettingsViewModelType {
       case LanguageType.Belarussian:
         return "Беларуская";
     }
+  }
+
+  Future<bool> _launchSocialNetworkByUrl(String url) async {
+    bool isLaunched = false;
+    if (await canLaunch(url)) {
+      isLaunched = await launch(url);
+    }
+
+    return isLaunched;
   }
 }
