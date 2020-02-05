@@ -5,5 +5,5 @@ class ContactResources {
   String url;
   String imagePath;
 
-  ContactResources({this.contactType, this.url, this.imagePath});
+  ContactResources(this.contactType, this.url, this.imagePath);
 }

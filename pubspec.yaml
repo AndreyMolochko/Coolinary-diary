@@ -67,6 +67,9 @@ flutter:
     - assets/add_receipts.png
     - assets/dishes_list.png
     - assets/cooking.png
+    - assets/instagram.png
+    - assets/linkedin.png
+    - assets/skype.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
