@@ -64,6 +64,8 @@ class _SettingsPageState extends State<SettingsPage> {
       return _buildLanguageItems(settingsItem);
     } else if (settingsItem is AboutItem) {
       return [_getAboutItem()];
+    } else if (settingsItem is ContactItem) {
+      return [_getContactsItem(settingsItem)];
     }
   }
 
@@ -118,5 +120,34 @@ class _SettingsPageState extends State<SettingsPage> {
             return Center(child: CircularProgressIndicator());
           }
         });
+  }
+
+  Widget _getContactsItem(ContactItem contactItem) {
+    List<Widget> iconButtonsList = [];
+    for (int i = 0; i < contactItem.subItems.length; i++) {
+      ContactResources contactResources = contactItem.subItems[i];
+      iconButtonsList.add(
+          IconButton(icon: Image.asset(contactResources.imagePath),
+            onPressed: () {
+
+            },)
+      );
+    }
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(bottom: Dimens.smallPadding),
+          child: Text("You can link with developer via these social networks",
+              style: TextStyles.smallBlackText),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: Dimens.smallPadding),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: iconButtonsList
+          ),
+        ),
+      ],
+    );
   }
 }
