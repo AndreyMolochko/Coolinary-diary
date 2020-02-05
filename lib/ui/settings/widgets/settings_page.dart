@@ -123,6 +123,33 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget _getContactsItem(ContactItem contactItem) {
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    bottom: Dimens.smallPadding, left: Dimens.normalPadding),
+                child: Text(
+                    "You can link with developer via these social networks",
+                    style: TextStyles.smallBlackText),
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: Dimens.smallPadding),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: _getIconsNetworks(contactItem)
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _getIconsNetworks(ContactItem contactItem) {
     List<Widget> iconButtonsList = [];
     for (int i = 0; i < contactItem.subItems.length; i++) {
       ContactResources contactResources = contactItem.subItems[i];
@@ -133,21 +160,7 @@ class _SettingsPageState extends State<SettingsPage> {
             },)
       );
     }
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(bottom: Dimens.smallPadding),
-          child: Text("You can link with developer via these social networks",
-              style: TextStyles.smallBlackText),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: Dimens.smallPadding),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: iconButtonsList
-          ),
-        ),
-      ],
-    );
+
+    return iconButtonsList;
   }
 }
