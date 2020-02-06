@@ -26,7 +26,8 @@ class _SettingsPageState extends State<SettingsPage> {
         appBar: AppBar(
           title: Text(AppTranslations.translate(context, "settings_title_screen")),
         ),
-        body: _buildBody());
+        body: _buildBody(context)
+    );
   }
 
   @override
@@ -34,7 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
     widget._viewModel.dispose();
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
     return StreamBuilder(
         stream: widget._viewModel.items,
         builder: (context, snapshot) {
@@ -42,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
             List<SettingsItem> listSettingsItems = snapshot.data;
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-                return _buildListItem(listSettingsItems[index]);
+                return _buildListItem(listSettingsItems[index], context);
               },
               itemCount: listSettingsItems == null ? 0 : listSettingsItems.length,
             );
@@ -52,20 +53,20 @@ class _SettingsPageState extends State<SettingsPage> {
         });
   }
 
-  Widget _buildListItem(SettingsItem settingsItem) {
+  Widget _buildListItem(SettingsItem settingsItem, BuildContext context) {
     return ExpansionTile(
-      title: Text(settingsItem.title, style: TextStyles.normalBlackText),
-      children: _buildSubitemsList(settingsItem),
+      title: Text(AppTranslations.translate(context, settingsItem.title), style: TextStyles.normalBlackText),
+      children: _buildSubitemsList(settingsItem, context),
     );
   }
 
-  List<Widget> _buildSubitemsList(SettingsItem settingsItem) {
+  List<Widget> _buildSubitemsList(SettingsItem settingsItem, BuildContext context) {
     if (settingsItem is LanguageItem) {
       return _buildLanguageItems(settingsItem);
     } else if (settingsItem is AboutItem) {
-      return [_getAboutItem()];
+      return [_getAboutItem(context)];
     } else if (settingsItem is ContactItem) {
-      return [_getContactsItem(settingsItem)];
+      return [_getContactsItem(settingsItem, context)];
     }
   }
 
@@ -100,7 +101,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return languagesList;
   }
 
-  Widget _getAboutItem() {
+  Widget _getAboutItem(BuildContext context) {
     return StreamBuilder(
         stream: widget._viewModel.appVersion,
         builder: (context, snapshot) {
@@ -111,7 +112,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: Dimens.normalPadding, bottom: Dimens.smallPadding),
-                  child: Text("Application version : ${snapshot.data}",
+                  child: Text("${AppTranslations.translate(context,
+                      'version_of_application_settings_screen')} : "
+                      "${snapshot.data}",
                       style: TextStyles.smallBlackText),
                 ),
               ],
@@ -122,7 +125,7 @@ class _SettingsPageState extends State<SettingsPage> {
         });
   }
 
-  Widget _getContactsItem(ContactItem contactItem) {
+  Widget _getContactsItem(ContactItem contactItem, BuildContext context) {
     return Column(
       children: <Widget>[
         Row(
@@ -132,7 +135,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 padding: const EdgeInsets.only(
                     bottom: Dimens.smallPadding, left: Dimens.normalPadding),
                 child: Text(
-                    "You can link with developer via these social networks",
+                    AppTranslations.translate(context, "link_with_developer_settings_screen"),
                     style: TextStyles.smallBlackText),
               ),
             ),
