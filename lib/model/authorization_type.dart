@@ -1,0 +1,1 @@
+enum AuthorizationType { signIn, signUp }
