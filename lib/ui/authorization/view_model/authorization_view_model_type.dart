@@ -3,6 +3,7 @@ import 'package:sqflite_worker/model/module.dart';
 
 abstract class AuthorizationViewModelType {
   AuthorizationType get authorizationType;
+  String get titleScreen;
   String get textAuthorizationButton;
   String get textNavigationLabel;
 

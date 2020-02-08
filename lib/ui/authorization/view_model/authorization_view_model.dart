@@ -17,18 +17,24 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   @override
   bool get isSignUpScreen => _authorizationType == AuthorizationType.signUp;
 
+  @override
+  String get titleScreen => _titleScreen;
+
   final Injector _injector;
   final AuthorizationType _authorizationType;
   String _textAuthorizationButton;
   String _textNavigationLabel;
+  String _titleScreen;
 
   AuthorizationViewModel(this._injector, this._authorizationType) {
     if (_authorizationType == AuthorizationType.signIn) {
       this._textAuthorizationButton = "Sign in";
       this._textNavigationLabel = "Sign up";
+      this._titleScreen = "Sign in";
     } else {
       this._textAuthorizationButton = "Sign up";
       this._textNavigationLabel = "Sign in";
+      this._titleScreen = "Sign up";
     }
   }
 

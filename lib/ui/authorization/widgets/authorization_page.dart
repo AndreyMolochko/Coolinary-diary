@@ -14,7 +14,10 @@ class AuthorizationPage extends StatefulWidget {
 class _AuthorizationPageState extends State<AuthorizationPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: _buildBody(), backgroundColor: App.Colors.white,);
+    return Scaffold(
+      appBar: AppBar(title: Text(widget._authorizationViewModel.titleScreen)),
+      body: _buildBody(),
+      backgroundColor: App.Colors.white,);
   }
 
   Widget _buildBody() {
@@ -25,7 +28,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
         _buildLoginTextField(),
         _buildPasswordTextField(),
         if(widget._authorizationViewModel.isSignUpScreen)
-          _buildRepeatedPasswordTextField(),        
+          _buildRepeatedPasswordTextField(),
         _buildAuthorizationButton(context),
         _buildNavigationText(context),
       ],
