@@ -42,13 +42,12 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   void initState() {}
 
   @override
-  void onClickSignIn() {
-    print("on click sign in");
-  }
-
-  @override
-  void onClickSignUp() {
-    print("on click sign up");
+  void onClickAuthorization() {
+    if(_authorizationType == AuthorizationType.signIn) {
+      print("click on sign in");
+    } else {
+      print("click on sign up");
+    }
   }
 
   @override
@@ -64,4 +63,6 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => AuthorizationPage(authorizationViewModel)));
   }
+
+
 }

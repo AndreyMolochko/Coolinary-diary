@@ -11,9 +11,7 @@ abstract class AuthorizationViewModelType {
 
   void initState();
 
-  void onClickSignUp();
-
-  void onClickSignIn();
+  void onClickAuthorization();
 
   void onClickNavigation(BuildContext context);
 }

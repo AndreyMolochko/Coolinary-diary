@@ -47,6 +47,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        onFieldSubmitted: (value) {
+          _changeFocusField(context, _emailFocusNode, _passwordFocusNode);
+        },
         focusNode: _emailFocusNode,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -58,7 +61,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
   Widget _buildPasswordTextField() {
     TextInputAction textInputAction;
-    if(widget._authorizationViewModel.isSignUpScreen) {
+    if (widget._authorizationViewModel.isSignUpScreen) {
       textInputAction = TextInputAction.next;
     } else {
       textInputAction = TextInputAction.done;
@@ -69,6 +72,14 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        onFieldSubmitted: (value) {
+          if (widget._authorizationViewModel.isSignUpScreen) {
+            _changeFocusField(
+                context, _passwordFocusNode, _repeatedPasswordFocusNode);
+          } else {
+            widget._authorizationViewModel.onClickAuthorization();
+          }
+        },
         focusNode: _passwordFocusNode,
         textInputAction: textInputAction,
         decoration: InputDecoration(
@@ -85,6 +96,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        onFieldSubmitted: (value) {
+          widget._authorizationViewModel.onClickAuthorization();
+        },
         focusNode: _repeatedPasswordFocusNode,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
@@ -108,7 +122,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           color: App.Colors.white,
           shape: App.Shapes.secondaryButton,
           onPressed: () {
-
+            widget._authorizationViewModel.onClickAuthorization();
           },),
       ),
     );
@@ -126,5 +140,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             widget._authorizationViewModel.onClickNavigation(context);
           },
         ));
+  }
+
+  void _changeFocusField(BuildContext context, FocusNode currentFocusNode, FocusNode nextFocusNode) {
+    FocusScope.of(context).requestFocus(nextFocusNode);
   }
 }
