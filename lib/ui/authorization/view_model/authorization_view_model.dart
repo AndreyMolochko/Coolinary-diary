@@ -46,11 +46,10 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
 
   @override
   void onClickAuthorization() {
-    _authorizationService.signUp("firsttest@mail.ru", "111111");
     if(_authorizationType == AuthorizationType.signIn) {
-      print("click on sign in");
+      _handleOnClickSignIn("firstttest@mail.ru", "111111");
     } else {
-      print("click on sign up");
+      _handleOnClickSignUp("secondtest@mail.ru", "111111");
     }
   }
 
@@ -68,5 +67,21 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
         builder: (context) => AuthorizationPage(authorizationViewModel)));
   }
 
+  void _handleOnClickSignUp(String email, String password) {
+    _authorizationService.signUp(email, password).then((onValue) {
+      print("onValue = ${onValue}");
+      print("user id = ${onValue.user.uid}");
+    }).catchError((onError) {
+      print("onError = ${onError}");
+    });
+  }
 
+  void _handleOnClickSignIn(String email, String password) {
+    _authorizationService.signIn(email, password).then((onValue) {
+      print("onValue = ${onValue}");
+      print("user id = ${onValue.user.uid}");
+    }).catchError((onError) {
+      print("onError = ${onError}");
+    });
+  }
 }

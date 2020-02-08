@@ -1,5 +1,7 @@
-abstract class AuthorizationServiceType {
-  void signIn(String email, String password);
+import 'package:firebase_auth/firebase_auth.dart';
 
-  void signUp(String email, String password);
+abstract class AuthorizationServiceType {
+  Future<AuthResult> signIn(String email, String password);
+
+  Future<AuthResult> signUp(String email, String password);
 }
