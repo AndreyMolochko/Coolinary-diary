@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
 import 'package:sqflite_worker/ui/authorization/module.dart';
 
@@ -23,9 +22,24 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
+        _buildRepeatedPassword(),
         _buildAuthorizationButton(context),
         _buildNavigationText(context),
       ],
+    );
+  }
+
+  Widget _buildRepeatedPassword() {
+    return Padding(
+      padding: const EdgeInsets.only(
+          left: App.Dimens.bigPadding,
+          right: App.Dimens.bigPadding,
+          bottom: App.Dimens.smallPadding),
+      child: TextFormField(
+        decoration: InputDecoration(
+            labelText: "Password"
+        ),
+      ),
     );
   }
 
