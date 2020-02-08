@@ -5,4 +5,7 @@ abstract class AuthorizationViewModelType {
 
   void initState();
 
+  void onClickSignUp();
+
+  void onClickSignIn();
 }

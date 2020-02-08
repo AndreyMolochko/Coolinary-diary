@@ -13,7 +13,15 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   }
 
   @override
-  void initState() {
+  void initState() {}
 
+  @override
+  void onClickSignIn() {
+    print("on click sign in");
+  }
+
+  @override
+  void onClickSignUp() {
+    print("on click sign up");
   }
 }
