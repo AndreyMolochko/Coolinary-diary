@@ -8,10 +8,26 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   @override
   AuthorizationType get authorizationType => _authorizationType;
 
+  @override
+  String get textAuthorizationButton => _textAuthorizationButton;
+
+  @override
+  String get textNavigationLabel => _textNavigationLabel;
+
   final Injector _injector;
   final AuthorizationType _authorizationType;
+  String _textAuthorizationButton;
+  String _textNavigationLabel;
 
-  AuthorizationViewModel(this._injector, this._authorizationType);
+  AuthorizationViewModel(this._injector, this._authorizationType) {
+    if (_authorizationType == AuthorizationType.signIn) {
+      this._textAuthorizationButton = "Sign in";
+      this._textNavigationLabel = "Sign up";
+    } else {
+      this._textAuthorizationButton = "Sign up";
+      this._textNavigationLabel = "Sign in";
+    }
+  }
 
   @override
   void initState() {}

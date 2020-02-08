@@ -4,9 +4,9 @@ import 'package:sqflite_worker/resourses/module.dart' as App;
 import 'package:sqflite_worker/ui/authorization/module.dart';
 
 class AuthorizationPage extends StatefulWidget {
-  final AuthorizationViewModelType authorizationViewModel;
+  final AuthorizationViewModelType _authorizationViewModel;
 
-  AuthorizationPage(this.authorizationViewModel);
+  AuthorizationPage(this._authorizationViewModel);
 
   @override
   _AuthorizationPageState createState() => _AuthorizationPageState();
@@ -30,20 +30,16 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   }
 
   Widget _buildAuthorizationButton(BuildContext context) {
-    String text;
-    if (widget.authorizationViewModel.authorizationType ==
-        AuthorizationType.signIn) {
-      text = "Sign in";
-    } else {
-      text = "Sign up";
-    }
     return Padding(
       padding: const EdgeInsets.only(
-          left: App.Dimens.bigPadding, right: App.Dimens.bigPadding, bottom: App.Dimens.smallPadding),
+          left: App.Dimens.bigPadding,
+          right: App.Dimens.bigPadding,
+          bottom: App.Dimens.smallPadding),
       child: Container(
         width: double.maxFinite,
         child: RaisedButton(
-          child: Text(text, style: App.TextStyles.normalBlackText,),
+          child: Text(widget._authorizationViewModel.textAuthorizationButton,
+            style: App.TextStyles.normalBlackText,),
           color: App.Colors.white,
           shape: App.Shapes.secondaryButton,
           onPressed: () {
@@ -54,22 +50,16 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   }
 
   Widget _buildNavigationText(BuildContext context) {
-    String text;
-    if (widget.authorizationViewModel.authorizationType ==
-        AuthorizationType.signIn) {
-      text = "Sign up";
-    } else {
-      text = "Sign in";
-    }
     return Center(
         child: InkWell(
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: App.Dimens.normalPadding),
-        child: Text(text, style: App.TextStyles.normalBlackText),
-      ),
-      onTap: () {
-        widget.authorizationViewModel.onClickNavigation(context);
-      },
-    ));
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: App.Dimens.normalPadding),
+            child: Text(widget._authorizationViewModel.textNavigationLabel,
+                style: App.TextStyles.normalBlackText),
+          ),
+          onTap: () {
+            widget._authorizationViewModel.onClickNavigation(context);
+          },
+        ));
   }
 }
