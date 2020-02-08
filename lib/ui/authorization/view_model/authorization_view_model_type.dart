@@ -6,6 +6,8 @@ abstract class AuthorizationViewModelType {
   String get textAuthorizationButton;
   String get textNavigationLabel;
 
+  bool get isSignUpScreen;
+
   void initState();
 
   void onClickSignUp();

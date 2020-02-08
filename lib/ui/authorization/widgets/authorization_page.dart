@@ -24,7 +24,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       children: <Widget>[
         _buildLoginTextField(),
         _buildPasswordTextField(),
-        _buildRepeatedPasswordTextField(),
+        if(widget._authorizationViewModel.isSignUpScreen)
+          _buildRepeatedPasswordTextField(),        
         _buildAuthorizationButton(context),
         _buildNavigationText(context),
       ],

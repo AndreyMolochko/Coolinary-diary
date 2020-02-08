@@ -14,6 +14,9 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   @override
   String get textNavigationLabel => _textNavigationLabel;
 
+  @override
+  bool get isSignUpScreen => _authorizationType == AuthorizationType.signUp;
+
   final Injector _injector;
   final AuthorizationType _authorizationType;
   String _textAuthorizationButton;
