@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
-import 'package:sqflite_worker/resourses/module.dart';
+import 'package:sqflite_worker/resourses/module.dart' as App;
 import 'package:sqflite_worker/ui/authorization/module.dart';
 
 class AuthorizationPage extends StatefulWidget {
@@ -15,7 +15,7 @@ class AuthorizationPage extends StatefulWidget {
 class _AuthorizationPageState extends State<AuthorizationPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: _buildBody());
+    return Scaffold(appBar: AppBar(), body: _buildBody(), backgroundColor: App.Colors.white,);
   }
 
   Widget _buildBody() {
@@ -23,8 +23,33 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
+        _buildAuthorizationButton(context),
         _buildNavigationText(context),
       ],
+    );
+  }
+
+  Widget _buildAuthorizationButton(BuildContext context) {
+    String text;
+    if (widget.authorizationViewModel.authorizationType ==
+        AuthorizationType.signIn) {
+      text = "Sign in";
+    } else {
+      text = "Sign up";
+    }
+    return Padding(
+      padding: const EdgeInsets.only(
+          left: App.Dimens.bigPadding, right: App.Dimens.bigPadding, bottom: App.Dimens.smallPadding),
+      child: Container(
+        width: double.maxFinite,
+        child: RaisedButton(
+          child: Text(text, style: App.TextStyles.normalBlackText,),
+          color: App.Colors.white,
+          shape: App.Shapes.secondaryButton,
+          onPressed: () {
+
+          },),
+      ),
     );
   }
 
@@ -39,8 +64,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     return Center(
         child: InkWell(
       child: Padding(
-        padding: const EdgeInsets.only(bottom: Dimens.normalPadding),
-        child: Text(text, style: TextStyles.normalBlackText),
+        padding: const EdgeInsets.only(bottom: App.Dimens.normalPadding),
+        child: Text(text, style: App.TextStyles.normalBlackText),
       ),
       onTap: () {
         widget.authorizationViewModel.onClickNavigation(context);
