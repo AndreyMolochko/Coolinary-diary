@@ -24,4 +24,9 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   void onClickSignUp() {
     print("on click sign up");
   }
+
+  @override
+  void onClickNavigation() {
+    print("on click navigation");
+  }
 }

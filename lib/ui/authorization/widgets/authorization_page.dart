@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
+import 'package:sqflite_worker/resourses/module.dart';
 import 'package:sqflite_worker/ui/authorization/module.dart';
 
 class AuthorizationPage extends StatefulWidget {
@@ -23,12 +24,12 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        _buildClickableAuthorizationText(context),
+        _buildNavigationText(context),
       ],
     );
   }
 
-  Widget _buildClickableAuthorizationText(BuildContext context) {
+  Widget _buildNavigationText(BuildContext context) {
     String text;
     if (widget.authorizationViewModel.authorizationType ==
         AuthorizationType.signIn) {
@@ -36,6 +37,14 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     } else {
       text = "Sign in";
     }
-    return Center(child: Text(text));
+    return Center(child: InkWell(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: Dimens.normalPadding),
+        child: Text(text, style: TextStyles.normalBlackText),
+      ),
+      onTap: () {
+        widget.authorizationViewModel.onClickNavigation();
+      },
+    ));
   }
 }

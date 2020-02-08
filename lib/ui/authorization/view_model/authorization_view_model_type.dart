@@ -8,4 +8,6 @@ abstract class AuthorizationViewModelType {
   void onClickSignUp();
 
   void onClickSignIn();
+
+  void onClickNavigation();
 }
