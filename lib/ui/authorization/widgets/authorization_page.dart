@@ -22,11 +22,26 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
+        _buildLoginTextField(),
         _buildPasswordTextField(),
         _buildRepeatedPasswordTextField(),
         _buildAuthorizationButton(context),
         _buildNavigationText(context),
       ],
+    );
+  }
+
+  Widget _buildLoginTextField() {
+    return Padding(
+      padding: const EdgeInsets.only(
+          left: App.Dimens.bigPadding,
+          right: App.Dimens.bigPadding,
+          bottom: App.Dimens.smallPadding),
+      child: TextFormField(
+        decoration: InputDecoration(
+            labelText: "Login"
+        ),
+      ),
     );
   }
 
