@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/authorization_type.dart';
 import 'package:sqflite_worker/model/module.dart';
+import 'package:sqflite_worker/services/module.dart';
 import 'package:sqflite_worker/ui/authorization/module.dart';
 
 class AuthorizationViewModel implements AuthorizationViewModelType {
@@ -25,8 +26,10 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   String _textAuthorizationButton;
   String _textNavigationLabel;
   String _titleScreen;
+  AuthorizationServiceType _authorizationService;
 
   AuthorizationViewModel(this._injector, this._authorizationType) {
+    _authorizationService = _injector.getDependency<AuthorizationServiceType>();
     if (_authorizationType == AuthorizationType.signIn) {
       this._textAuthorizationButton = "Sign in";
       this._textNavigationLabel = "Sign up";
@@ -43,6 +46,7 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
 
   @override
   void onClickAuthorization() {
+    _authorizationService.signUp("firsttest@mail.ru", "111111");
     if(_authorizationType == AuthorizationType.signIn) {
       print("click on sign in");
     } else {
