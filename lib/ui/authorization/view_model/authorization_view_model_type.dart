@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
 
 abstract class AuthorizationViewModelType {
@@ -9,5 +10,5 @@ abstract class AuthorizationViewModelType {
 
   void onClickSignIn();
 
-  void onClickNavigation();
+  void onClickNavigation(BuildContext context);
 }

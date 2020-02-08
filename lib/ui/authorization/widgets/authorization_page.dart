@@ -4,10 +4,10 @@ import 'package:sqflite_worker/resourses/module.dart';
 import 'package:sqflite_worker/ui/authorization/module.dart';
 
 class AuthorizationPage extends StatefulWidget {
-
   final AuthorizationViewModelType authorizationViewModel;
 
   AuthorizationPage(this.authorizationViewModel);
+
   @override
   _AuthorizationPageState createState() => _AuthorizationPageState();
 }
@@ -15,8 +15,7 @@ class AuthorizationPage extends StatefulWidget {
 class _AuthorizationPageState extends State<AuthorizationPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(),
-    body: _buildBody());
+    return Scaffold(appBar: AppBar(), body: _buildBody());
   }
 
   Widget _buildBody() {
@@ -33,17 +32,18 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     String text;
     if (widget.authorizationViewModel.authorizationType ==
         AuthorizationType.signIn) {
-      text = "Sing up";
+      text = "Sign up";
     } else {
       text = "Sign in";
     }
-    return Center(child: InkWell(
+    return Center(
+        child: InkWell(
       child: Padding(
         padding: const EdgeInsets.only(bottom: Dimens.normalPadding),
         child: Text(text, style: TextStyles.normalBlackText),
       ),
       onTap: () {
-        widget.authorizationViewModel.onClickNavigation();
+        widget.authorizationViewModel.onClickNavigation(context);
       },
     ));
   }
