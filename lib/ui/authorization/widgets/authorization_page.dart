@@ -12,6 +12,11 @@ class AuthorizationPage extends StatefulWidget {
 }
 
 class _AuthorizationPageState extends State<AuthorizationPage> {
+
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+  final FocusNode _repeatedPasswordFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +30,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        _buildLoginTextField(),
+        _buildEmailTextField(),
         _buildPasswordTextField(),
         if(widget._authorizationViewModel.isSignUpScreen)
           _buildRepeatedPasswordTextField(),
@@ -35,27 +40,37 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     );
   }
 
-  Widget _buildLoginTextField() {
+  Widget _buildEmailTextField() {
     return Padding(
       padding: const EdgeInsets.only(
           left: App.Dimens.bigPadding,
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        focusNode: _emailFocusNode,
+        textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-            labelText: "Login"
+            labelText: "Email"
         ),
       ),
     );
   }
 
   Widget _buildPasswordTextField() {
+    TextInputAction textInputAction;
+    if(widget._authorizationViewModel.isSignUpScreen) {
+      textInputAction = TextInputAction.next;
+    } else {
+      textInputAction = TextInputAction.done;
+    }
     return Padding(
       padding: const EdgeInsets.only(
           left: App.Dimens.bigPadding,
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        focusNode: _passwordFocusNode,
+        textInputAction: textInputAction,
         decoration: InputDecoration(
             labelText: "Password"
         ),
@@ -70,6 +85,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        focusNode: _repeatedPasswordFocusNode,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
             labelText: "Password"
         ),
