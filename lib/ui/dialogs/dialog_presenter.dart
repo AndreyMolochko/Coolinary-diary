@@ -10,12 +10,16 @@ class DialogPresenter implements DialogPresenterType {
 
   @override
   void show(BuildContext context) {
+    FlatButton okButton = FlatButton(child: Text("Ok".toUpperCase()),onPressed: () {
+      Navigator.of(context).pop();
+    });
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(_title),
             content: Text(_message),
+            actions: <Widget>[okButton],
           );
         });
   }
