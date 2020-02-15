@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injector/injector.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/authorization_type.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/providers/module.dart';
@@ -41,13 +42,13 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     _authorizationService = _injector.getDependency<AuthorizationServiceType>();
     _userProvider = _injector.getDependency<UserProviderType>();
     if (_authorizationType == AuthorizationType.signIn) {
-      this._textAuthorizationButton = "Sign in";
-      this._textNavigationLabel = "Sign up";
-      this._titleScreen = "Sign in";
+      this._textAuthorizationButton = "sign_in_label_authorization_screen";
+      this._textNavigationLabel = "sign_up_label_authorization_screen";
+      this._titleScreen = "sign_in_label_authorization_screen";
     } else {
-      this._textAuthorizationButton = "Sign up";
-      this._textNavigationLabel = "Sign in";
-      this._titleScreen = "Sign up";
+      this._textAuthorizationButton = "sign_up_label_authorization_screen";
+      this._textNavigationLabel = "sign_in_label_authorization_screen";
+      this._titleScreen = "sign_up_label_authorization_screen";
     }
     _validationStatusAuthorization =
         Validators.ValidationStatusAuthorization(
@@ -98,7 +99,8 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     } else {
       String errorMessage = _validationAuthorizationConverter.getErrorMessage(
           context, _validationStatus);
-      _showDialog("Error", errorMessage, context);
+      _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
+          errorMessage, context);
     }
   }
 
@@ -111,38 +113,41 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     } else {
       String errorMessage = _validationAuthorizationConverter.getErrorMessage(
           context, _validationStatus);
-      _showDialog("Error", errorMessage, context);
+      _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
+          errorMessage, context);
     }
   }
 
   void _requestSignUp(String email, String password, BuildContext context) {
     _authorizationService.signUp(email, password).then((onValue) {
-      print("user id = ${onValue.user.uid}");
       _userProvider.saveCurrentUserId(onValue.user.uid);
       HomeViewModelType dishListViewModel = HomeViewModel(_injector);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
     }).catchError((onError) {
       if (onError is PlatformException) {
-        _showDialog("Error", onError.message, context);
+        _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
+            onError.message, context);
       } else {
-        _showDialog("Error", "Unknown error :(", context);
+        _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
+            AppTranslations.of(context).text('unknown_error_general_screen'), context);
       }
     });
   }
 
   void _requestSignIn(String email, String password, BuildContext context) {
     _authorizationService.signIn(email, password).then((onValue) {
-      print("user id = ${onValue.user.uid}");
       _userProvider.saveCurrentUserId(onValue.user.uid);
       HomeViewModelType dishListViewModel = HomeViewModel(_injector);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
     }).catchError((onError) {
       if (onError is PlatformException) {
-        _showDialog("Error", onError.message, context);
+        _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
+            onError.message, context);
       } else {
-        _showDialog("Error", "Unknown error :(", context);
+        _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
+            AppTranslations.of(context).text('unknown_error_general_screen'), context);
       }
     });
   }

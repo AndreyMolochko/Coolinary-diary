@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
 import 'package:sqflite_worker/ui/authorization/module.dart';
 
@@ -29,7 +30,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget._authorizationViewModel.titleScreen)),
+      appBar: AppBar(title: Text(AppTranslations.of(context).text(
+          widget._authorizationViewModel.titleScreen))),
       body: _buildBody(),
       backgroundColor: App.Colors.white,);
   }
@@ -68,7 +70,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
         focusNode: _emailFocusNode,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-            labelText: "Email"
+            labelText: AppTranslations.of(context).text(
+                'email_label_authorization_screen')
         ),
       ),
     );
@@ -101,7 +104,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
         focusNode: _passwordFocusNode,
         textInputAction: textInputAction,
         decoration: InputDecoration(
-            labelText: "Password"
+            labelText: AppTranslations.of(context).text(
+                'password_label_authorization_screen')
         ),
       ),
     );
@@ -123,7 +127,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
         focusNode: _repeatedPasswordFocusNode,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-            labelText: "Password"
+            labelText: AppTranslations.of(context).text(
+                'password_label_authorization_screen')
         ),
       ),
     );
@@ -138,7 +143,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       child: Container(
         width: double.maxFinite,
         child: RaisedButton(
-          child: Text(widget._authorizationViewModel.textAuthorizationButton,
+          child: Text(AppTranslations.of(context).text(
+              widget._authorizationViewModel.textAuthorizationButton),
             style: App.TextStyles.normalBlackText,),
           color: App.Colors.white,
           shape: App.Shapes.secondaryButton,
@@ -156,7 +162,8 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
         child: InkWell(
           child: Padding(
             padding: const EdgeInsets.only(bottom: App.Dimens.normalPadding),
-            child: Text(widget._authorizationViewModel.textNavigationLabel,
+            child: Text(AppTranslations.of(context).text(
+                widget._authorizationViewModel.textNavigationLabel),
                 style: App.TextStyles.normalBlackText),
           ),
           onTap: () {

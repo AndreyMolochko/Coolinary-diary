@@ -13,6 +13,14 @@
   "version_of_application_settings_screen": "Версия приложения",
   "logout_title_settings_screen": "Выход",
   "logout_content_settings_screen": "Вы действительно хотите выйти?",
+
+  "email_label_authorization_screen": "Почта",
+  "password_label_authorization_screen": "Пароль",
+  "sign_in_label_authorization_screen": "Войти",
+  "sign_up_label_authorization_screen": "Регистрация",
+
+  "error_title_general_screen": "Ошибка",
+  "unknown_error_general_screen": "Неизвестная ошибка :(",
   "update": "Редактировать",
   "delete": "Удалить",
   "cook": "ГОТОВИТЬ",

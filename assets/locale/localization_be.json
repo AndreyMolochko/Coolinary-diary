@@ -13,6 +13,14 @@
   "version_of_application_settings_screen": "Версія прыкладання",
   "logout_title_settings_screen": "Выхад",
   "logout_content_settings_screen": "Вы сапраўды хочаце выйсці?",
+
+  "email_label_authorization_screen": "Пошта",
+  "password_label_authorization_screen": "Пароль",
+  "sign_in_label_authorization_screen": "Уваход",
+  "sign_up_label_authorization_screen": "Рэгістрацыя",
+
+  "error_title_general_screen": "Памылка",
+  "unknown_error_general_screen": "Невядомая памылка :(",
   "update": "Рэдагаваць",
   "delete": "Выдаліць",
   "cook": "ГАТАВАЦЬ ",

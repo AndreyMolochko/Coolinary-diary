@@ -13,6 +13,14 @@
   "version_of_application_settings_screen": "Application version",
   "logout_title_settings_screen": "Logout",
   "logout_content_settings_screen": "Do you really want to logout?",
+
+  "email_label_authorization_screen": "Email",
+  "password_label_authorization_screen": "Password",
+  "sign_in_label_authorization_screen": "Sign in",
+  "sign_up_label_authorization_screen": "Sign up",
+
+  "error_title_general_screen": "Error",
+  "unknown_error_general_screen": "Unknown error :(",
   "update": "Update",
   "delete": "Delete",
   "cook": "COOK",
