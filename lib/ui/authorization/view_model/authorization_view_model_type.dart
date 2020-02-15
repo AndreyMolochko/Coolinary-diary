@@ -11,7 +11,7 @@ abstract class AuthorizationViewModelType {
 
   void initState();
 
-  void onClickAuthorization(BuildContext context);
+  void onClickAuthorization(String email, String password, String repeatedPassword, BuildContext context);
 
   void onClickNavigation(BuildContext context);
 }

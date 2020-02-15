@@ -55,14 +55,21 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   }
 
   @override
-  void initState() {}
+  void initState() {
+
+  }
 
   @override
-  void onClickAuthorization(BuildContext context) {
+  void dispose() {
+
+  }
+
+  @override
+  void onClickAuthorization(String email, String password, String repeatedPassword, BuildContext context) {
     if (_authorizationType == AuthorizationType.signIn) {
-      _handleOnClickSignIn("email", "password", context);
+      _handleOnClickSignIn(email, password, context);
     } else {
-      _handleOnClickSignUp("email", "password", "password", context);
+      _handleOnClickSignUp(email, password, repeatedPassword, context);
     }
   }
 

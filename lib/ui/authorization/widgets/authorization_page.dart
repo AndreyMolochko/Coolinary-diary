@@ -17,12 +17,26 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   final FocusNode _passwordFocusNode = FocusNode();
   final FocusNode _repeatedPasswordFocusNode = FocusNode();
 
+  TextEditingController emailTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+  TextEditingController repeatedPasswordTextController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget._authorizationViewModel.titleScreen)),
       body: _buildBody(),
       backgroundColor: App.Colors.white,);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Widget _buildBody() {
@@ -47,6 +61,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        controller: emailTextController,
         onFieldSubmitted: (value) {
           _changeFocusField(context, _emailFocusNode, _passwordFocusNode);
         },
@@ -72,12 +87,15 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        controller: passwordTextController,
         onFieldSubmitted: (value) {
           if (widget._authorizationViewModel.isSignUpScreen) {
             _changeFocusField(
                 context, _passwordFocusNode, _repeatedPasswordFocusNode);
           } else {
-            widget._authorizationViewModel.onClickAuthorization(context);
+            widget._authorizationViewModel.onClickAuthorization(
+                emailTextController.text, passwordTextController.text,
+                repeatedPasswordTextController.text, context);
           }
         },
         focusNode: _passwordFocusNode,
@@ -96,8 +114,11 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        controller: repeatedPasswordTextController,
         onFieldSubmitted: (value) {
-          widget._authorizationViewModel.onClickAuthorization(context);
+          widget._authorizationViewModel.onClickAuthorization(
+              emailTextController.text, passwordTextController.text,
+              repeatedPasswordTextController.text, context);
         },
         focusNode: _repeatedPasswordFocusNode,
         textInputAction: TextInputAction.done,
@@ -122,7 +143,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           color: App.Colors.white,
           shape: App.Shapes.secondaryButton,
           onPressed: () {
-            widget._authorizationViewModel.onClickAuthorization(context);
+            widget._authorizationViewModel.onClickAuthorization(
+                emailTextController.text, passwordTextController.text,
+                repeatedPasswordTextController.text, context);
           },),
       ),
     );
