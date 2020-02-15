@@ -12,6 +12,7 @@
   "link_with_developer_settings_screen": "Вы можете связаться с разработчиком c помощью этих социальных сетей",
   "version_of_application_settings_screen": "Версия приложения",
   "logout_title_settings_screen": "Выход",
+  "logout_content_settings_screen": "Вы действительно хотите выйти?",
   "update": "Редактировать",
   "delete": "Удалить",
   "cook": "ГОТОВИТЬ",

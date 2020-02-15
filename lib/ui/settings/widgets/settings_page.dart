@@ -161,7 +161,8 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.only(
               left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
           child: Text(
-            logoutItem.subItems[0], style: App.TextStyles.smallBlackText,),
+            AppTranslations.of(context).text(logoutItem.subItems[0]),
+            style: App.TextStyles.smallBlackText,),
         ),
         RaisedButton(
           color: App.Colors.white,

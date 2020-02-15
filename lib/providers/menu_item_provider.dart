@@ -9,7 +9,7 @@ class MenuItemProvider implements MenuItemProviderType {
 
     //TODO: localization
     items.add(LanguageItem('language_settings_screen', [LanguageType.English, LanguageType.Russian, LanguageType.Belarussian]));
-    items.add(LogoutItem('logout_title_settings_screen', ['Do you want to logout?']));
+    items.add(LogoutItem('logout_title_settings_screen', ['logout_content_settings_screen']));
     items.add(AboutItem('about_settings_screen', ['This app is 2.0.0 version']));
     //TODO: named parameters in constructor
     items.add(ContactItem('contacts_settings_screen',
