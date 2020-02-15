@@ -59,10 +59,10 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
 
   @override
   void onClickAuthorization(BuildContext context) {
-    if(_authorizationType == AuthorizationType.signIn) {
-      _handleOnClickSignIn("firstttest@mail.ru", "111111");
+    if (_authorizationType == AuthorizationType.signIn) {
+      _handleOnClickSignIn("email", "password", context);
     } else {
-      _handleOnClickSignUp("secondtest@mail.ru", "11111", context);
+      _handleOnClickSignUp("email", "password", "password", context);
     }
   }
 
@@ -80,12 +80,39 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
         builder: (context) => AuthorizationPage(authorizationViewModel)));
   }
 
-  void _handleOnClickSignUp(String email, String password, BuildContext context) {
+  void _handleOnClickSignUp(String email, String password,
+      String repeatedPassword, BuildContext context) {
+    ValidationStatusAuthorization _validationStatus = _validationStatusAuthorization
+        .getValidationStatus(_authorizationType, email, password,
+        repeatedPassword: repeatedPassword);
+    if (_validationStatus == ValidationStatusAuthorization.Ok) {
+      _requestSignUp(email, password, context);
+    } else {
+      String errorMessage = _validationAuthorizationConverter.getErrorMessage(
+          context, _validationStatus);
+      _showDialog("Error", errorMessage, context);
+    }
+  }
+
+  void _handleOnClickSignIn(String email, String password,
+      BuildContext context) {
+    ValidationStatusAuthorization _validationStatus = _validationStatusAuthorization
+        .getValidationStatus(_authorizationType, email, password);
+    if (_validationStatus == ValidationStatusAuthorization.Ok) {
+      _requestSignIn(email, password, context);
+    } else {
+      String errorMessage = _validationAuthorizationConverter.getErrorMessage(
+          context, _validationStatus);
+      _showDialog("Error", errorMessage, context);
+    }
+  }
+
+  void _requestSignUp(String email, String password, BuildContext context) {
     _authorizationService.signUp(email, password).then((onValue) {
       print("user id = ${onValue.user.uid}");
       _userProvider.saveCurrentUserId(onValue.user.uid);
     }).catchError((onError) {
-      if(onError is PlatformException) {
+      if (onError is PlatformException) {
         _showDialog("Error", onError.message, context);
       } else {
         _showDialog("Error", "Unknown error :(", context);
