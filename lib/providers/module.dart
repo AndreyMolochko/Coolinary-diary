@@ -6,3 +6,5 @@ export 'package:sqflite_worker/providers/package_info_provider_type.dart';
 export 'package:sqflite_worker/providers/package_info_provider.dart';
 export 'package:sqflite_worker/providers/locale_provider_type.dart';
 export 'package:sqflite_worker/providers/locale_provider.dart';
+export 'package:sqflite_worker/providers/user_provider_type.dart';
+export 'package:sqflite_worker/providers/user_provider.dart';
