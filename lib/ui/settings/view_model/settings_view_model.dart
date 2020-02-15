@@ -1,3 +1,4 @@
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:injector/injector.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sqflite_worker/model/module.dart';
@@ -58,6 +59,11 @@ class SettingsViewModel implements SettingsViewModelType {
   @override
   void handleClickByNetwork(ContactResources contactResources) {
     _launchSocialNetworkByUrl(contactResources.url);
+  }
+
+  @override
+  void handleClickByLogout(BuildContext context) {
+    print("logout");
   }
 
   @override

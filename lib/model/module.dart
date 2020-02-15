@@ -9,3 +9,4 @@ export 'package:sqflite_worker/model/contact_type.dart';
 export 'package:sqflite_worker/model/contact_resouces.dart';
 export 'package:sqflite_worker/model/authorization_type.dart';
 export 'package:sqflite_worker/model/validation_status_authorization.dart';
+export 'package:sqflite_worker/model/logout_item.dart';

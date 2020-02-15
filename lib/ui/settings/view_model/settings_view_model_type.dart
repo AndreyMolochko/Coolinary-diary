@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:sqflite_worker/model/module.dart';
 
 abstract class SettingsViewModelType {
@@ -14,6 +15,8 @@ abstract class SettingsViewModelType {
   void handleLanguageRadio(dynamic value);
 
   void handleClickByNetwork(ContactResources contactResources);
+
+  void handleClickByLogout(BuildContext context);
 
   String getLanguageByType(LanguageType languageType);
 }

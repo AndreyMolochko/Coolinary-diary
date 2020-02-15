@@ -67,6 +67,8 @@ class _SettingsPageState extends State<SettingsPage> {
       return [_getAboutItem(context)];
     } else if (settingsItem is ContactItem) {
       return [_getContactsItem(settingsItem, context)];
+    } else if(settingsItem is LogoutItem) {
+      return [_getLogoutItem(settingsItem, context)];
     }
   }
 
@@ -148,6 +150,24 @@ class _SettingsPageState extends State<SettingsPage> {
               children: _getIconsNetworks(contactItem)
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _getLogoutItem(LogoutItem logoutItem, BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(
+              left: Dimens.normalPadding, right: Dimens.normalPadding),
+          child: Text(
+            logoutItem.subItems[0], style: TextStyles.smallBlackText,),
+        ),
+        RaisedButton(
+          child: Text(AppTranslations.of(context).text(logoutItem.title)),
+          onPressed: () {
+            widget._viewModel.handleClickByLogout(context);
+          },)
       ],
     );
   }
