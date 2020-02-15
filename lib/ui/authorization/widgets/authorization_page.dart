@@ -90,6 +90,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        obscureText: true,
         controller: passwordTextController,
         onFieldSubmitted: (value) {
           if (widget._authorizationViewModel.isSignUpScreen) {
@@ -118,6 +119,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        obscureText: true,
         controller: repeatedPasswordTextController,
         onFieldSubmitted: (value) {
           widget._authorizationViewModel.onClickAuthorization(
