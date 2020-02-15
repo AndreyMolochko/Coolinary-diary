@@ -1,6 +1,7 @@
 enum ValidationStatus {
   Ok,
-  LoginIsEmpty,
+  EmailIsEmpty,
   PasswordIsEmpty,
-  PasswordsArentEquals
+  PasswordsArentEquals,
+  Unknown
 }

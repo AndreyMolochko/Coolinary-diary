@@ -1,6 +1,6 @@
 import 'package:sqflite_worker/model/module.dart';
 
-abstract class ValidationStatusType {
+abstract class ValidationStatusAuthorizationType {
   ValidationStatus getValidationStatus(AuthorizationType authorizationType,
-      String login, String password, {String repeatedPassword});
+      String email, String password, {String repeatedPassword});
 }
