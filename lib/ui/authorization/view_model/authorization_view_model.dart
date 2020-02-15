@@ -7,6 +7,7 @@ import 'package:sqflite_worker/providers/module.dart';
 import 'package:sqflite_worker/services/module.dart';
 import 'package:sqflite_worker/ui/authorization/module.dart';
 import 'package:sqflite_worker/ui/dialogs/module.dart';
+import 'package:sqflite_worker/ui/home/module.dart';
 import 'package:sqflite_worker/utils/converters/converters.dart';
 import 'package:sqflite_worker/utils/validators/validators.dart' as Validators;
 
@@ -118,6 +119,9 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     _authorizationService.signUp(email, password).then((onValue) {
       print("user id = ${onValue.user.uid}");
       _userProvider.saveCurrentUserId(onValue.user.uid);
+      HomeViewModelType dishListViewModel = HomeViewModel(_injector);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
     }).catchError((onError) {
       if (onError is PlatformException) {
         _showDialog("Error", onError.message, context);
@@ -131,6 +135,9 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     _authorizationService.signIn(email, password).then((onValue) {
       print("user id = ${onValue.user.uid}");
       _userProvider.saveCurrentUserId(onValue.user.uid);
+      HomeViewModelType dishListViewModel = HomeViewModel(_injector);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
     }).catchError((onError) {
       if (onError is PlatformException) {
         _showDialog("Error", onError.message, context);

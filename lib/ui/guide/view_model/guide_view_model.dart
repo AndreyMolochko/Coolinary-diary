@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
+import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/providers/module.dart';
-import 'package:sqflite_worker/ui/home/module.dart';
+import 'package:sqflite_worker/ui/authorization/module.dart';
 
 import '../module.dart';
 
@@ -16,8 +17,8 @@ class GuideViewModel implements GuideViewModelType {
   @override
   void continueButtonAction(BuildContext context) {
     _sharedPreferencesProvider.saveShowingGuidePage(true);
-    HomeViewModelType dishListViewModel = HomeViewModel(_injector);
+    AuthorizationViewModelType authorizationViewModel = AuthorizationViewModel(_injector, AuthorizationType.signIn);
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
+        .pushReplacement(MaterialPageRoute(builder: (context) => AuthorizationPage(authorizationViewModel)));
   }
 }
