@@ -7,6 +7,8 @@ import 'package:sqflite_worker/providers/module.dart';
 import 'package:sqflite_worker/services/module.dart';
 import 'package:sqflite_worker/ui/authorization/module.dart';
 import 'package:sqflite_worker/ui/dialogs/module.dart';
+import 'package:sqflite_worker/utils/converters/converters.dart';
+import 'package:sqflite_worker/utils/validators/validators.dart' as Validators;
 
 class AuthorizationViewModel implements AuthorizationViewModelType {
   @override
@@ -31,6 +33,8 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   String _titleScreen;
   AuthorizationServiceType _authorizationService;
   UserProviderType _userProvider;
+  Validators.ValidationStatusAuthorizationType _validationStatusAuthorization;
+  ValidationAuthorizationConverterType _validationAuthorizationConverter;
 
   AuthorizationViewModel(this._injector, this._authorizationType) {
     _authorizationService = _injector.getDependency<AuthorizationServiceType>();
@@ -44,6 +48,10 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
       this._textNavigationLabel = "Sign in";
       this._titleScreen = "Sign up";
     }
+    _validationStatusAuthorization =
+        Validators.ValidationStatusAuthorization(
+            Validators.EmailValidator(), Validators.PasswordValidator());
+    _validationAuthorizationConverter = ValidationAuthorizationConverter();
   }
 
   @override

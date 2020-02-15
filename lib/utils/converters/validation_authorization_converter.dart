@@ -6,17 +6,17 @@ class ValidationAuthorizationConverter
     implements ValidationAuthorizationConverterType {
   @override
   String getErrorMessage(
-      BuildContext context, ValidationStatus validationStatus) {
+      BuildContext context, ValidationStatusAuthorization validationStatus) {
     switch (validationStatus) {
-      case ValidationStatus.EmailIsEmpty:
+      case ValidationStatusAuthorization.EmailIsEmpty:
         return "The email field should not be empty";
-      case ValidationStatus.PasswordIsEmpty:
+      case ValidationStatusAuthorization.PasswordIsEmpty:
         return "The password field should not be empty";
-      case ValidationStatus.PasswordsArentEquals:
+      case ValidationStatusAuthorization.PasswordsArentEquals:
         return "The password fields should be equal";
-      case ValidationStatus.Unknown:
+      case ValidationStatusAuthorization.Unknown:
         return "Uknown error :(";
-      case ValidationStatus.Ok:
+      case ValidationStatusAuthorization.Ok:
         return "Ok";
     }
   }
