@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/authorization_type.dart';
 import 'package:sqflite_worker/model/module.dart';
+import 'package:sqflite_worker/providers/module.dart';
 import 'package:sqflite_worker/services/module.dart';
 import 'package:sqflite_worker/ui/authorization/module.dart';
 import 'package:sqflite_worker/ui/dialogs/module.dart';
@@ -29,9 +30,11 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   String _textNavigationLabel;
   String _titleScreen;
   AuthorizationServiceType _authorizationService;
+  UserProviderType _userProvider;
 
   AuthorizationViewModel(this._injector, this._authorizationType) {
     _authorizationService = _injector.getDependency<AuthorizationServiceType>();
+    _userProvider = _injector.getDependency<UserProviderType>();
     if (_authorizationType == AuthorizationType.signIn) {
       this._textAuthorizationButton = "Sign in";
       this._textNavigationLabel = "Sign up";
@@ -71,22 +74,21 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
 
   void _handleOnClickSignUp(String email, String password, BuildContext context) {
     _authorizationService.signUp(email, password).then((onValue) {
-      print("onValue = ${onValue}");
       print("user id = ${onValue.user.uid}");
+      _userProvider.saveCurrentUserId(onValue.user.uid);
     }).catchError((onError) {
       if(onError is PlatformException) {
         _showDialog("Error", onError.message, context);
       } else {
         _showDialog("Error", "Unknown error :(", context);
       }
-      print("onError = ${onError}");
     });
   }
 
   void _handleOnClickSignIn(String email, String password) {
     _authorizationService.signIn(email, password).then((onValue) {
-      print("onValue = ${onValue}");
       print("user id = ${onValue.user.uid}");
+      _userProvider.saveCurrentUserId(onValue.user.uid);
     }).catchError((onError) {
       print("onError = ${onError}");
     });

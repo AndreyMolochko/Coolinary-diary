@@ -13,5 +13,6 @@ class Session implements SessionType {
     injector.registerSingleton<LocaleProviderType>((_) => LocaleProvider());
     injector.registerSingleton<AuthorizationServiceType>((_) =>
         AuthorizationService());
+    injector.registerSingleton<UserProviderType>((_) => UserProvider());
   }
 }
