@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/authorization_type.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/services/module.dart';
 import 'package:sqflite_worker/ui/authorization/module.dart';
+import 'package:sqflite_worker/ui/dialogs/module.dart';
 
 class AuthorizationViewModel implements AuthorizationViewModelType {
   @override
@@ -45,11 +47,11 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   void initState() {}
 
   @override
-  void onClickAuthorization() {
+  void onClickAuthorization(BuildContext context) {
     if(_authorizationType == AuthorizationType.signIn) {
       _handleOnClickSignIn("firstttest@mail.ru", "111111");
     } else {
-      _handleOnClickSignUp("secondtest@mail.ru", "111111");
+      _handleOnClickSignUp("secondtest@mail.ru", "11111", context);
     }
   }
 
@@ -67,11 +69,16 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
         builder: (context) => AuthorizationPage(authorizationViewModel)));
   }
 
-  void _handleOnClickSignUp(String email, String password) {
+  void _handleOnClickSignUp(String email, String password, BuildContext context) {
     _authorizationService.signUp(email, password).then((onValue) {
       print("onValue = ${onValue}");
       print("user id = ${onValue.user.uid}");
     }).catchError((onError) {
+      if(onError is PlatformException) {
+        _showDialog("Error", onError.message, context);
+      } else {
+        _showDialog("Error", "Unknown error :(", context);
+      }
       print("onError = ${onError}");
     });
   }
@@ -83,5 +90,10 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     }).catchError((onError) {
       print("onError = ${onError}");
     });
+  }
+
+  void _showDialog(String title, String message, BuildContext context) {
+    DialogPresenterType dialogPresenter = DialogPresenter(title, message);
+    dialogPresenter.show(context);
   }
 }

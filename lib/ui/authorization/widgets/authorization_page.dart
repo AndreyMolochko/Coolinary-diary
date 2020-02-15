@@ -77,7 +77,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
             _changeFocusField(
                 context, _passwordFocusNode, _repeatedPasswordFocusNode);
           } else {
-            widget._authorizationViewModel.onClickAuthorization();
+            widget._authorizationViewModel.onClickAuthorization(context);
           }
         },
         focusNode: _passwordFocusNode,
@@ -97,7 +97,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
         onFieldSubmitted: (value) {
-          widget._authorizationViewModel.onClickAuthorization();
+          widget._authorizationViewModel.onClickAuthorization(context);
         },
         focusNode: _repeatedPasswordFocusNode,
         textInputAction: TextInputAction.done,
@@ -122,7 +122,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           color: App.Colors.white,
           shape: App.Shapes.secondaryButton,
           onPressed: () {
-            widget._authorizationViewModel.onClickAuthorization();
+            widget._authorizationViewModel.onClickAuthorization(context);
           },),
       ),
     );
