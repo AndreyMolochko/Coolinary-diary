@@ -8,7 +8,7 @@ class ValidationStatusAuthorization implements ValidationStatusAuthorizationType
   ValidationStatusAuthorization(this._emailValidator, this._passwordValidator);
 
   @override
-  Model.ValidationStatus getValidationStatus(
+  Model.ValidationStatusAuthorization getValidationStatus(
       Model.AuthorizationType authorizationType, String email, String password,
       {String repeatedPassword}) {
     if (authorizationType == Model.AuthorizationType.signIn) {
@@ -16,30 +16,30 @@ class ValidationStatusAuthorization implements ValidationStatusAuthorizationType
     } else if (authorizationType == Model.AuthorizationType.signUp) {
       return _getSignUpStatus(email, password, repeatedPassword);
     } else {
-      return Model.ValidationStatus.Unknown;
+      return Model.ValidationStatusAuthorization.Unknown;
     }
   }
 
-  Model.ValidationStatus _getSignInStatus(String email, String password) {
+  Model.ValidationStatusAuthorization _getSignInStatus(String email, String password) {
     if (!_emailValidator.isEmailValid(email)) {
-      return Model.ValidationStatus.EmailIsEmpty;
+      return Model.ValidationStatusAuthorization.EmailIsEmpty;
     } else if (!_passwordValidator.isPasswordValid(password)) {
-      return Model.ValidationStatus.PasswordIsEmpty;
+      return Model.ValidationStatusAuthorization.PasswordIsEmpty;
     } else {
-      return Model.ValidationStatus.Ok;
+      return Model.ValidationStatusAuthorization.Ok;
     }
   }
 
-  Model.ValidationStatus _getSignUpStatus(
+  Model.ValidationStatusAuthorization _getSignUpStatus(
       String email, String password, String repeatedPassword) {
     if (!_emailValidator.isEmailValid(email)) {
-      return Model.ValidationStatus.EmailIsEmpty;
+      return Model.ValidationStatusAuthorization.EmailIsEmpty;
     } else if (!_passwordValidator.isPasswordValid(password)) {
-      return Model.ValidationStatus.PasswordIsEmpty;
+      return Model.ValidationStatusAuthorization.PasswordIsEmpty;
     } else if (!_passwordValidator.arePasswordsEquals(password, repeatedPassword)) {
-      return Model.ValidationStatus.PasswordsArentEquals;
+      return Model.ValidationStatusAuthorization.PasswordsArentEquals;
     } else {
-      return Model.ValidationStatus.Ok;
+      return Model.ValidationStatusAuthorization.Ok;
     }
   }
 }
