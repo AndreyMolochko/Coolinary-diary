@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:injector/injector.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sqflite_worker/model/module.dart';
-import 'package:sqflite_worker/providers/menu_item_provider_type.dart';
 import 'package:sqflite_worker/providers/module.dart';
+import 'package:sqflite_worker/ui/authorization/module.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../module.dart';
@@ -26,10 +27,12 @@ class SettingsViewModel implements SettingsViewModelType {
   final languageRadioController = BehaviorSubject<LanguageType>();
   PackageInfoProviderType _packageInfoProvider;
   LocaleProviderType _localeProvider;
+  UserProviderType _userProvider;
 
   SettingsViewModel(this._injector, this._menuItemProvider) {
     _packageInfoProvider = _injector.getDependency<PackageInfoProviderType>();
     _localeProvider = _injector.getDependency<LocaleProviderType>();
+    _userProvider = _injector.getDependency<UserProviderType>();
   }
 
   @override
@@ -63,7 +66,10 @@ class SettingsViewModel implements SettingsViewModelType {
 
   @override
   void handleClickByLogout(BuildContext context) {
-    print("logout");
+    _userProvider.logout();
+    AuthorizationViewModelType authorizationViewModel = AuthorizationViewModel(_injector, AuthorizationType.signIn);
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => AuthorizationPage(authorizationViewModel)));
   }
 
   @override

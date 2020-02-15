@@ -33,6 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void dispose() {
     widget._viewModel.dispose();
+    super.dispose();
   }
 
   Widget _buildBody(BuildContext context) {

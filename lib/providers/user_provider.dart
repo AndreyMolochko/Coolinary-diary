@@ -14,4 +14,9 @@ class UserProvider implements UserProviderType {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('current_user_id', userId);
   }
+
+  @override
+  void logout() {
+    saveCurrentUserId("");
+  }
 }
