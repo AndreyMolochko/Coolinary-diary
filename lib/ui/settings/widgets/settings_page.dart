@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/module.dart';
-import 'package:sqflite_worker/resourses/module.dart';
+import 'package:sqflite_worker/resourses/module.dart' as App;
 import 'package:sqflite_worker/ui/settings/module.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -55,7 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildListItem(SettingsItem settingsItem, BuildContext context) {
     return ExpansionTile(
-      title: Text(AppTranslations.translate(context, settingsItem.title), style: TextStyles.normalBlackText),
+      title: Text(AppTranslations.translate(context, settingsItem.title), style: App.TextStyles.normalBlackText),
       children: _buildSubitemsList(settingsItem, context),
     );
   }
@@ -85,10 +85,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   onChanged: widget._viewModel.handleLanguageRadio,),
                 InkWell(child: Padding(
                   padding: const EdgeInsets.only(
-                      top: Dimens.smallPadding, bottom: Dimens.smallPadding),
+                      top: App.Dimens.smallPadding, bottom: App.Dimens.smallPadding),
                   child: Text(widget._viewModel.getLanguageByType(
                       languageItem.subItems[i]),
-                    style: TextStyles.smallBlackText,),
+                    style: App.TextStyles.smallBlackText,),
                 ),
                     onTap: () {
                       widget._viewModel.handleLanguageRadio(
@@ -113,11 +113,11 @@ class _SettingsPageState extends State<SettingsPage> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: Dimens.normalPadding, bottom: Dimens.smallPadding),
+                      left: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
                   child: Text("${AppTranslations.translate(context,
                       'version_of_application_settings_screen')} : "
                       "${snapshot.data}",
-                      style: TextStyles.smallBlackText),
+                      style: App.TextStyles.smallBlackText),
                 ),
               ],
             );
@@ -135,16 +135,16 @@ class _SettingsPageState extends State<SettingsPage> {
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    bottom: Dimens.smallPadding, left: Dimens.normalPadding),
+                    bottom: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
                 child: Text(
                     AppTranslations.translate(context, "link_with_developer_settings_screen"),
-                    style: TextStyles.smallBlackText),
+                    style: App.TextStyles.smallBlackText),
               ),
             ),
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: Dimens.smallPadding),
+          padding: const EdgeInsets.only(bottom: App.Dimens.smallPadding),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: _getIconsNetworks(contactItem)
@@ -159,12 +159,15 @@ class _SettingsPageState extends State<SettingsPage> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(
-              left: Dimens.normalPadding, right: Dimens.normalPadding),
+              left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
           child: Text(
-            logoutItem.subItems[0], style: TextStyles.smallBlackText,),
+            logoutItem.subItems[0], style: App.TextStyles.smallBlackText,),
         ),
         RaisedButton(
-          child: Text(AppTranslations.of(context).text(logoutItem.title)),
+          color: App.Colors.white,
+          shape: App.Shapes.secondaryButton,
+          child: Text(AppTranslations.of(context).text(logoutItem.title),
+              style: App.TextStyles.smallBlackText),
           onPressed: () {
             widget._viewModel.handleClickByLogout(context);
           },)
