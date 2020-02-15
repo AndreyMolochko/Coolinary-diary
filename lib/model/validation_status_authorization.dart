@@ -1,4 +1,4 @@
-enum ValidationStatus {
+enum ValidationStatusAuthorization {
   Ok,
   EmailIsEmpty,
   PasswordIsEmpty,

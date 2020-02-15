@@ -93,12 +93,16 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     });
   }
 
-  void _handleOnClickSignIn(String email, String password) {
+  void _requestSignIn(String email, String password, BuildContext context) {
     _authorizationService.signIn(email, password).then((onValue) {
       print("user id = ${onValue.user.uid}");
       _userProvider.saveCurrentUserId(onValue.user.uid);
     }).catchError((onError) {
-      print("onError = ${onError}");
+      if (onError is PlatformException) {
+        _showDialog("Error", onError.message, context);
+      } else {
+        _showDialog("Error", "Unknown error :(", context);
+      }
     });
   }
 
