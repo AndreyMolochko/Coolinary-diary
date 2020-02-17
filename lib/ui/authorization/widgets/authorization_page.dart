@@ -38,6 +38,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
   @override
   void dispose() {
+    widget._authorizationViewModel.dispose();
     super.dispose();
   }
 
@@ -50,7 +51,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
         _buildPasswordTextField(),
         if(widget._authorizationViewModel.isSignUpScreen)
           _buildRepeatedPasswordTextField(),
-        _buildAuthorizationButton(context),
+        _buildAuthorization(context),
         _buildNavigationText(context),
       ],
     );
@@ -133,6 +134,19 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                 'password_label_authorization_screen')
         ),
       ),
+    );
+  }
+
+  Widget _buildAuthorization(BuildContext context) {
+    return StreamBuilder(
+      stream: widget._authorizationViewModel.isLoading,
+      builder: (context, snapshot) {
+        if (snapshot.data == true) {
+          return CircularProgressIndicator();
+        } else {
+          return _buildAuthorizationButton(context);
+        }
+      },
     );
   }
 

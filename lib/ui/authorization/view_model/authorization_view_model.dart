@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injector/injector.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/authorization_type.dart';
 import 'package:sqflite_worker/model/module.dart';
@@ -13,6 +14,10 @@ import 'package:sqflite_worker/utils/converters/converters.dart';
 import 'package:sqflite_worker/utils/validators/validators.dart' as Validators;
 
 class AuthorizationViewModel implements AuthorizationViewModelType {
+
+  @override
+  Stream<bool> get isLoading => _isLoadingController;
+
   @override
   AuthorizationType get authorizationType => _authorizationType;
 
@@ -30,6 +35,7 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
 
   final Injector _injector;
   final AuthorizationType _authorizationType;
+  final _isLoadingController = BehaviorSubject<bool>();
   String _textAuthorizationButton;
   String _textNavigationLabel;
   String _titleScreen;
@@ -58,12 +64,12 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
 
   @override
   void initState() {
-
+    _isLoadingController.sink.add(false);
   }
 
   @override
   void dispose() {
-
+    _isLoadingController.close();
   }
 
   @override
@@ -119,12 +125,15 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   }
 
   void _requestSignUp(String email, String password, BuildContext context) {
+    _isLoadingController.sink.add(true);
     _authorizationService.signUp(email, password).then((onValue) {
+      _isLoadingController.sink.add(false);
       _userProvider.saveCurrentUserId(onValue.user.uid);
       HomeViewModelType dishListViewModel = HomeViewModel(_injector);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
     }).catchError((onError) {
+      _isLoadingController.sink.add(false);
       if (onError is PlatformException) {
         _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
             onError.message, context);
@@ -136,12 +145,15 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
   }
 
   void _requestSignIn(String email, String password, BuildContext context) {
+    _isLoadingController.sink.add(true);
     _authorizationService.signIn(email, password).then((onValue) {
+      _isLoadingController.sink.add(false);
       _userProvider.saveCurrentUserId(onValue.user.uid);
       HomeViewModelType dishListViewModel = HomeViewModel(_injector);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
     }).catchError((onError) {
+      _isLoadingController.sink.add(false);
       if (onError is PlatformException) {
         _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
             onError.message, context);
