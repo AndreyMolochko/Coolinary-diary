@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/validation_status_authorization.dart';
 import 'package:sqflite_worker/utils/converters/converters.dart';
 
@@ -9,15 +10,18 @@ class ValidationAuthorizationConverter
       BuildContext context, ValidationStatusAuthorization validationStatus) {
     switch (validationStatus) {
       case ValidationStatusAuthorization.EmailIsEmpty:
-        return "The email field should not be empty";
+        return AppTranslations.of(context).text(
+            'email_field_empty_message_login_screen');
       case ValidationStatusAuthorization.PasswordIsEmpty:
-        return "The password field should not be empty";
+        return AppTranslations.of(context).text(
+            'password_field_empty_message_login_screen');
       case ValidationStatusAuthorization.PasswordsArentEquals:
-        return "The password fields should be equal";
+        return AppTranslations.of(context).text(
+            'password_fields_not_equals_message_login_screen');
       case ValidationStatusAuthorization.Unknown:
-        return "Uknown error :(";
+        return AppTranslations.of(context).text('unknown_error_general_screen');
       case ValidationStatusAuthorization.Ok:
-        return "Ok";
+        return AppTranslations.of(context).text('ok_message_general_screen');
     }
   }
 }

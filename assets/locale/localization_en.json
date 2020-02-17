@@ -13,6 +13,10 @@
   "version_of_application_settings_screen": "Application version",
   "logout_title_settings_screen": "Logout",
   "logout_content_settings_screen": "Do you really want to logout?",
+  "email_field_empty_message_login_screen": "The email field should not be empty",
+  "password_field_empty_message_login_screen": "The password field should not be empty",
+  "password_fields_not_equals_message_login_screen": "The password fields should be equal",
+
 
   "email_label_authorization_screen": "Email",
   "password_label_authorization_screen": "Password",
@@ -21,6 +25,7 @@
 
   "error_title_general_screen": "Error",
   "unknown_error_general_screen": "Unknown error :(",
+  "ok_message_general_screen": "Ok",
   "update": "Update",
   "delete": "Delete",
   "cook": "COOK",
