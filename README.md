@@ -9,9 +9,9 @@ In project you can find work with differents Widgets : ListView, DropDownMenu, N
 There are CRUD command in Sqflite in this project. Application allows to work with camera and gallery.
 You can find work with localization in this application.
 
-<img src="https://lh3.googleusercontent.com/oa9jwgzf-CSLVmCYqCdWOKAf1amHvqTbYBJIY-iZxi3O61DhRd4FrI8v2_9sVdr0PTE=w2880-h1500" width = 250> | 
-<img src="https://lh3.googleusercontent.com/KkGK97Ou-TtFK-IMeJaebGsAv9Ee8ebT03t8mz4SSUcMYA82QQXNepc0OPxUnr_ZWcr-=w2880-h1500" width = 250> | 
-<img src="https://lh3.googleusercontent.com/ZuD2xvASRiMg_X-aX6ZEEX54VkWFMplEQnv3bPXPYMkgHJu6TzmClJEBtSg8dOrAbW6W=w2880-h1500" width = 250>
+<img src="" width = 250> | 
+<img src="" width = 250> | 
+<img src="" width = 250>
 --- | --- | ---
 
 ## Authors
