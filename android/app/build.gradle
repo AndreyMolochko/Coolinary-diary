@@ -41,6 +41,7 @@ android {
 
     defaultConfig {
         applicationId "com.culinary.diary"
+        multiDexEnabled true
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
