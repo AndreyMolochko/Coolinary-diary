@@ -128,7 +128,7 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     _isLoadingController.sink.add(true);
     _authorizationService.signUp(email, password).then((onValue) {
       _isLoadingController.sink.add(false);
-      _userProvider.saveCurrentUserId(onValue.user.uid);
+      _userProvider.saveCurrentUserId(onValue.userId);
       HomeViewModelType dishListViewModel = HomeViewModel(_injector);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
@@ -148,7 +148,7 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
     _isLoadingController.sink.add(true);
     _authorizationService.signIn(email, password).then((onValue) {
       _isLoadingController.sink.add(false);
-      _userProvider.saveCurrentUserId(onValue.user.uid);
+      _userProvider.saveCurrentUserId(onValue.userId);
       HomeViewModelType dishListViewModel = HomeViewModel(_injector);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
