@@ -21,6 +21,6 @@ class _RequestDishPageState extends State<RequestDishPage> {
   }
 
   Widget _buildBody() {
-    return Text("body");
+    return Text("body request");
   }
 }

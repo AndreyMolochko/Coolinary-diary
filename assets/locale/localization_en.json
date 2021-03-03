@@ -23,17 +23,21 @@
   "sign_in_label_authorization_screen": "Sign in",
   "sign_up_label_authorization_screen": "Sign up",
 
+  "dish_name_hint_text_field_request_screen": "Dish name",
+  "soups_category_label_common_screens": "Soups",
+  "main_category_label_common_screens": "Main",
+  "salads_category_label_common_screens": "Salads",
+  "dessert_category_label_common_screens": "Dessert",
+  "drinks_category_label_common_screens": "Drinks",
+
   "error_title_general_screen": "Error",
   "unknown_error_general_screen": "Unknown error :(",
   "ok_message_general_screen": "Ok",
+
+
   "update": "Update",
   "delete": "Delete",
   "cook": "COOK",
-  "soups": "Soups",
-  "main": "Main",
-  "salads": "Salads",
-  "dessert": "Dessert",
-  "drinks": "Drinks",
   "search": "Search...",
   "no_data_available": "You didn't add dishes in this category. To add, click on +",
   "delete_dish": "Do you really want to delete the dish?",

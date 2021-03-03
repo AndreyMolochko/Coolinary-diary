@@ -7,6 +7,8 @@ class Dish {
   String _recipe;
   String _path;
 
+  Dish.empty();
+
   Dish(this._name, this._counterCooking, this._category, this._ingredientList,
       this._recipe, this._path);
 

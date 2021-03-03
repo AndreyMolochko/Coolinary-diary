@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
+import 'package:sqflite_worker/ui/request_dish/widgets/filling_ingredients_and_recipe_page.dart';
 
 import '../module.dart';
 
@@ -16,7 +17,7 @@ class ChooseNameAndCategoryPage extends StatefulWidget {
 
 class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
   final TextEditingController dishNameTextController = TextEditingController();
-  String _radioValue = "Soups";
+  String _radioValue = "soups";
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,11 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
           padding: const EdgeInsets.only(
               top: App.Dimens.normalPadding, left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
           child: _buildRadioButtons(context),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+              left: App.Dimens.mediumPadding, right: App.Dimens.mediumPadding, top: App.Dimens.smallPadding),
+          child: _buildContinueButton(context),
         )
       ],
     );
@@ -60,11 +66,11 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
   Widget _buildRadioButtons(BuildContext context) {
     return Column(
       children: [
-        _buildRadioButton(context, "Soups", AppTranslations.of(context).text('soups_category_label_common_screens')),
-        _buildRadioButton(context, "Main", AppTranslations.of(context).text('main_category_label_common_screens')),
-        _buildRadioButton(context, "Salads", AppTranslations.of(context).text('salads_category_label_common_screens')),
-        _buildRadioButton(context, "Dessert", AppTranslations.of(context).text('dessert_category_label_common_screens')),
-        _buildRadioButton(context, "Drinks", AppTranslations.of(context).text('drinks_category_label_common_screens'))
+        _buildRadioButton(context, "soups", AppTranslations.of(context).text('soups_category_label_common_screens')),
+        _buildRadioButton(context, "main", AppTranslations.of(context).text('main_category_label_common_screens')),
+        _buildRadioButton(context, "salads", AppTranslations.of(context).text('salads_category_label_common_screens')),
+        _buildRadioButton(context, "dessert", AppTranslations.of(context).text('dessert_category_label_common_screens')),
+        _buildRadioButton(context, "drinks", AppTranslations.of(context).text('drinks_category_label_common_screens'))
       ],
     );
   }
@@ -81,6 +87,21 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
           onTap: () => _handleRadioValueChange(value),
         )
       ],
+    );
+  }
+
+  Widget _buildContinueButton(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: RaisedButton(
+        child: Text("Continue"),
+        onPressed: () {
+          widget._viewModel.saveDishName(dishNameTextController.text);
+          widget._viewModel.saveCategory(_radioValue);
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => IngredientsAndRecipePage(widget._viewModel)));
+        },
+      ),
     );
   }
 

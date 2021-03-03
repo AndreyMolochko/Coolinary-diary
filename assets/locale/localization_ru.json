@@ -22,17 +22,21 @@
   "sign_in_label_authorization_screen": "Войти",
   "sign_up_label_authorization_screen": "Регистрация",
 
+  "dish_name_hint_text_field_request_screen": "Название блюда",
+  "soups_category_label_common_screens": "Супы",
+  "main_category_label_common_screens": "Главное",
+  "salads_category_label_common_screens": "Салаты",
+  "dessert_category_label_common_screens": "Десерты",
+  "drinks_category_label_common_screens": "Напитки",
+
   "error_title_general_screen": "Ошибка",
   "unknown_error_general_screen": "Неизвестная ошибка :(",
   "ok_message_general_screen": "Хорошо",
+
+
   "update": "Редактировать",
   "delete": "Удалить",
   "cook": "ГОТОВИТЬ",
-  "soups": "Супы",
-  "main": "Главное",
-  "salads": "Салаты",
-  "dessert": "Десерты",
-  "drinks": "Напитки",
   "search": "Поиск...",
   "no_data_available": "Вы не добавили блюда в этой категории. Для добавления нажмите +",
   "delete_dish": "Вы действительно хотите удалить блюдо?",

@@ -22,17 +22,21 @@
   "sign_in_label_authorization_screen": "Уваход",
   "sign_up_label_authorization_screen": "Рэгістрацыя",
 
+  "dish_name_hint_text_field_request_screen": "Назва стравы",
+  "soups_category_label_common_screens": "Супы",
+  "main_category_label_common_screens": "Асноўнае",
+  "salads_category_label_common_screens": "Салаты",
+  "dessert_category_label_common_screens": "Дэсерт",
+  "drinks_category_label_common_screens": "Напоі",
+
   "error_title_general_screen": "Памылка",
   "unknown_error_general_screen": "Невядомая памылка :(",
   "ok_message_general_screen": "Добра",
+
+
   "update": "Рэдагаваць",
   "delete": "Выдаліць",
   "cook": "ГАТАВАЦЬ ",
-  "soups": "Супы",
-  "main": "Асноўнае",
-  "salads": "Салаты",
-  "dessert": "Дэсерт",
-  "drinks": "Напоі",
   "search": "Пошук...",
   "no_data_available": "Вы не дадалі стравы ў гэтай катэгорыі. Каб дадаць, націсніце на +",
   "delete_dish": "Вы сапраўды хочаце выдаліць гэтую страву?",
