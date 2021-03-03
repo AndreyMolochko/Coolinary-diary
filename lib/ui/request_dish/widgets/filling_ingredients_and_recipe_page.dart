@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
 import 'package:sqflite_worker/ui/request_dish/widgets/add_dish_photo_page.dart';
 
@@ -57,7 +58,9 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
           maxLines: 15,
           onSubmitted: (value) => _changeFocusField(context, _ingredientsFocusNode, _recipeFocusNode),
           keyboardType: TextInputType.multiline,
-          decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Ingredients: ")),
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: AppTranslations.of(context).text('ingredients_and_recipe_screen_ingredients_text_field'))),
     );
   }
 
@@ -73,7 +76,9 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
           maxLines: 15,
           onSubmitted: (value) => _continueAction(context),
           keyboardType: TextInputType.multiline,
-          decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Recipe: ")),
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: AppTranslations.of(context).text('ingredients_and_recipe_screen_recipe_text_field'))),
     );
   }
 
@@ -81,7 +86,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
     return Container(
       width: double.infinity,
       child: RaisedButton(
-        child: Text("Continue"),
+        child: Text(AppTranslations.of(context).text('ingredients_and_recipe_screen_continue_button')),
         onPressed: () {
           _continueAction(context);
         },

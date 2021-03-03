@@ -28,6 +28,11 @@
   "salads_category_label_common_screens": "Салаты",
   "dessert_category_label_common_screens": "Десерты",
   "drinks_category_label_common_screens": "Напитки",
+  "add_dish_photo_screen_save_button": "Сохранить",
+  "ingredients_and_recipe_screen_continue_button": "Далее",
+  "name_and_category_screen_continue_button": "Далее",
+  "ingredients_and_recipe_screen_ingredients_text_field": "Ингридиенты:",
+  "ingredients_and_recipe_screen_recipe_text_field": "Рецепт:",
 
   "error_title_general_screen": "Ошибка",
   "unknown_error_general_screen": "Неизвестная ошибка :(",

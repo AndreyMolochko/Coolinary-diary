@@ -94,7 +94,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
     return Container(
       width: double.infinity,
       child: RaisedButton(
-        child: Text("Continue"),
+        child: Text(AppTranslations.of(context).text('name_and_category_screen_continue_button')),
         onPressed: () {
           widget._viewModel.saveDishName(dishNameTextController.text);
           widget._viewModel.saveCategory(_radioValue);

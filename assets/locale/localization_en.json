@@ -29,6 +29,11 @@
   "salads_category_label_common_screens": "Salads",
   "dessert_category_label_common_screens": "Dessert",
   "drinks_category_label_common_screens": "Drinks",
+  "add_dish_photo_screen_save_button": "Save",
+  "ingredients_and_recipe_screen_continue_button": "Continue",
+  "name_and_category_screen_continue_button": "Continue",
+  "ingredients_and_recipe_screen_ingredients_text_field": "Ingredients:",
+  "ingredients_and_recipe_screen_recipe_text_field": "Recipe:",
 
   "error_title_general_screen": "Error",
   "unknown_error_general_screen": "Unknown error :(",

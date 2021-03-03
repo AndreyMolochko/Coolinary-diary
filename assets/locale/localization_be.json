@@ -28,6 +28,11 @@
   "salads_category_label_common_screens": "Салаты",
   "dessert_category_label_common_screens": "Дэсерт",
   "drinks_category_label_common_screens": "Напоі",
+  "add_dish_photo_screen_save_button": "Захаваць",
+  "ingredients_and_recipe_screen_continue_button": "Далей",
+  "name_and_category_screen_continue_button": "Далей",
+  "ingredients_and_recipe_screen_ingredients_text_field": "Iнгрэдыенты:",
+  "ingredients_and_recipe_screen_recipe_text_field": "Рэцэпт:",
 
   "error_title_general_screen": "Памылка",
   "unknown_error_general_screen": "Невядомая памылка :(",
