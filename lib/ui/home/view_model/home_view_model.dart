@@ -6,6 +6,7 @@ import 'package:sqflite_worker/providers/menu_item_provider_type.dart';
 import 'package:sqflite_worker/ui/dish_list/module.dart';
 import 'package:sqflite_worker/ui/home/module.dart';
 import 'package:sqflite_worker/ui/request_dish/module.dart';
+import 'package:sqflite_worker/ui/request_dish/widgets/choose_name_and_category_page.dart';
 import 'package:sqflite_worker/ui/settings/module.dart';
 
 class HomeViewModel implements HomeViewModelType {
@@ -48,6 +49,6 @@ class HomeViewModel implements HomeViewModelType {
     RequestDishViewModelType requestDishViewModel = RequestDishViewModel(
         _injector, RequestDishScreenType.addDish);
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => RequestDishPage(requestDishViewModel)));
+        MaterialPageRoute(builder: (context) => ChooseNameAndCategoryPage(requestDishViewModel)));
   }
 }
