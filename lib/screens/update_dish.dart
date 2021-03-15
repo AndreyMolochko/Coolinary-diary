@@ -266,12 +266,12 @@ class _UpdateDishState extends State<UpdateDish> {
   }
 
   void _clickOnCamera() async {
-    image = await ImagePicker.pickImage(source: ImageSource.camera);
+    //image = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {});
   }
 
   void _clickOnGallery() async {
-    image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    //image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {});
   }
 }

@@ -278,13 +278,13 @@ class _AddDishState extends State<AddDish> {
 
   void _clickOnCamera() async {
     Navigator.pop(context);
-    image = await ImagePicker.pickImage(source: ImageSource.camera);
+    //image = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {});
   }
 
   void _clickOnGallery() async {
     Navigator.pop(context);
-    image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    //image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {});
   }
 

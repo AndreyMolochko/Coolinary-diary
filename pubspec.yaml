@@ -26,17 +26,17 @@ dependencies:
   path_provider: any
   flutter_svg: ^0.19.3
   fluttertoast: ^3.0.3
-  image_picker: ^0.6.0+3
+  image_picker: ^0.7.2+1
   shared_preferences: ^0.5.6
   sprintf: ^4.0.0
   firebase_admob: ^0.9.0+10
   firebase_analytics: ^5.0.9
-  injector: ^1.0.8
+  injector: ^1.0.9
   rxdart: ^0.23.1
   package_info: ^0.4.0+13
-  url_launcher: ^5.4.1
-  firebase_core: ^0.7.0
-  firebase_auth: ^0.20.1
+  url_launcher: ^6.0.2
+  firebase_core: ^1.0.1
+  firebase_auth: ^1.0.1
 
 
 dev_dependencies:
@@ -73,6 +73,7 @@ flutter:
     - assets/instagram.png
     - assets/linkedin.png
     - assets/skype.png
+    - assets/icon_food.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
