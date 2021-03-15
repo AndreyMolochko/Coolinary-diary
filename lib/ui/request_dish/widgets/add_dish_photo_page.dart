@@ -64,7 +64,7 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: App.Dimens.smallPadding),
-              child: Text("Upload a dish photo"),
+              child: Text(AppTranslations.of(context).text('subtitle_add_dish_photo_screen')),
             )
           ],
         ),
@@ -114,14 +114,14 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
                 children: <Widget>[
                   new ListTile(
                       leading: new Icon(Icons.photo_library),
-                      title: new Text('Camera'),
+                      title: new Text(AppTranslations.of(context).text('camera_title_add_dish_photo_screen')),
                       onTap: () {
                         _uploadImageFromSource(ImageSource.camera);
                         Navigator.of(context).pop();
                       }),
                   new ListTile(
                     leading: new Icon(Icons.photo_camera),
-                    title: new Text('Gallery'),
+                    title: new Text(AppTranslations.of(context).text('gallery_title_add_dish_photo_screen')),
                     onTap: () {
                       _uploadImageFromSource(ImageSource.gallery);
                       Navigator.of(context).pop();

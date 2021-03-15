@@ -33,6 +33,9 @@
   "name_and_category_screen_continue_button": "Далее",
   "ingredients_and_recipe_screen_ingredients_text_field": "Ингридиенты:",
   "ingredients_and_recipe_screen_recipe_text_field": "Рецепт:",
+  "camera_title_add_dish_photo_screen": "Камера",
+  "gallery_title_add_dish_photo_screen": "Галерея",
+  "subtitle_add_dish_photo_screen": "Загрузите фотографию блюда",
 
   "error_title_general_screen": "Ошибка",
   "unknown_error_general_screen": "Неизвестная ошибка :(",
@@ -46,8 +49,6 @@
   "no_data_available": "Вы не добавили блюда в этой категории. Для добавления нажмите +",
   "delete_dish": "Вы действительно хотите удалить блюдо?",
   "cooked_dish_time": "Вы готовили это блюдо %s раз(а)",
-  "camera": "Камера",
-  "gallery": "Галерея",
   "add_dish": "Добавить блюдо",
   "ingredient_list": "Список ингридиентов",
   "cooking_list": "Способ приготовления",
