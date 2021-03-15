@@ -35,10 +35,7 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
         _image == null ? _buildStubImage(context) : _buildPickedImage(),
         Padding(
           padding: const EdgeInsets.only(
-              left: App.Dimens.normalPadding,
-              right: App.Dimens.normalPadding,
-              bottom: App.Dimens.smallPadding,
-              top: App.Dimens.normalPadding),
+              left: App.Dimens.normalPadding, right: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
           child: _buildSaveButton(context),
         )
       ],
@@ -56,7 +53,8 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
             bottom: App.Dimens.bigPadding,
             left: App.Dimens.normalPadding,
             right: App.Dimens.normalPadding),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(14), color: App.Colors.gainsboro),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(App.Dimens.borderRadiusAddImage), color: App.Colors.gainsboro),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -78,7 +76,20 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
   }
 
   Widget _buildPickedImage() {
-    return Image.file(_image);
+    return GestureDetector(
+      child: Padding(
+        padding: const EdgeInsets.only(
+            top: App.Dimens.normalPadding,
+            bottom: App.Dimens.mediumPadding,
+            left: App.Dimens.normalPadding,
+            right: App.Dimens.normalPadding),
+        child:
+            ClipRRect(borderRadius: BorderRadius.circular(App.Dimens.borderRadiusAddImage), child: Image.file(_image)),
+      ),
+      onTap: () async {
+        await _showCameraGalleryDialog(context);
+      },
+    );
   }
 
   Widget _buildSaveButton(BuildContext context) {
