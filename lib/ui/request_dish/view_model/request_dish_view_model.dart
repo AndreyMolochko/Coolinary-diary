@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/model/request_dish_screen_type.dart';
+import 'package:sqflite_worker/repository/dish_repository_type.dart';
 
 import '../module.dart';
 
 class RequestDishViewModel implements RequestDishViewModelType {
+
+  final Injector _injector;
+  DishRepositoryType _repository;
+
+  RequestDishViewModel(this._injector, this.requestDishScreenType) {
+    dish = Dish.empty();
+    _repository = _injector.get<DishRepositoryType>();
+  }
 
   @override
   String getPageTitle(BuildContext context) {
@@ -20,11 +29,6 @@ class RequestDishViewModel implements RequestDishViewModelType {
   @override
   RequestDishScreenType requestDishScreenType;
 
-  final Injector _injector;
-
-  RequestDishViewModel(this._injector, this.requestDishScreenType) {
-    dish = Dish.empty();
-  }
 
   @override
   Dish dish;
@@ -41,5 +45,10 @@ class RequestDishViewModel implements RequestDishViewModelType {
   @override
   void saveRecipe(String recipe) => dish.recipe = recipe;
 
+  @override
+  void saveImagePath(String path) => dish.path = path;
+
+  @override
+  void addDish() => _repository.addClaim(dish);
 
 }

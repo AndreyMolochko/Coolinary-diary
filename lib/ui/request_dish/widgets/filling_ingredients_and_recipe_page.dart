@@ -85,7 +85,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
   Widget _buildContinueButton(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: RaisedButton(
+      child: ElevatedButton(
         child: Text(AppTranslations.of(context).text('ingredients_and_recipe_screen_continue_button')),
         onPressed: () {
           _continueAction(context);

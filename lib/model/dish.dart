@@ -6,6 +6,8 @@ class Dish {
   String _ingredientList;
   String _recipe;
   String _path;
+  DateTime _createdAt;
+  DateTime _updatedAt;
 
   Dish.empty();
 
@@ -23,6 +25,8 @@ class Dish {
     this._ingredientList = map['ingredientList'];
     this._recipe = map['recipe'];
     this._path = map['path'];
+    this._createdAt = map['createdAt'];
+    this._updatedAt = map['updatedAt'];
   }
 
   get id => _id;
@@ -67,6 +71,18 @@ class Dish {
     _name = value;
   }
 
+  DateTime get createdAt => _createdAt;
+
+  set createdAt(DateTime value) {
+    _createdAt = value;
+  }
+
+  DateTime get updatedAt => _updatedAt;
+
+  set updatedAt(DateTime value) {
+    _updatedAt = value;
+  }
+
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
     if (id != null) {
@@ -78,6 +94,8 @@ class Dish {
     map['ingredientList'] = _ingredientList;
     map['recipe'] = _recipe;
     map['path'] = _path;
+    map['createdAt'] = DateTime.now().millisecondsSinceEpoch;
+    map['updatedAt'] = DateTime.now().millisecondsSinceEpoch;
 
     return map;
   }

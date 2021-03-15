@@ -11,5 +11,6 @@ abstract class RequestDishViewModelType {
   void saveCategory(String category);
   void saveIngredients(String ingredients);
   void saveRecipe(String recipe);
-
+  void saveImagePath(String path);
+  void addDish();
 }

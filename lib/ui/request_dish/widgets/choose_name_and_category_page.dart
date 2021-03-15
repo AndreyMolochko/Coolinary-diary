@@ -93,7 +93,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
   Widget _buildContinueButton(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: RaisedButton(
+      child: ElevatedButton(
         child: Text(AppTranslations.of(context).text('name_and_category_screen_continue_button')),
         onPressed: () {
           widget._viewModel.saveDishName(dishNameTextController.text);

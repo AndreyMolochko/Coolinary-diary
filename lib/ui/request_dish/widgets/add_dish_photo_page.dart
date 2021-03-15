@@ -98,6 +98,8 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
       child: ElevatedButton(
         child: Text(AppTranslations.of(context).text('add_dish_photo_screen_save_button')),
         onPressed: () {
+          widget._viewModel.saveImagePath(_image.path);//TODO: validation
+          widget._viewModel.addDish();
           Navigator.of(context).pop();
         },
       ),
