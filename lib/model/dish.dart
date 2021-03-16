@@ -1,7 +1,6 @@
 class Dish {
   var _id;
   String _name;
-  int _counterCooking;
   String _category;
   String _ingredientList;
   String _recipe;
@@ -11,16 +10,15 @@ class Dish {
 
   Dish.empty();
 
-  Dish(this._name, this._counterCooking, this._category, this._ingredientList,
+  Dish(this._name, this._category, this._ingredientList,
       this._recipe, this._path);
 
-  Dish.withId(this._id, this._name, this._counterCooking, this._category,
+  Dish.withId(this._id, this._name, this._category,
       this._ingredientList, this._recipe, this._path);
 
   Dish.fromMapObject(Map<String, dynamic> map) {
     this._id = map['id'];
     this._name = map['name'];
-    this._counterCooking = map['counterCooking'];
     this._category = map['category'];
     this._ingredientList = map['ingredientList'];
     this._recipe = map['recipe'];
@@ -61,12 +59,6 @@ class Dish {
     _category = value;
   }
 
-  int get counterCooking => _counterCooking;
-
-  set counterCooking(int value) {
-    _counterCooking = value;
-  }
-
   set name(String value) {
     _name = value;
   }
@@ -89,7 +81,6 @@ class Dish {
       map['id'] = _id;
     }
     map['name'] = _name;
-    map['counterCooking'] = _counterCooking;
     map['category'] = _category;
     map['ingredientList'] = _ingredientList;
     map['recipe'] = _recipe;

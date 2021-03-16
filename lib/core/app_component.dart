@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -5,7 +6,6 @@ import 'package:sqflite_worker/core/app_provider.dart';
 import 'package:sqflite_worker/core/application/culinary_diary.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/localization/app_translations_delegate.dart';
-import 'package:sqflite_worker/screens/dish_list.dart';
 
 import '../applications.dart';
 
@@ -26,6 +26,7 @@ class _AppComponentState extends State<AppComponent> {
 
   @override
   void initState() {
+    Firebase.initializeApp();
     _setLanguageIfNeed();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = _onLocaleChange;
@@ -55,10 +56,7 @@ class _AppComponentState extends State<AppComponent> {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
-      supportedLocales: application.supportedLocales(),
-      routes: <String, WidgetBuilder>{
-        '/dishList': (BuildContext context) => new DishList(),
-      },
+      supportedLocales: application.supportedLocales()
     );
     return AppProvider(app, _application);
   }
