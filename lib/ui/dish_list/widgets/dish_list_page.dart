@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/ui/dish_list/module.dart';
@@ -44,28 +46,36 @@ class _DishListPageState extends State<DishListPage> {
   Widget _buildDishItem(BuildContext context, Dish dish) {
     return Container(
       margin: EdgeInsets.only(
-          top: App.Dimens.smallPadding,
-          left: App.Dimens.normalPadding,
-          right: App.Dimens.normalPadding),
-      decoration: BoxDecoration(color: App.Colors.gainsboro, borderRadius: BorderRadius.circular(App.Dimens.borderRadiusDishItem)),
+          top: App.Dimens.smallPadding, left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
+      decoration: BoxDecoration(
+          color: App.Colors.gainsboro, borderRadius: BorderRadius.circular(App.Dimens.borderRadiusDishItem)),
       height: 72,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: App.Dimens.normalPadding),
-            child: _buildDishImage(context, dish.path),
-          ),
-          Column(
+          Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: App.Dimens.normalPadding, left: App.Dimens.mediumPadding),
-                child: _buildDishName(context, dish.name),
+                padding: const EdgeInsets.only(left: App.Dimens.normalPadding),
+                child: _buildDishImage(context, dish.path),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.mediumPadding),
-                child: _buildCategory(context, dish.category),
-              )
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: App.Dimens.normalPadding, left: App.Dimens.mediumPadding),
+                    child: _buildDishName(context, dish.name),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.mediumPadding),
+                    child: _buildCategory(context, dish.category),
+                  )
+                ],
+              ),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: App.Dimens.normalPadding),
+            child: _buildArrow(context),
           )
         ],
       ),
@@ -73,7 +83,8 @@ class _DishListPageState extends State<DishListPage> {
   }
 
   Widget _buildDishImage(BuildContext context, String imageUrl) {
-    return Icon(Icons.camera_alt);
+    return Container(
+        decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: NetworkImage(imageUrl))));
   }
 
   Widget _buildDishName(BuildContext context, String name) {
@@ -82,5 +93,14 @@ class _DishListPageState extends State<DishListPage> {
 
   Widget _buildCategory(BuildContext context, String category) {
     return Text(category);
+  }
+
+  Widget _buildArrow(BuildContext context) {
+    return Container(
+        height: App.Dimens.sizeBigIcon,
+        width: App.Dimens.sizeBigIcon,
+        decoration: BoxDecoration(
+            color: App.Colors.dodgerBlue, borderRadius: BorderRadius.circular(App.Dimens.borderRadiusButton)),
+        child: Icon(Icons.arrow_forward, color: App.Colors.white, size: App.Dimens.sizeSmallIcon));
   }
 }
