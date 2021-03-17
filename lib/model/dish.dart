@@ -16,15 +16,15 @@ class Dish {
   Dish.withId(this._id, this._name, this._category,
       this._ingredientList, this._recipe, this._path);
 
-  Dish.fromMapObject(Map<String, dynamic> map) {
+  Dish.fromMapObject(Map<dynamic, dynamic> map) {
     this._id = map['id'];
     this._name = map['name'];
     this._category = map['category'];
     this._ingredientList = map['ingredientList'];
     this._recipe = map['recipe'];
     this._path = map['path'];
-    this._createdAt = map['createdAt'];
-    this._updatedAt = map['updatedAt'];
+    this._createdAt = DateTime.fromMillisecondsSinceEpoch(map['createdAt']);
+    this._updatedAt = DateTime.fromMillisecondsSinceEpoch(map['updatedAt']);
   }
 
   get id => _id;

@@ -17,4 +17,19 @@ class DishRepository implements DishRepositoryType {
         dish.toMap()
     );
   }
+
+  @override
+  Future<List<Dish>> getDishes(bool isMyDishes) async {
+    List<Dish> dishesList = [];
+    if (isMyDishes) {
+      final String userId = _auth.currentUser.uid;
+      DataSnapshot data = await _databaseReference.child("users/$userId/dishes").once();
+      data.value.forEach((index, data) =>
+        dishesList.add(Dish.fromMapObject(data)));
+    } else {
+      DataSnapshot data = await _databaseReference.child("common_dishes").once();
+      data.value.forEach((index, data) => dishesList.add(Dish.fromMapObject(data)));
+    }
+    return dishesList;
+  }
 }
