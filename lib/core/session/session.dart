@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/core/session/session_type.dart';
 import 'package:sqflite_worker/providers/module.dart';
@@ -15,7 +16,7 @@ class Session implements SessionType {
     injector.registerSingleton<LocaleProviderType>(() => LocaleProvider());
     injector.registerSingleton<AuthorizationServiceType>(() => AuthorizationService());
     injector.registerSingleton<UserProviderType>(() => UserProvider());
-    injector.registerSingleton<DishRepositoryType>(
-        () => DishRepository(FirebaseDatabase.instance.reference(), FirebaseAuth.instance));
+    injector.registerSingleton<DishRepositoryType>(() =>
+        DishRepository(FirebaseDatabase.instance.reference(), FirebaseAuth.instance, FirebaseStorage.instance.ref()));
   }
 }

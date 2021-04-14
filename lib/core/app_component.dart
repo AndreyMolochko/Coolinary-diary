@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -26,7 +25,6 @@ class _AppComponentState extends State<AppComponent> {
 
   @override
   void initState() {
-    Firebase.initializeApp();
     _setLanguageIfNeed();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = _onLocaleChange;

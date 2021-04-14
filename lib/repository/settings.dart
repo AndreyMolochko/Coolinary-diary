@@ -1,11 +1,9 @@
 import 'package:sqflite_worker/model/settings.dart';
 
-class SettingsRepository{
+class SettingsRepository {
+  List<SettingsItem> settingsItemsList = new List();
 
-  List<SettingsItem>settingsItemsList = new List();
-
-  SettingsRepository(){
-    settingsItemsList.add(new SettingsItem("language", ["English","Русский","Беларуская"]));
+  SettingsRepository() {
+    settingsItemsList.add(new SettingsItem("language", ["English", "Русский", "Беларуская"]));
   }
-
 }
