@@ -1,9 +1,8 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
-import 'package:sqflite_worker/ui/dish_list/module.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
+import 'package:sqflite_worker/ui/dish_list/module.dart';
 
 class DishListPage extends StatefulWidget {
   final DishListViewModelType dishListViewModel;
@@ -60,6 +59,7 @@ class _DishListPageState extends State<DishListPage> {
                 child: _buildDishImage(context, dish.path),
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: App.Dimens.normalPadding, left: App.Dimens.mediumPadding),
@@ -84,7 +84,10 @@ class _DishListPageState extends State<DishListPage> {
 
   Widget _buildDishImage(BuildContext context, String imageUrl) {
     return Container(
-        decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image: NetworkImage(imageUrl))));
+        width: App.Dimens.sizeDishImageItem,
+        height: App.Dimens.sizeDishImageItem,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle, image: DecorationImage(fit: BoxFit.fill, image: NetworkImage(imageUrl))));
   }
 
   Widget _buildDishName(BuildContext context, String name) {

@@ -13,6 +13,7 @@ class Dimens {
   static const double borderRadiusDishItem = 16.0;
   static const double sizeSmallIcon = 14.0;
   static const double sizeBigIcon = 28.0;
+  static const double sizeDishImageItem = 48.0;
 
   static const double smallFontSize = 14.0;
   static const double normalFontSize = 16.0;
