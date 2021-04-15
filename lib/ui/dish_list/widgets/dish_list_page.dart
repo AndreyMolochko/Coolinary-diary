@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
+import 'package:sqflite_worker/ui/dish_info/module.dart';
 import 'package:sqflite_worker/ui/dish_list/module.dart';
 
 class DishListPage extends StatefulWidget {
@@ -43,42 +44,48 @@ class _DishListPageState extends State<DishListPage> {
   }
 
   Widget _buildDishItem(BuildContext context, Dish dish) {
-    return Container(
-      margin: EdgeInsets.only(
-          top: App.Dimens.smallPadding, left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
-      decoration: BoxDecoration(
-          color: App.Colors.gainsboro, borderRadius: BorderRadius.circular(App.Dimens.borderRadiusDishItem)),
-      height: 72,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: App.Dimens.normalPadding),
-                child: _buildDishImage(context, dish.path),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: App.Dimens.normalPadding, left: App.Dimens.mediumPadding),
-                    child: _buildDishName(context, dish.name),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.mediumPadding),
-                    child: _buildCategory(context, dish.category),
-                  )
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: App.Dimens.normalPadding),
-            child: _buildArrow(context),
-          )
-        ],
+    return GestureDetector(
+      child: Container(
+        margin: EdgeInsets.only(
+            top: App.Dimens.smallPadding, left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
+        decoration: BoxDecoration(
+            color: App.Colors.gainsboro, borderRadius: BorderRadius.circular(App.Dimens.borderRadiusDishItem)),
+        height: 72,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: App.Dimens.normalPadding),
+                  child: _buildDishImage(context, dish.path),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: App.Dimens.normalPadding, left: App.Dimens.mediumPadding),
+                      child: _buildDishName(context, dish.name),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.mediumPadding),
+                      child: _buildCategory(context, dish.category),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: App.Dimens.normalPadding),
+              child: _buildArrow(context),
+            )
+          ],
+        ),
       ),
+      onTap: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => DishInfoPage(DishInfoViewModel())));
+      },
     );
   }
 
