@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
+import 'package:sqflite_worker/ui/dialogs/module.dart';
 import 'package:sqflite_worker/ui/dish_info/module.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
 
@@ -67,7 +68,12 @@ class _DishInfoPageState extends State<DishInfoPage> {
     return IconButton(
         icon: Icon(Icons.delete_rounded),
         onPressed: () {
-          print("click delete");
+          _showDialog(context, "Delete dish", "Do you really want to delete this dish?", [TextButton(onPressed: () {
+            Navigator.of(context).pop();
+          }, child: Text("Cancel")),
+          TextButton(onPressed: () {
+            Navigator.of(context).pop();
+          }, child: Text("Ok"))]);
         });
   }
 
@@ -84,8 +90,8 @@ class _DishInfoPageState extends State<DishInfoPage> {
     return Text("Ingredients: ", style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w400));
   }
 
-  Widget _buildIngredients(BuildContext context, String ingridients) {
-    return Text(ingridients, style: App.TextStyles.normalBlackText);
+  Widget _buildIngredients(BuildContext context, String ingredients) {
+    return Text(ingredients, style: App.TextStyles.normalBlackText);
   }
 
   Widget _buildRecipeLabel(BuildContext context) {
@@ -94,5 +100,10 @@ class _DishInfoPageState extends State<DishInfoPage> {
 
   Widget _buildRecipe(BuildContext context, String recipe) {
     return Text(recipe, style: App.TextStyles.normalBlackText);
+  }
+
+  void _showDialog(BuildContext context, String title, String message, List<Widget> actions) {
+    DialogPresenterType dialogPresenter = DialogPresenter(title, message, actions: actions);
+    dialogPresenter.show(context);
   }
 }
