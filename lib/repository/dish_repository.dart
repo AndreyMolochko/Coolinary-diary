@@ -15,7 +15,7 @@ class DishRepository implements DishRepositoryType {
   DishRepository(this._databaseReference, this._auth, this._storageReference);
 
   @override
-  void addClaim(Dish dish) async {
+  void addDish(Dish dish) async {
     final String userId = _auth.currentUser.uid;
     dish.path = await _uploadFile(userId, File(dish.path));
     _databaseReference.child("users/$userId/dishes").push().set(

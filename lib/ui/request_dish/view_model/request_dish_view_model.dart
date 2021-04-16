@@ -48,6 +48,6 @@ class RequestDishViewModel implements RequestDishViewModelType {
   void saveImagePath(String path) => dish.path = path;
 
   @override
-  void addDish() => _repository.addClaim(dish);
+  void addDish() => _repository.addDish(dish);
 
 }
