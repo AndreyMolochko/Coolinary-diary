@@ -16,8 +16,8 @@ class Dish {
   Dish.withId(this._id, this._name, this._category,
       this._ingredientList, this._recipe, this._path);
 
-  Dish.fromMapObject(Map<dynamic, dynamic> map) {
-    this._id = map['id'];
+  Dish.fromMapObject(String id, Map<dynamic, dynamic> map) {
+    this._id = id;
     this._name = map['name'];
     this._category = map['category'];
     this._ingredientList = map['ingredientList'];

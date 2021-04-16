@@ -83,8 +83,7 @@ class _DishListPageState extends State<DishListPage> {
         ),
       ),
       onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => DishInfoPage(DishInfoViewModel(dish))));
+        widget.dishListViewModel.clickOnItem(context, dish);
       },
     );
   }

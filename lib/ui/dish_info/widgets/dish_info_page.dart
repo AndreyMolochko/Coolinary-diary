@@ -19,7 +19,7 @@ class _DishInfoPageState extends State<DishInfoPage> {
     return Scaffold(
       appBar: AppBar(title: Text(widget._dishInfoViewModel.dish.name), actions: [
         _buildEditButton(context),
-        _buildDeleteButton(context)]),
+        _buildDeleteButton(context, widget._dishInfoViewModel.dish)]),
       body: _buildBody(context, widget._dishInfoViewModel.dish),
     );
   }
@@ -64,7 +64,7 @@ class _DishInfoPageState extends State<DishInfoPage> {
         });
   }
 
-  Widget _buildDeleteButton(BuildContext context) {
+  Widget _buildDeleteButton(BuildContext context, Dish dish) {
     return IconButton(
         icon: Icon(Icons.delete_rounded),
         onPressed: () {
@@ -72,7 +72,7 @@ class _DishInfoPageState extends State<DishInfoPage> {
             Navigator.of(context).pop();
           }, child: Text("Cancel")),
           TextButton(onPressed: () {
-            Navigator.of(context).pop();
+            widget._dishInfoViewModel.onClickDelete(context, dish);
           }, child: Text("Ok"))]);
         });
   }

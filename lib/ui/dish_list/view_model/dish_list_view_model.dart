@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/repository/repositories.dart';
+import 'package:sqflite_worker/ui/dish_info/module.dart';
 import 'package:sqflite_worker/ui/dish_list/module.dart';
 
 class DishListViewModel implements DishListViewModelType {
@@ -28,4 +31,10 @@ class DishListViewModel implements DishListViewModelType {
 
   @override
   Future<List<Dish>> dishesList;
+
+  @override
+  void clickOnItem(BuildContext context, Dish dish) {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => DishInfoPage(DishInfoViewModel(_injector, dish))));
+  }
 }

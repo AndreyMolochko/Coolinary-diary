@@ -30,10 +30,10 @@ class DishRepository implements DishRepositoryType {
       final String userId = _auth.currentUser.uid;
       DataSnapshot data = await _databaseReference.child("users/$userId/dishes").once();
       data.value.forEach((index, data) =>
-        dishesList.add(Dish.fromMapObject(data)));
+        dishesList.add(Dish.fromMapObject(index, data)));
     } else {
       DataSnapshot data = await _databaseReference.child("common_dishes").once();
-      data.value.forEach((index, data) => dishesList.add(Dish.fromMapObject(data)));
+      data.value.forEach((index, data) => dishesList.add(Dish.fromMapObject(index, data)));
     }
     return dishesList;
   }
@@ -43,5 +43,11 @@ class DishRepository implements DishRepositoryType {
     TaskSnapshot storageTaskSnapshot = await uploadTask.whenComplete(() => null);
     String url = await storageTaskSnapshot.ref.getDownloadURL();
     return url;
+  }
+
+  @override
+  void removeDish(Dish dish) async {
+    final String userId = _auth.currentUser.uid;
+    await _databaseReference.child('users/$userId/dishes/${dish.id}').remove();
   }
 }
