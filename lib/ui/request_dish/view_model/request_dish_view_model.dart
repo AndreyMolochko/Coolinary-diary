@@ -29,7 +29,6 @@ class RequestDishViewModel implements RequestDishViewModelType {
   @override
   RequestDishScreenType requestDishScreenType;
 
-
   @override
   Dish dish;
 
