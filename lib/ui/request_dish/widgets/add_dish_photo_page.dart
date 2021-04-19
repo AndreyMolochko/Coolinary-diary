@@ -30,15 +30,17 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Column(
-      children: [
-        _image == null ? _buildStubImage(context) : _buildPickedImage(),
-        Padding(
-          padding: const EdgeInsets.only(
-              left: App.Dimens.normalPadding, right: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
-          child: _buildSaveButton(context),
-        )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _image == null ? _buildStubImage(context) : _buildPickedImage(),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: App.Dimens.normalPadding, right: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
+            child: _buildSaveButton(context),
+          )
+        ],
+      ),
     );
   }
 
