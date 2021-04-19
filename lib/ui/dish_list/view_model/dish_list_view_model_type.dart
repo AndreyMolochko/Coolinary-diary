@@ -3,8 +3,9 @@ import 'package:sqflite_worker/model/module.dart';
 
 abstract class DishListViewModelType {
   String testData;
-  Future<List<Dish>> dishesList;
+  Stream<List<Dish>> get dishesList;
 
   void initState();
   void clickOnItem(BuildContext context, Dish dish);
+  void onDispose();
 }

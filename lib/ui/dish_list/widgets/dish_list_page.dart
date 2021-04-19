@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
-import 'package:sqflite_worker/ui/dish_info/module.dart';
 import 'package:sqflite_worker/ui/dish_list/module.dart';
 
 class DishListPage extends StatefulWidget {
@@ -28,8 +27,8 @@ class _DishListPageState extends State<DishListPage> {
   }
 
   Widget _buildBody(BuildContext context) {
-      return FutureBuilder(
-          future: widget.dishListViewModel.dishesList,
+      return StreamBuilder(
+          stream: widget.dishListViewModel.dishesList,
           builder: (BuildContext context, AsyncSnapshot<List<Dish>> snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(

@@ -24,18 +24,22 @@ class DishRepository implements DishRepositoryType {
   }
 
   @override
-  Future<List<Dish>> getDishes(bool isMyDishes) async {
+  Stream<List<Dish>> getDishes(bool isMyDishes) {
     List<Dish> dishesList = [];
     if (isMyDishes) {
       final String userId = _auth.currentUser.uid;
-      DataSnapshot data = await _databaseReference.child("users/$userId/dishes").once();
-      data.value.forEach((index, data) =>
-        dishesList.add(Dish.fromMapObject(index, data)));
+      return _databaseReference.child("users/$userId/dishes").onValue.map((event) {
+        dishesList.clear();
+        event.snapshot.value.forEach((index, data) => dishesList.add(Dish.fromMapObject(index, data)));
+        return dishesList;
+      });
     } else {
-      DataSnapshot data = await _databaseReference.child("common_dishes").once();
-      data.value.forEach((index, data) => dishesList.add(Dish.fromMapObject(index, data)));
+      return _databaseReference.child("common_dishes").onValue.map((event) {
+        dishesList.clear();
+        event.snapshot.value.forEach((index, data) => dishesList.add(Dish.fromMapObject(index, data)));
+        return dishesList;
+      });
     }
-    return dishesList;
   }
 
   Future<String> _uploadFile(String userId, File image) async {
