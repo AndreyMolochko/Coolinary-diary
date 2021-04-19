@@ -17,6 +17,6 @@ class Session implements SessionType {
     injector.registerSingleton<AuthorizationServiceType>(() => AuthorizationService());
     injector.registerSingleton<UserProviderType>(() => UserProvider());
     injector.registerSingleton<DishRepositoryType>(() =>
-        DishRepository(FirebaseDatabase.instance.reference(), FirebaseAuth.instance, FirebaseStorage.instance.ref()));
+        DishRepository(FirebaseDatabase.instance.reference(), FirebaseAuth.instance, FirebaseStorage.instance));
   }
 }

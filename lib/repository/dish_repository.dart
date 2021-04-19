@@ -10,9 +10,9 @@ import 'repositories.dart';
 class DishRepository implements DishRepositoryType {
   final DatabaseReference _databaseReference;
   final FirebaseAuth _auth;
-  final Reference _storageReference;
+  final FirebaseStorage _firebaseStorage;
 
-  DishRepository(this._databaseReference, this._auth, this._storageReference);
+  DishRepository(this._databaseReference, this._auth, this._firebaseStorage);
 
   @override
   void addDish(Dish dish) async {
@@ -39,15 +39,20 @@ class DishRepository implements DishRepositoryType {
   }
 
   Future<String> _uploadFile(String userId, File image) async {
-    UploadTask uploadTask = _storageReference.child('user_dishes/$userId/${image.path.split('/').last}').putFile(image);
+    UploadTask uploadTask = _firebaseStorage.ref().child('user_dishes/$userId/${image.path.split('/').last}').putFile(image);
     TaskSnapshot storageTaskSnapshot = await uploadTask.whenComplete(() => null);
     String url = await storageTaskSnapshot.ref.getDownloadURL();
     return url;
   }
 
   @override
-  void removeDish(Dish dish) async {
+  Future<void> removeDish(Dish dish) async {
     final String userId = _auth.currentUser.uid;
     await _databaseReference.child('users/$userId/dishes/${dish.id}').remove();
+    await _removeImageFromStorage(dish.path);
+  }
+
+  Future<void> _removeImageFromStorage(String filename) async {
+    await _firebaseStorage.refFromURL(filename).delete();
   }
 }
