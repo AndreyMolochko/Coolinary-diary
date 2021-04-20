@@ -32,6 +32,7 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _image == null ? _buildStubImage(context) : _buildPickedImage(),
           Padding(
@@ -45,13 +46,13 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
   }
 
   Widget _buildStubImage(BuildContext context) {
-    return Expanded(
-        child: GestureDetector(
+    return GestureDetector(
       child: Container(
         width: double.maxFinite,
+        height: MediaQuery.of(context).size.height * 0.75,
         margin: EdgeInsets.only(right: App.Dimens.bigPadding, left: App.Dimens.bigPadding, top: App.Dimens.bigPadding),
         padding: EdgeInsets.only(
-            top: App.Dimens.bigPadding,
+            top: App.Dimens.mediumPadding,
             bottom: App.Dimens.bigPadding,
             left: App.Dimens.normalPadding,
             right: App.Dimens.normalPadding),
@@ -74,7 +75,7 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
       onTap: () async {
         await _showCameraGalleryDialog(context);
       },
-    ));
+    );
   }
 
   Widget _buildPickedImage() {
