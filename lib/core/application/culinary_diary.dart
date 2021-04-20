@@ -28,8 +28,8 @@ class CulinaryDiary implements Application {
     Session session = Session();
     session.registerDependencies(_injector);
     _sharedPreferencesProviderType =
-        _injector.getDependency<SharedPreferencesProviderType>();
-    _userProviderType = _injector.getDependency<UserProviderType>();
+        _injector.get<SharedPreferencesProviderType>();
+    _userProviderType = _injector.get<UserProviderType>();
 
     bool isShowingGuidePage =
         await _sharedPreferencesProviderType.getShowingGuidePage();

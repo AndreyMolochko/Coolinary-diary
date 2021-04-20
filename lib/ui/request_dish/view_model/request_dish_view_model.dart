@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/dish.dart';
+import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/model/request_dish_screen_type.dart';
 import 'package:sqflite_worker/repository/dish_repository_type.dart';
 import 'package:sqflite_worker/ui/request_dish/widgets/add_dish_photo_page.dart';
@@ -37,12 +38,6 @@ class RequestDishViewModel implements RequestDishViewModelType {
   Dish dish;
 
   @override
-  void saveImagePath(String path) => dish.path = path;
-
-  @override
-  void addDish() => _repository.addDish(dish);
-
-  @override
   void clickContinueNameCategory(BuildContext context, String name, String category) {
     dish.name = name;
     dish.category = category;
@@ -54,8 +49,22 @@ class RequestDishViewModel implements RequestDishViewModelType {
   void clickContinueRecipeIngredients(BuildContext context, String ingredients, String recipe) {
     dish.ingredientList = ingredients;
     dish.recipe = recipe;
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => AddDishPhotoPage(this)));
+    if (requestDishScreenType == RequestDishScreenType.addDish) {
+      Navigator
+          .pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => AddDishPhotoPage(this)), ModalRoute.withName('/'));
+    } else if (requestDishScreenType == RequestDishScreenType.updateDish) {
+      Navigator.pushAndRemoveUntil(
+          context, MaterialPageRoute(builder: (context) => AddDishPhotoPage(this)), ModalRoute.withName('/'));
+    }
   }
 
+  @override
+  void clickOnSave(BuildContext context, String path) {
+    dish.path = path;
+    if (requestDishScreenType == RequestDishScreenType.addDish) {
+      _repository.addDish(dish);
+    } else if (requestDishScreenType == RequestDishScreenType.updateDish) {
+      _repository.updateDish(dish);
+    }
+  }
 }

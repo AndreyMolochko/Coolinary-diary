@@ -59,4 +59,10 @@ class DishRepository implements DishRepositoryType {
   Future<void> _removeImageFromStorage(String filename) async {
     await _firebaseStorage.refFromURL(filename).delete();
   }
+
+  @override
+  Future<void> updateDish(Dish dish) async {
+    final String userId = _auth.currentUser.uid;
+    await _databaseReference.child('users/$userId/dishes/${dish.id}').update(dish.toMap());
+  }
 }
