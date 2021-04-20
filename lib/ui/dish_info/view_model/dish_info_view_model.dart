@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
 import 'package:sqflite_worker/model/dish.dart';
+import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/repository/repositories.dart';
 import 'package:sqflite_worker/ui/dish_info/module.dart';
+import 'package:sqflite_worker/ui/request_dish/module.dart';
+import 'package:sqflite_worker/ui/request_dish/widgets/choose_name_and_category_page.dart';
 
 class DishInfoViewModel implements DishInfoViewModelType {
 
@@ -22,5 +25,13 @@ class DishInfoViewModel implements DishInfoViewModelType {
     _repository.removeDish(dish);
     Navigator.of(context).pop();
     Navigator.of(context).pop();
+  }
+
+  @override
+  void onClickUpdate(BuildContext context, Dish dish) {
+    RequestDishViewModelType requestDishViewModel = RequestDishViewModel(
+        _injector, RequestDishScreenType.updateDish);
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => ChooseNameAndCategoryPage(requestDishViewModel)));
   }
 }

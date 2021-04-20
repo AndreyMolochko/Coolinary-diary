@@ -18,7 +18,7 @@ class _DishInfoPageState extends State<DishInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget._dishInfoViewModel.dish.name), actions: [
-        _buildEditButton(context),
+        _buildEditButton(context, widget._dishInfoViewModel.dish),
         _buildDeleteButton(context, widget._dishInfoViewModel.dish)]),
       body: _buildBody(context, widget._dishInfoViewModel.dish),
     );
@@ -56,11 +56,11 @@ class _DishInfoPageState extends State<DishInfoPage> {
     );
   }
 
-  Widget _buildEditButton(BuildContext context) {
+  Widget _buildEditButton(BuildContext context, Dish dish) {
     return IconButton(
         icon: Icon(Icons.edit),
         onPressed: () {
-          print("click edit");
+          widget._dishInfoViewModel.onClickUpdate(context, dish);
         });
   }
 
