@@ -7,10 +7,8 @@ abstract class RequestDishViewModelType {
   Dish dish;
   String getPageTitle(BuildContext context);
   RequestDishScreenType requestDishScreenType;
-  void saveDishName(String name);
-  void saveCategory(String category);
-  void saveIngredients(String ingredients);
-  void saveRecipe(String recipe);
+  void clickContinueNameCategory(BuildContext context, String name, String category);
+  void clickContinueRecipeIngredients(BuildContext context, String ingredients, String recipe);
   void saveImagePath(String path);
   void addDish();
 }

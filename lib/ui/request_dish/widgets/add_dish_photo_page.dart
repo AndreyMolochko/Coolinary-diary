@@ -34,7 +34,7 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _image == null ? _buildStubImage(context) : _buildPickedImage(),
+          _image == null && widget._viewModel.dish.path == null ? _buildStubImage(context) : _buildPickedImage(),
           Padding(
             padding: const EdgeInsets.only(
                 left: App.Dimens.normalPadding, right: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
@@ -86,8 +86,10 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
             bottom: App.Dimens.mediumPadding,
             left: App.Dimens.normalPadding,
             right: App.Dimens.normalPadding),
-        child:
-            ClipRRect(borderRadius: BorderRadius.circular(App.Dimens.borderRadiusAddImage), child: Image.file(_image)),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(App.Dimens.borderRadiusAddImage),
+            child:
+                widget._viewModel.dish.path == null ? Image.file(_image) : Image.network(widget._viewModel.dish.path)),
       ),
       onTap: () async {
         await _showCameraGalleryDialog(context);

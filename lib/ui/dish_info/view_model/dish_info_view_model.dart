@@ -30,7 +30,7 @@ class DishInfoViewModel implements DishInfoViewModelType {
   @override
   void onClickUpdate(BuildContext context, Dish dish) {
     RequestDishViewModelType requestDishViewModel = RequestDishViewModel(
-        _injector, RequestDishScreenType.updateDish);
+        _injector, RequestDishScreenType.updateDish, dish: dish);
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => ChooseNameAndCategoryPage(requestDishViewModel)));
   }

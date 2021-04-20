@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
-import 'package:sqflite_worker/ui/request_dish/widgets/filling_ingredients_and_recipe_page.dart';
 
 import '../module.dart';
 
@@ -17,10 +16,16 @@ class ChooseNameAndCategoryPage extends StatefulWidget {
 
 class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
   final TextEditingController dishNameTextController = TextEditingController();
-  String _radioValue = "soups";
+  String _radioValue;
 
   @override
   Widget build(BuildContext context) {
+    if (_radioValue == null) {
+      _radioValue = widget._viewModel.dish.category != null ? widget._viewModel.dish.category : "soups";
+    }
+    if (dishNameTextController.text.isEmpty) {
+      dishNameTextController.text = widget._viewModel.dish.name != null ? widget._viewModel.dish.name : "";
+    }
     return Scaffold(
         appBar: AppBar(
           title: Text(widget._viewModel.getPageTitle(context)),
@@ -96,10 +101,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
       child: ElevatedButton(
         child: Text(AppTranslations.of(context).text('name_and_category_screen_continue_button')),
         onPressed: () {
-          widget._viewModel.saveDishName(dishNameTextController.text);
-          widget._viewModel.saveCategory(_radioValue);
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => IngredientsAndRecipePage(widget._viewModel)));
+          widget._viewModel.clickContinueNameCategory(context, dishNameTextController.text, _radioValue);
         },
       ),
     );

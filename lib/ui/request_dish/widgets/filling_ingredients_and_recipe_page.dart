@@ -22,6 +22,9 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
 
   @override
   Widget build(BuildContext context) {
+    _ingredientsTextController.text =
+        widget._viewModel.dish.ingredientList != null ? widget._viewModel.dish.ingredientList : "";
+    _recipeTextController.text = widget._viewModel.dish.recipe != null ? widget._viewModel.dish.recipe : "";
     return Scaffold(
         appBar: AppBar(
           title: Text(widget._viewModel.getPageTitle(context)),
@@ -95,10 +98,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
   }
 
   void _continueAction(BuildContext context) {
-    widget._viewModel.saveIngredients(_ingredientsTextController.text);
-    widget._viewModel.saveRecipe(_recipeTextController.text);
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => AddDishPhotoPage(widget._viewModel)));
+    widget._viewModel.clickContinueRecipeIngredients(context, _ingredientsTextController.text, _recipeTextController.text);
   }
 
   void _changeFocusField(BuildContext context, FocusNode currentFocusNode, FocusNode nextFocusNode) {
