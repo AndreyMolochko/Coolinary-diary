@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/ui/home/module.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,13 +12,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-  final List<Tab> tabsList = <Tab>[Tab(text: "My dishes"), Tab(text: "Other dishes")];
+  List<Tab> tabsList;
   TabController _tabController;
 
   @override
   void initState() {
     widget._viewModel.initState();
-    _tabController = TabController(vsync: this, length: tabsList.length);
+    _tabController = TabController(vsync: this, length: 2);
     _tabController.addListener(() {
       setState(() {
         if (_tabController.indexIsChanging) {
@@ -30,6 +31,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    tabsList = <Tab>[
+      Tab(text: AppTranslations.of(context).text('home_screen_my_dishes_title')),
+      Tab(text: AppTranslations.of(context).text('home_screen_others_dishes_title'))
+    ];
     return Scaffold(
       appBar: AppBar(
         bottom: TabBar(

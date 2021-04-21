@@ -31,15 +31,20 @@
   "add_dish_photo_screen_save_button": "Захаваць",
   "ingredients_and_recipe_screen_continue_button": "Далей",
   "name_and_category_screen_continue_button": "Далей",
-  "ingredients_and_recipe_screen_ingredients_text_field": "Iнгрэдыенты:",
+  "ingredients_and_recipe_screen_ingredients_text_field": "Інгрэдыенты:",
   "ingredients_and_recipe_screen_recipe_text_field": "Рэцэпт:",
   "camera_title_add_dish_photo_screen": "Камера",
   "gallery_title_add_dish_photo_screen": "Галерэя",
   "subtitle_add_dish_photo_screen": "Загрузіце фатаграфію стравы ",
+  "title_delete_dialog_dish_info_screen": "Выдаліць страву",
+  "subtitle_delete_dialog_dish_info_screen": "Вы сапраўды жадаеце выдаліць гэтую страву?",
+  "ingredients_label_dish_info_screen": "Інгрэдыенты:",
+  "recipe_label_dish_info_screen": "Рэцэпт:",
 
   "error_title_general_screen": "Памылка",
   "unknown_error_general_screen": "Невядомая памылка :(",
   "ok_message_general_screen": "Добра",
+  "cancel_message_general_screen": "Адмена",
 
 
   "update": "Рэдагаваць",

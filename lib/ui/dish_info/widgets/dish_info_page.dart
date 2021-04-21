@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/ui/dialogs/module.dart';
 import 'package:sqflite_worker/ui/dish_info/module.dart';
@@ -71,12 +72,19 @@ class _DishInfoPageState extends State<DishInfoPage> {
     return IconButton(
         icon: Icon(Icons.delete_rounded),
         onPressed: () {
-          _showDialog(context, "Delete dish", "Do you really want to delete this dish?", [TextButton(onPressed: () {
-            Navigator.of(context).pop();
-          }, child: Text("Cancel")),
-          TextButton(onPressed: () {
-            widget._dishInfoViewModel.onClickDelete(context, dish);
-          }, child: Text("Ok"))]);
+          _showDialog(context, AppTranslations.of(context).text('title_delete_dialog_dish_info_screen'),
+              AppTranslations.of(context).text('subtitle_delete_dialog_dish_info_screen'), [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(AppTranslations.of(context).text('cancel_message_general_screen'))),
+            TextButton(
+                onPressed: () {
+                  widget._dishInfoViewModel.onClickDelete(context, dish);
+                },
+                child: Text(AppTranslations.of(context).text('ok_message_general_screen')))
+          ]);
         });
   }
 
@@ -91,7 +99,8 @@ class _DishInfoPageState extends State<DishInfoPage> {
   }
 
   Widget _buildIngredientsLabel(BuildContext context) {
-    return Text("Ingredients: ", style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w400));
+    return Text(AppTranslations.of(context).text('ingredients_label_dish_info_screen'),
+        style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w400));
   }
 
   Widget _buildIngredients(BuildContext context, String ingredients) {
@@ -99,7 +108,8 @@ class _DishInfoPageState extends State<DishInfoPage> {
   }
 
   Widget _buildRecipeLabel(BuildContext context) {
-    return Text("Recipe: ", style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w400));
+    return Text(AppTranslations.of(context).text('recipe_label_dish_info_screen'),
+        style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w400));
   }
 
   Widget _buildRecipe(BuildContext context, String recipe) {

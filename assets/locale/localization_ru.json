@@ -36,10 +36,15 @@
   "camera_title_add_dish_photo_screen": "Камера",
   "gallery_title_add_dish_photo_screen": "Галерея",
   "subtitle_add_dish_photo_screen": "Загрузите фотографию блюда",
+  "title_delete_dialog_dish_info_screen": "Удалить блюдо",
+  "subtitle_delete_dialog_dish_info_screen": "Вы действительно хотите удалить это блюдо?",
+  "ingredients_label_dish_info_screen": "Ингридиенты:",
+  "recipe_label_dish_info_screen": "Рецепт:",
 
   "error_title_general_screen": "Ошибка",
   "unknown_error_general_screen": "Неизвестная ошибка :(",
   "ok_message_general_screen": "Хорошо",
+  "cancel_message_general_screen": "Отмена",
 
 
   "update": "Редактировать",

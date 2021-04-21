@@ -37,10 +37,15 @@
   "camera_title_add_dish_photo_screen": "Camera",
   "gallery_title_add_dish_photo_screen": "Gallery",
   "subtitle_add_dish_photo_screen": "Upload a dish photo",
+  "title_delete_dialog_dish_info_screen": "Delete dish",
+  "subtitle_delete_dialog_dish_info_screen": "Do you really want to delete this dish?",
+  "ingredients_label_dish_info_screen": "Ingredients:",
+  "recipe_label_dish_info_screen": "Recipe:",
 
   "error_title_general_screen": "Error",
   "unknown_error_general_screen": "Unknown error :(",
   "ok_message_general_screen": "Ok",
+  "cancel_message_general_screen": "Cancel",
 
 
   "update": "Update",
