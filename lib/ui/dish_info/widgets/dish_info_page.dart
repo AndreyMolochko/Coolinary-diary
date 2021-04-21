@@ -85,8 +85,9 @@ class _DishInfoPageState extends State<DishInfoPage> {
         height: 300,
         margin: EdgeInsets.only(
             top: App.Dimens.normalPadding, left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
-        child: ClipRRect(borderRadius: BorderRadius.circular(App.Dimens.borderRadiusAddImage), child: Image.network(url))
-    );
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(App.Dimens.borderRadiusAddImage),
+            child: FadeInImage.assetNetwork(placeholder: 'assets/loading.gif', image: url)));
   }
 
   Widget _buildIngredientsLabel(BuildContext context) {

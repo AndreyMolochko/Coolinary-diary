@@ -76,6 +76,7 @@ flutter:
     - assets/linkedin.png
     - assets/skype.png
     - assets/icon_food.svg
+    - assets/loading.gif
 
   # To add assets to your application, add an assets section, like this:
   # assets:

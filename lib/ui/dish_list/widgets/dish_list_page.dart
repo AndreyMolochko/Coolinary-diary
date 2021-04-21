@@ -99,8 +99,9 @@ class _DishListPageState extends State<DishListPage> {
     return Container(
         width: App.Dimens.sizeDishImageItem,
         height: App.Dimens.sizeDishImageItem,
-        decoration: BoxDecoration(
-            shape: BoxShape.circle, image: DecorationImage(fit: BoxFit.fill, image: NetworkImage(imageUrl))));
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(App.Dimens.sizeDishImageItem / 2.0),
+            child: FadeInImage.assetNetwork(placeholder: 'assets/loading.gif', image: imageUrl)));
   }
 
   Widget _buildDishName(BuildContext context, String name) {
