@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/resourses/module.dart' as App;
 import 'package:sqflite_worker/ui/dish_list/module.dart';
+import 'package:sqflite_worker/ui/dish_list/widgets/stub_view_list_page.dart';
 
 class DishListPage extends StatefulWidget {
   final DishListViewModelType dishListViewModel;
@@ -45,7 +46,7 @@ class _DishListPageState extends State<DishListPage> {
                     return _buildDishItem(context, snapshot.data[index]);
                   });
             } else {
-              return Center(child: CircularProgressIndicator());
+              return StubViewListPage();
             }
           });
   }
