@@ -59,12 +59,12 @@ class RequestDishViewModel implements RequestDishViewModelType {
   }
 
   @override
-  void clickOnSave(BuildContext context, String path) {
+  void clickOnSave(BuildContext context, String path, String previousFilename) {
     dish.path = path;
     if (requestDishScreenType == RequestDishScreenType.addDish) {
       _repository.addDish(dish);
     } else if (requestDishScreenType == RequestDishScreenType.updateDish) {
-      _repository.updateDish(dish);
+      _repository.updateDish(dish, previousFilename);
     }
   }
 }

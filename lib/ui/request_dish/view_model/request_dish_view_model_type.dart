@@ -9,5 +9,5 @@ abstract class RequestDishViewModelType {
   RequestDishScreenType requestDishScreenType;
   void clickContinueNameCategory(BuildContext context, String name, String category);
   void clickContinueRecipeIngredients(BuildContext context, String ingredients, String recipe);
-  void clickOnSave(BuildContext context, String path);
+  void clickOnSave(BuildContext context, String path, String previousFilename);
 }

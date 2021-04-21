@@ -38,7 +38,7 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
           Padding(
             padding: const EdgeInsets.only(
                 left: App.Dimens.normalPadding, right: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
-            child: _buildSaveButton(context),
+            child: _buildSaveButton(context, widget._viewModel.dish.path),
           )
         ],
       ),
@@ -89,7 +89,7 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
         child: ClipRRect(
             borderRadius: BorderRadius.circular(App.Dimens.borderRadiusAddImage),
             child:
-                widget._viewModel.dish.path == null ? Image.file(_image) : Image.network(widget._viewModel.dish.path)),
+                widget._viewModel.dish.path == null || _image != null ? Image.file(_image) : Image.network(widget._viewModel.dish.path)),
       ),
       onTap: () async {
         await _showCameraGalleryDialog(context);
@@ -97,13 +97,13 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
     );
   }
 
-  Widget _buildSaveButton(BuildContext context) {
+  Widget _buildSaveButton(BuildContext context, String path) {
     return Container(
       width: double.infinity,
       child: ElevatedButton(
         child: Text(AppTranslations.of(context).text('add_dish_photo_screen_save_button')),
         onPressed: () {
-          widget._viewModel.clickOnSave(context, _image != null ? _image.path : widget._viewModel.dish.path);
+          widget._viewModel.clickOnSave(context, _image != null ? _image.path : path, path != null ? path : "");
           Navigator.of(context).pop();
         },
       ),

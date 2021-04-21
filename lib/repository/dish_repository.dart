@@ -61,8 +61,12 @@ class DishRepository implements DishRepositoryType {
   }
 
   @override
-  Future<void> updateDish(Dish dish) async {
+  Future<void> updateDish(Dish dish, String previousFilename) async {
     final String userId = _auth.currentUser.uid;
+    if (dish.path != previousFilename) {
+      await _removeImageFromStorage(previousFilename);
+      dish.path = await _uploadFile(userId, File(dish.path));
+    }
     await _databaseReference.child('users/$userId/dishes/${dish.id}').update(dish.toMap());
   }
 }
