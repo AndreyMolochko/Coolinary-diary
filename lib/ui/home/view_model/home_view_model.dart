@@ -28,7 +28,10 @@ class HomeViewModel implements HomeViewModelType {
     myDishListViewModel = DishListViewModel(_injector, RequestDishListType.myDishes);
     otherDishListViewModel = DishListViewModel(_injector, RequestDishListType.otherDishes);
 
-    tabBarViews = [DishListPage(myDishListViewModel), DishListPage(otherDishListViewModel)];
+    tabBarViews = [
+      DishListPage(myDishListViewModel, RequestDishListType.myDishes),
+      DishListPage(otherDishListViewModel, RequestDishListType.otherDishes)
+    ];
   }
 
   @override

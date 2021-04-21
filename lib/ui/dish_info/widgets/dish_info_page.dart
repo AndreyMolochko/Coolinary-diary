@@ -18,8 +18,11 @@ class _DishInfoPageState extends State<DishInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget._dishInfoViewModel.dish.name), actions: [
-        _buildEditButton(context, widget._dishInfoViewModel.dish),
-        _buildDeleteButton(context, widget._dishInfoViewModel.dish)]),
+        if (widget._dishInfoViewModel.requestDishListType == RequestDishListType.myDishes)
+          _buildEditButton(context, widget._dishInfoViewModel.dish),
+        if (widget._dishInfoViewModel.requestDishListType == RequestDishListType.myDishes)
+          _buildDeleteButton(context, widget._dishInfoViewModel.dish)
+      ]),
       body: _buildBody(context, widget._dishInfoViewModel.dish),
     );
   }

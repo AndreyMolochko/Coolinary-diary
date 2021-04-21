@@ -40,8 +40,8 @@ class DishListViewModel implements DishListViewModelType {
   Stream<List<Dish>> get dishesList => _dishListController.stream;
 
   @override
-  void clickOnItem(BuildContext context, Dish dish) {
-    Navigator.of(context).pushNamed('/dish_info', arguments: DishInfoViewModel(_injector, dish));
+  void clickOnItem(BuildContext context, Dish dish, RequestDishListType type) {
+    Navigator.of(context).pushNamed('/dish_info', arguments: DishInfoViewModel(_injector, dish, type));
   }
 
   @override

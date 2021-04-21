@@ -6,6 +6,6 @@ abstract class DishListViewModelType {
   Stream<List<Dish>> get dishesList;
 
   void initState();
-  void clickOnItem(BuildContext context, Dish dish);
+  void clickOnItem(BuildContext context, Dish dish, RequestDishListType type);
   void onDispose();
 }

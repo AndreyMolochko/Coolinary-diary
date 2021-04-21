@@ -3,6 +3,7 @@ import 'package:sqflite_worker/model/module.dart';
 
 abstract class DishInfoViewModelType {
   Dish dish;
+  RequestDishListType requestDishListType;
 
   void onClickUpdate(BuildContext context, Dish dish);
   void onClickDelete(BuildContext context, Dish dish);

@@ -6,8 +6,9 @@ import 'package:sqflite_worker/ui/dish_list/module.dart';
 
 class DishListPage extends StatefulWidget {
   final DishListViewModelType dishListViewModel;
+  final RequestDishListType dishListType;
 
-  DishListPage(this.dishListViewModel);
+  DishListPage(this.dishListViewModel, this.dishListType);
 
   @override
   _DishListPageState createState() => _DishListPageState();
@@ -89,7 +90,7 @@ class _DishListPageState extends State<DishListPage> {
         ),
       ),
       onTap: () {
-        widget.dishListViewModel.clickOnItem(context, dish);
+        widget.dishListViewModel.clickOnItem(context, dish, widget.dishListType);
       },
     );
   }

@@ -12,9 +12,10 @@ class DishInfoViewModel implements DishInfoViewModelType {
   final Injector _injector;
   DishRepositoryType _repository;
 
-  DishInfoViewModel(this._injector, Dish dish) {
+  DishInfoViewModel(this._injector, Dish dish, RequestDishListType type) {
     _repository = _injector.get<DishRepositoryType>();
     this.dish = dish;
+    requestDishListType = type;
   }
 
   @override
@@ -34,4 +35,7 @@ class DishInfoViewModel implements DishInfoViewModelType {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => ChooseNameAndCategoryPage(requestDishViewModel)));
   }
+
+  @override
+  RequestDishListType requestDishListType;
 }
