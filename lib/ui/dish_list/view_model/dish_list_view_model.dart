@@ -29,7 +29,6 @@ class DishListViewModel implements DishListViewModelType {
       testData = "My dishes";
     } else if (_dishListType == RequestDishListType.otherDishes) {
       _repository.getDishes(false).listen((dishesList) {
-        dishesList.clear();
         _dishListController.sink.add(dishesList);
       });
       testData = "Other dishes";
