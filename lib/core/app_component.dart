@@ -5,6 +5,11 @@ import 'package:sqflite_worker/core/app_provider.dart';
 import 'package:sqflite_worker/core/application/culinary_diary.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/localization/app_translations_delegate.dart';
+import 'package:sqflite_worker/ui/authorization/module.dart';
+import 'package:sqflite_worker/ui/dish_info/module.dart';
+import 'package:sqflite_worker/ui/guide/module.dart';
+import 'package:sqflite_worker/ui/home/module.dart';
+import 'package:sqflite_worker/ui/home/widgets/home_page.dart';
 
 import '../applications.dart';
 
@@ -54,6 +59,7 @@ class _AppComponentState extends State<AppComponent> {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
+      onGenerateRoute: onGenerateRoute,
       supportedLocales: application.supportedLocales()
     );
     return AppProvider(app, _application);
@@ -69,5 +75,23 @@ class _AppComponentState extends State<AppComponent> {
     AppTranslations.getCurrentLanguage().then((currentLanguage) {
       application.onLocaleChanged(Locale(currentLanguage));
     });
+  }
+
+  Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/guide':
+        return MaterialPageRoute(
+            builder: (BuildContext context) => GuidePage(settings.arguments as GuideViewModelType));
+      case '/home':
+        return MaterialPageRoute(builder: (BuildContext context) => HomePage(settings.arguments as HomeViewModelType));
+      case '/authorization':
+        return MaterialPageRoute(
+            builder: (BuildContext context) => AuthorizationPage(settings.arguments as AuthorizationViewModelType));
+      case '/dish_info':
+        return MaterialPageRoute(
+            builder: (BuildContext context) => DishInfoPage(settings.arguments as DishInfoViewModelType));
+      default:
+        return null;
+    }
   }
 }

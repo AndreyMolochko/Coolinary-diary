@@ -41,8 +41,7 @@ class DishListViewModel implements DishListViewModelType {
 
   @override
   void clickOnItem(BuildContext context, Dish dish) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => DishInfoPage(DishInfoViewModel(_injector, dish))));
+    Navigator.of(context).pushNamed('/dish_info', arguments: DishInfoViewModel(_injector, dish));
   }
 
   @override

@@ -53,8 +53,8 @@ class RequestDishViewModel implements RequestDishViewModelType {
       Navigator
           .pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => AddDishPhotoPage(this)), ModalRoute.withName('/'));
     } else if (requestDishScreenType == RequestDishScreenType.updateDish) {
-      Navigator.pushAndRemoveUntil(
-          context, MaterialPageRoute(builder: (context) => AddDishPhotoPage(this)), ModalRoute.withName('/'));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => AddDishPhotoPage(this)));
     }
   }
 
@@ -65,6 +65,8 @@ class RequestDishViewModel implements RequestDishViewModelType {
       _repository.addDish(dish);
     } else if (requestDishScreenType == RequestDishScreenType.updateDish) {
       _repository.updateDish(dish, previousFilename);
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/dish_info', ModalRoute.withName('/'), arguments: this);
     }
   }
 }
