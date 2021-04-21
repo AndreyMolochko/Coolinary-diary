@@ -41,6 +41,7 @@
   "subtitle_delete_dialog_dish_info_screen": "Do you really want to delete this dish?",
   "ingredients_label_dish_info_screen": "Ingredients:",
   "recipe_label_dish_info_screen": "Recipe:",
+  "label_stub_view_dish_list_screen": "You don't have any dishes, for dishes addition you have to click on +",
 
   "error_title_general_screen": "Error",
   "unknown_error_general_screen": "Unknown error :(",

@@ -40,6 +40,7 @@
   "subtitle_delete_dialog_dish_info_screen": "Вы действительно хотите удалить это блюдо?",
   "ingredients_label_dish_info_screen": "Ингридиенты:",
   "recipe_label_dish_info_screen": "Рецепт:",
+  "label_stub_view_dish_list_screen": "У вас нет блюд. Чтобы добавить блюдо вам нужно нажать на +",
 
   "error_title_general_screen": "Ошибка",
   "unknown_error_general_screen": "Неизвестная ошибка :(",

@@ -40,6 +40,7 @@
   "subtitle_delete_dialog_dish_info_screen": "Вы сапраўды жадаеце выдаліць гэтую страву?",
   "ingredients_label_dish_info_screen": "Інгрэдыенты:",
   "recipe_label_dish_info_screen": "Рэцэпт:",
+  "label_stub_view_dish_list_screen": "У вас няма страў. Каб дадаць страву вам трэба націснуць на +",
 
   "error_title_general_screen": "Памылка",
   "unknown_error_general_screen": "Невядомая памылка :(",
