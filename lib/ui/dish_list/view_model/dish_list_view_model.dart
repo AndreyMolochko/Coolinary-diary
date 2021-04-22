@@ -13,9 +13,6 @@ class DishListViewModel implements DishListViewModelType {
   DishRepositoryType _repository;
   final _dishListController = BehaviorSubject<List<Dish>>();
 
-  @override
-  String testData;
-
   DishListViewModel(this._injector, this._dishListType) {
     _repository = _injector.get<DishRepositoryType>();
   }
@@ -26,12 +23,10 @@ class DishListViewModel implements DishListViewModelType {
       _repository.getDishes(true).listen((dishesList) {
         _dishListController.sink.add(dishesList);
       });
-      testData = "My dishes";
     } else if (_dishListType == RequestDishListType.otherDishes) {
       _repository.getDishes(false).listen((dishesList) {
         _dishListController.sink.add(dishesList);
       });
-      testData = "Other dishes";
     }
   }
 

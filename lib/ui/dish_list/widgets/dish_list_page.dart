@@ -31,8 +31,8 @@ class _DishListPageState extends State<DishListPage> {
   @override
   @mustCallSuper
   void dispose() {
-    widget.dishListViewModel.onDispose();
     super.dispose();
+    widget.dishListViewModel.onDispose();
   }
 
   Widget _buildBody(BuildContext context) {

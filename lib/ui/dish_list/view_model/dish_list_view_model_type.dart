@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:sqflite_worker/model/module.dart';
 
 abstract class DishListViewModelType {
-  String testData;
   Stream<List<Dish>> get dishesList;
 
   void initState();

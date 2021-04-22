@@ -142,7 +142,10 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       stream: widget._authorizationViewModel.isLoading,
       builder: (context, snapshot) {
         if (snapshot.data == true) {
-          return CircularProgressIndicator();
+          return Padding(
+            padding: const EdgeInsets.only(top: App.Dimens.smallPadding, bottom: App.Dimens.smallPadding),
+            child: CircularProgressIndicator(),
+          );
         } else {
           return _buildAuthorizationButton(context);
         }
