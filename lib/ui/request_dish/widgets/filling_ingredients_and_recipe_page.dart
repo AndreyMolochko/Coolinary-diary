@@ -25,6 +25,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
         widget._viewModel.dish.ingredientList != null ? widget._viewModel.dish.ingredientList : "";
     _recipeTextController.text = widget._viewModel.dish.recipe != null ? widget._viewModel.dish.recipe : "";
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(widget._viewModel.getPageTitle(context)),
         ),

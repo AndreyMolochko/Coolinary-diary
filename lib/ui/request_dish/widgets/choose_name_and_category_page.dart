@@ -27,6 +27,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
       dishNameTextController.text = widget._viewModel.dish.name != null ? widget._viewModel.dish.name : "";
     }
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(widget._viewModel.getPageTitle(context)),
         ),
