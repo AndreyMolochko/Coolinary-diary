@@ -52,8 +52,8 @@ class DishRepository implements DishRepositoryType {
   @override
   Future<void> removeDish(Dish dish) async {
     final String userId = _auth.currentUser.uid;
-    await _databaseReference.child('users/$userId/dishes/${dish.id}').remove();
     await _removeImageFromStorage(dish.path);
+    return await _databaseReference.child('users/$userId/dishes/${dish.id}').remove();
   }
 
   Future<void> _removeImageFromStorage(String filename) async {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/repository/repositories.dart';
@@ -11,11 +12,13 @@ class DishInfoViewModel implements DishInfoViewModelType {
 
   final Injector _injector;
   DishRepositoryType _repository;
+  final _isLoadingController = BehaviorSubject<bool>();
 
   DishInfoViewModel(this._injector, Dish dish, RequestDishListType type) {
     _repository = _injector.get<DishRepositoryType>();
     this.dish = dish;
     requestDishListType = type;
+    _isLoadingController.sink.add(false);
   }
 
   @override
@@ -23,9 +26,15 @@ class DishInfoViewModel implements DishInfoViewModelType {
 
   @override
   void onClickDelete(BuildContext context, Dish dish) {
-    _repository.removeDish(dish);
     Navigator.of(context).pop();
-    Navigator.of(context).pop();
+    _repository.removeDish(dish).then((value) {
+      _isLoadingController.sink.add(true);
+    }).whenComplete(() {
+      _isLoadingController.sink.add(false);
+      Navigator.of(context).pop();
+    }).onError((error, stackTrace) {
+      _isLoadingController.sink.add(false);
+    });
   }
 
   @override
@@ -38,4 +47,12 @@ class DishInfoViewModel implements DishInfoViewModelType {
 
   @override
   RequestDishListType requestDishListType;
+
+  @override
+  Stream<bool> get isLoading => _isLoadingController.stream;
+
+  @override
+  void dispose() {
+    _isLoadingController.close();
+  }
 }

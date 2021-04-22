@@ -18,14 +18,29 @@ class _DishInfoPageState extends State<DishInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget._dishInfoViewModel.dish.name), actions: [
-        if (widget._dishInfoViewModel.requestDishListType == RequestDishListType.myDishes)
-          _buildEditButton(context, widget._dishInfoViewModel.dish),
-        if (widget._dishInfoViewModel.requestDishListType == RequestDishListType.myDishes)
-          _buildDeleteButton(context, widget._dishInfoViewModel.dish)
-      ]),
-      body: _buildBody(context, widget._dishInfoViewModel.dish),
-    );
+        appBar: AppBar(title: Text(widget._dishInfoViewModel.dish.name), actions: [
+          if (widget._dishInfoViewModel.requestDishListType == RequestDishListType.myDishes)
+            _buildEditButton(context, widget._dishInfoViewModel.dish),
+          if (widget._dishInfoViewModel.requestDishListType == RequestDishListType.myDishes)
+            _buildDeleteButton(context, widget._dishInfoViewModel.dish)
+        ]),
+        body: StreamBuilder(
+          stream: widget._dishInfoViewModel.isLoading,
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.hasData && snapshot.data) {
+              return CircularProgressIndicator();
+            } else {
+              return _buildBody(context, widget._dishInfoViewModel.dish);
+            }
+          },
+        ));
+  }
+
+  @override
+  @mustCallSuper
+  void dispose() {
+    super.dispose();
+    widget._dishInfoViewModel.dispose();
   }
 
   Widget _buildBody(BuildContext context, Dish dish) {
