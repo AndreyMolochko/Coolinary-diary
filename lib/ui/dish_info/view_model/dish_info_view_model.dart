@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sqflite_worker/model/dish.dart';
 import 'package:sqflite_worker/model/module.dart';
 import 'package:sqflite_worker/repository/repositories.dart';
+import 'package:sqflite_worker/ui/dialogs/module.dart';
 import 'package:sqflite_worker/ui/dish_info/module.dart';
 import 'package:sqflite_worker/ui/request_dish/module.dart';
 import 'package:sqflite_worker/ui/request_dish/widgets/choose_name_and_category_page.dart';
@@ -34,6 +35,7 @@ class DishInfoViewModel implements DishInfoViewModelType {
       Navigator.of(context).pop();
     }).onError((error, stackTrace) {
       _isLoadingController.sink.add(false);
+      _showDialog("", error, context);
     });
   }
 
@@ -54,5 +56,10 @@ class DishInfoViewModel implements DishInfoViewModelType {
   @override
   void dispose() {
     _isLoadingController.close();
+  }
+
+  void _showDialog(String title, String message, BuildContext context) {
+    DialogPresenterType dialogPresenter = DialogPresenter(title, message);
+    dialogPresenter.show(context);
   }
 }
