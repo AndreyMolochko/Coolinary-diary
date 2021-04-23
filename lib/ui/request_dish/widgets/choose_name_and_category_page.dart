@@ -35,27 +35,30 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            top: App.Dimens.normalPadding,
-            left: App.Dimens.bigPadding,
-            right: App.Dimens.bigPadding,
+    return Container(
+      decoration: App.Shapes.whiteGradient,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: App.Dimens.normalPadding,
+              left: App.Dimens.bigPadding,
+              right: App.Dimens.bigPadding,
+            ),
+            child: _buildDishName(context),
           ),
-          child: _buildDishName(context),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-              top: App.Dimens.normalPadding, left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
-          child: _buildRadioButtons(context),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-              left: App.Dimens.mediumPadding, right: App.Dimens.mediumPadding, top: App.Dimens.smallPadding),
-          child: _buildContinueButton(context),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.only(
+                top: App.Dimens.normalPadding, left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
+            child: _buildRadioButtons(context),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: App.Dimens.mediumPadding, right: App.Dimens.mediumPadding, top: App.Dimens.smallPadding),
+            child: _buildContinueButton(context),
+          )
+        ],
+      ),
     );
   }
 

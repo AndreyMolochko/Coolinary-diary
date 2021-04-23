@@ -33,19 +33,22 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(child: _buildIngredientsList(context), flex: 1),
-        Expanded(child: _buildRecipe(context), flex: 1),
-        Padding(
-          padding: const EdgeInsets.only(
-              top: App.Dimens.normalPadding,
-              left: App.Dimens.normalPadding,
-              right: App.Dimens.normalPadding,
-              bottom: App.Dimens.smallPadding),
-          child: _buildContinueButton(context),
-        )
-      ],
+    return Container(
+      decoration: App.Shapes.whiteGradient,
+      child: Column(
+        children: [
+          Expanded(child: _buildIngredientsList(context), flex: 1),
+          Expanded(child: _buildRecipe(context), flex: 1),
+          Padding(
+            padding: const EdgeInsets.only(
+                top: App.Dimens.normalPadding,
+                left: App.Dimens.normalPadding,
+                right: App.Dimens.normalPadding,
+                bottom: App.Dimens.smallPadding),
+            child: _buildContinueButton(context),
+          )
+        ],
+      ),
     );
   }
 

@@ -36,7 +36,9 @@ class _DishListPageState extends State<DishListPage> {
   }
 
   Widget _buildBody(BuildContext context) {
-      return StreamBuilder(
+    return Container(
+      decoration: App.Shapes.whiteGradient,
+      child: StreamBuilder(
           stream: widget.dishListViewModel.dishesList,
           builder: (BuildContext context, AsyncSnapshot<List<Dish>> snapshot) {
             if (snapshot.hasData) {
@@ -48,7 +50,8 @@ class _DishListPageState extends State<DishListPage> {
             } else {
               return StubViewListPage();
             }
-          });
+          }),
+    );
   }
 
   Widget _buildDishItem(BuildContext context, Dish dish) {

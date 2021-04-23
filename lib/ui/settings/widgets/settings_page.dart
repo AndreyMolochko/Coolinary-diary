@@ -37,21 +37,24 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return StreamBuilder(
-        stream: widget._viewModel.items,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<SettingsItem> listSettingsItems = snapshot.data;
-            return ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return _buildListItem(listSettingsItems[index], context);
-              },
-              itemCount: listSettingsItems == null ? 0 : listSettingsItems.length,
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        });
+    return Container(
+      decoration: App.Shapes.whiteGradient,
+      child: StreamBuilder(
+          stream: widget._viewModel.items,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<SettingsItem> listSettingsItems = snapshot.data;
+              return ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildListItem(listSettingsItems[index], context);
+                },
+                itemCount: listSettingsItems == null ? 0 : listSettingsItems.length,
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          }),
+    );
   }
 
   Widget _buildListItem(SettingsItem settingsItem, BuildContext context) {

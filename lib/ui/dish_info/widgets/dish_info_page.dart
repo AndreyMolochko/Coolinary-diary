@@ -24,15 +24,18 @@ class _DishInfoPageState extends State<DishInfoPage> {
           if (widget._dishInfoViewModel.requestDishListType == RequestDishListType.myDishes)
             _buildDeleteButton(context, widget._dishInfoViewModel.dish)
         ]),
-        body: StreamBuilder(
-          stream: widget._dishInfoViewModel.isLoading,
-          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            if (snapshot.hasData && snapshot.data) {
-              return CircularProgressIndicator();
-            } else {
-              return _buildBody(context, widget._dishInfoViewModel.dish);
-            }
-          },
+        body: Container(
+          decoration: App.Shapes.whiteGradient,
+          child: StreamBuilder(
+            stream: widget._dishInfoViewModel.isLoading,
+            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              if (snapshot.hasData && snapshot.data) {
+                return CircularProgressIndicator();
+              } else {
+                return _buildBody(context, widget._dishInfoViewModel.dish);
+              }
+            },
+          ),
         ));
   }
 
@@ -45,32 +48,35 @@ class _DishInfoPageState extends State<DishInfoPage> {
 
   Widget _buildBody(BuildContext context, Dish dish) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildDishImage(context, dish.path),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-            child: _buildIngredientsLabel(context),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-            child: _buildIngredients(context, dish.ingredientList),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-            child: _buildRecipeLabel(context),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-            child: _buildRecipe(context, dish.recipe),
-          )
-        ],
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildDishImage(context, dish.path),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+              child: _buildIngredientsLabel(context),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+              child: _buildIngredients(context, dish.ingredientList),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+              child: _buildRecipeLabel(context),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+              child: _buildRecipe(context, dish.recipe),
+            )
+          ],
+        ),
       ),
     );
   }

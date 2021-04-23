@@ -43,17 +43,20 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   }
 
   Widget _buildBody() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        _buildEmailTextField(),
-        _buildPasswordTextField(),
-        if(widget._authorizationViewModel.isSignUpScreen)
-          _buildRepeatedPasswordTextField(),
-        _buildAuthorization(context),
-        _buildNavigationText(context),
-      ],
+    return Container(
+      decoration: App.Shapes.whiteGradient,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          _buildEmailTextField(),
+          _buildPasswordTextField(),
+          if(widget._authorizationViewModel.isSignUpScreen)
+            _buildRepeatedPasswordTextField(),
+          _buildAuthorization(context),
+          _buildNavigationText(context),
+        ],
+      ),
     );
   }
 

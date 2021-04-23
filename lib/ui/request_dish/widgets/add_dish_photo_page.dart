@@ -31,16 +31,19 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
 
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _image == null && widget._viewModel.dish.path == null ? _buildStubImage(context) : _buildPickedImage(),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: App.Dimens.normalPadding, right: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
-            child: _buildSaveButton(context, widget._viewModel.dish.path),
-          )
-        ],
+      child: Container(
+        decoration: App.Shapes.whiteGradient,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _image == null && widget._viewModel.dish.path == null ? _buildStubImage(context) : _buildPickedImage(),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: App.Dimens.normalPadding, right: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
+              child: _buildSaveButton(context, widget._viewModel.dish.path),
+            )
+          ],
+        ),
       ),
     );
   }
