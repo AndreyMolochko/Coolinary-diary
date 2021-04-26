@@ -92,7 +92,11 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
     return Container(
       width: double.infinity,
       child: ElevatedButton(
-        child: Text(AppTranslations.of(context).text('ingredients_and_recipe_screen_continue_button')),
+        child: Text(AppTranslations.of(context).text('ingredients_and_recipe_screen_continue_button'),
+            style: App.TextStyles.normalBlackText),
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
+            backgroundColor: MaterialStateProperty.all(Colors.transparent)),
         onPressed: () {
           _continueAction(context);
         },

@@ -6,7 +6,7 @@ class Shapes {
       borderRadius: BorderRadius.circular(App.Dimens.borderRadiusButton), side: BorderSide(color: App.Colors.white));
 
   static RoundedRectangleBorder secondaryButton = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(App.Dimens.borderRadiusButton), side: BorderSide(color: App.Colors.black));
+      borderRadius: BorderRadius.circular(App.Dimens.borderRadiusButton), side: BorderSide(color: App.Colors.prussianBlue));
 
   static BoxDecoration whiteGradient = BoxDecoration(
       gradient: LinearGradient(

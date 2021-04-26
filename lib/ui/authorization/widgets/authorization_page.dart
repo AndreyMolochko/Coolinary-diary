@@ -33,7 +33,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       appBar: AppBar(title: Text(AppTranslations.of(context).text(
           widget._authorizationViewModel.titleScreen))),
       body: _buildBody(),
-      backgroundColor: App.Colors.white,);
+      backgroundColor: App.Colors.white);
   }
 
   @override
@@ -163,12 +163,12 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: Container(
+        decoration: App.Shapes.whiteGradient,
         width: double.maxFinite,
         child: RaisedButton(
           child: Text(AppTranslations.of(context).text(
               widget._authorizationViewModel.textAuthorizationButton),
             style: App.TextStyles.normalBlackText,),
-          color: App.Colors.white,
           shape: App.Shapes.secondaryButton,
           onPressed: () {
             widget._authorizationViewModel.onClickAuthorization(

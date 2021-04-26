@@ -30,19 +30,24 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        decoration: App.Shapes.whiteGradient,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _image == null && widget._viewModel.dish.path == null ? _buildStubImage(context) : _buildPickedImage(),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: App.Dimens.normalPadding, right: App.Dimens.normalPadding, bottom: App.Dimens.smallPadding),
-              child: _buildSaveButton(context, widget._viewModel.dish.path),
-            )
-          ],
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+      child: SingleChildScrollView(
+        child: Container(
+          decoration: App.Shapes.whiteGradient,
+          child: Column(
+            children: [
+              _image == null && widget._viewModel.dish.path == null ? _buildStubImage(context) : _buildPickedImage(),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: App.Dimens.normalPadding,
+                    left: App.Dimens.normalPadding,
+                    right: App.Dimens.normalPadding,
+                    bottom: App.Dimens.smallPadding),
+                child: _buildSaveButton(context, widget._viewModel.dish.path),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -86,7 +91,6 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
       child: Padding(
         padding: const EdgeInsets.only(
             top: App.Dimens.normalPadding,
-            bottom: App.Dimens.mediumPadding,
             left: App.Dimens.normalPadding,
             right: App.Dimens.normalPadding),
         child: ClipRRect(
@@ -104,7 +108,11 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
     return Container(
       width: double.infinity,
       child: ElevatedButton(
-        child: Text(AppTranslations.of(context).text('add_dish_photo_screen_save_button')),
+        child: Text(AppTranslations.of(context).text('add_dish_photo_screen_save_button'),
+            style: App.TextStyles.normalBlackText),
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
+            backgroundColor: MaterialStateProperty.all(Colors.transparent)),
         onPressed: () {
           widget._viewModel.clickOnSave(context, _image != null ? _image.path : path, path != null ? path : "");
           Navigator.of(context).pop();
