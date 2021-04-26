@@ -17,7 +17,7 @@ class ChooseNameAndCategoryPage extends StatefulWidget {
 class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
   final TextEditingController dishNameTextController = TextEditingController();
   String _radioValue;
-  bool _isPressed;
+  bool _isEnabledButton;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
     if (dishNameTextController.text.isEmpty) {
       dishNameTextController.text = widget._viewModel.dish.name != null ? widget._viewModel.dish.name : "";
     }
-    _isPressed = dishNameTextController.text.trim().isNotEmpty;
+    _isEnabledButton = dishNameTextController.text.trim().isNotEmpty;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -66,7 +66,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
 
   Widget _buildDishName(BuildContext context) {
     return TextFormField(
-      onChanged: _initValidateFields,
+      onChanged: _validateFields,
       controller: dishNameTextController,
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
@@ -111,16 +111,16 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
         style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
             backgroundColor: MaterialStateProperty.all(Colors.transparent)),
-        onPressed: _isPressed ? () {
+        onPressed: _isEnabledButton ? () {
           widget._viewModel.clickContinueNameCategory(context, dishNameTextController.text, _radioValue);
         } : null,
       ),
     );
   }
 
-  bool _initValidateFields(String text) {
+  void _validateFields(String text) {
     setState(() {
-      _isPressed = text.trim().isNotEmpty;
+      _isEnabledButton = text.trim().isNotEmpty;
     });
   }
 

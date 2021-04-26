@@ -18,12 +18,19 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
   final TextEditingController _recipeTextController = TextEditingController();
   final FocusNode _ingredientsFocusNode = FocusNode();
   final FocusNode _recipeFocusNode = FocusNode();
+  bool _isEnabledButton = false;
 
   @override
   Widget build(BuildContext context) {
-    _ingredientsTextController.text =
-        widget._viewModel.dish.ingredientList != null ? widget._viewModel.dish.ingredientList : "";
-    _recipeTextController.text = widget._viewModel.dish.recipe != null ? widget._viewModel.dish.recipe : "";
+    if (_ingredientsTextController.text.isEmpty) {
+      _ingredientsTextController.text =
+          widget._viewModel.dish.ingredientList != null ? widget._viewModel.dish.ingredientList : "";
+    }
+    if (_recipeTextController.text.isEmpty) {
+      _recipeTextController.text = widget._viewModel.dish.recipe != null ? widget._viewModel.dish.recipe : "";
+    }
+    _isEnabledButton =
+        _ingredientsTextController.text.trim().isNotEmpty && _recipeTextController.text.trim().isNotEmpty;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -60,6 +67,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
         right: App.Dimens.normalPadding,
       ),
       child: TextField(
+          onChanged: _validateFields,
           controller: _ingredientsTextController,
           maxLines: 15,
           onSubmitted: (value) => _changeFocusField(context, _ingredientsFocusNode, _recipeFocusNode),
@@ -78,6 +86,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
         right: App.Dimens.normalPadding,
       ),
       child: TextField(
+          onChanged: _validateFields,
           controller: _recipeTextController,
           maxLines: 15,
           onSubmitted: (value) => _continueAction(context),
@@ -97,11 +106,17 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
         style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
             backgroundColor: MaterialStateProperty.all(Colors.transparent)),
-        onPressed: () {
+        onPressed: _isEnabledButton ? () {
           _continueAction(context);
-        },
+        } : null,
       ),
     );
+  }
+  
+  void _validateFields(String text) {
+    setState(() {
+      _isEnabledButton = (_ingredientsTextController.text.trim().isNotEmpty && _recipeTextController.text.trim().isNotEmpty);
+    });
   }
 
   void _continueAction(BuildContext context) {
