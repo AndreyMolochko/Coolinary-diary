@@ -19,9 +19,11 @@ class AddDishPhotoPage extends StatefulWidget {
 class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
   final ImagePicker _imagePicker = ImagePicker();
   File _image;
+  bool _isEnabled;
 
   @override
   Widget build(BuildContext context) {
+    _isEnabled = !(_image == null && widget._viewModel.dish.path == null);
     return Scaffold(
         appBar: AppBar(
           title: Text(widget._viewModel.getPageTitle(context)),
@@ -113,10 +115,10 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
         style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
             backgroundColor: MaterialStateProperty.all(Colors.transparent)),
-        onPressed: () {
+        onPressed: _isEnabled ? () {
           widget._viewModel.clickOnSave(context, _image != null ? _image.path : path, path != null ? path : "");
           Navigator.of(context).pop();
-        },
+        } : null,
       ),
     );
   }
