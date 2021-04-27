@@ -121,7 +121,7 @@ class _DishInfoPageState extends State<DishInfoPage> {
 
   Widget _buildIngredientsLabel(BuildContext context) {
     return Text(AppTranslations.of(context).text('ingredients_label_dish_info_screen'),
-        style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w400));
+        style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w700));
   }
 
   Widget _buildIngredients(BuildContext context, String ingredients) {
@@ -130,7 +130,7 @@ class _DishInfoPageState extends State<DishInfoPage> {
 
   Widget _buildRecipeLabel(BuildContext context) {
     return Text(AppTranslations.of(context).text('recipe_label_dish_info_screen'),
-        style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w400));
+        style: App.TextStyles.normalBlackText.copyWith(fontWeight: FontWeight.w700));
   }
 
   Widget _buildRecipe(BuildContext context, String recipe) {

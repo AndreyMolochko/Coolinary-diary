@@ -75,6 +75,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
       controller: dishNameTextController,
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
+        hintStyle: App.TextStyles.normalBlackText,
           labelText: AppTranslations.of(context)
               .text('dish_name_hint_text_field_request_screen')),
     );
@@ -99,7 +100,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
         GestureDetector(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 2.0),
-            child: Text(label),
+            child: Text(label, style: App.TextStyles.normalBlackText),
           ),
           onTap: () => _handleRadioValueChange(value),
         )
