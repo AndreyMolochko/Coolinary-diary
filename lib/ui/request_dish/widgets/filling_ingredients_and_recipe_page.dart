@@ -21,14 +21,19 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
   bool _isEnabledButton = false;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     if (_ingredientsTextController.text.isEmpty) {
       _ingredientsTextController.text =
-          widget._viewModel.dish.ingredientList != null ? widget._viewModel.dish.ingredientList : "";
+      widget._viewModel.dish.ingredientList != null ? widget._viewModel.dish.ingredientList : "";
     }
     if (_recipeTextController.text.isEmpty) {
       _recipeTextController.text = widget._viewModel.dish.recipe != null ? widget._viewModel.dish.recipe : "";
-    }
+    }dfsg
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     _isEnabledButton =
         _ingredientsTextController.text.trim().isNotEmpty && _recipeTextController.text.trim().isNotEmpty;
     return Scaffold(

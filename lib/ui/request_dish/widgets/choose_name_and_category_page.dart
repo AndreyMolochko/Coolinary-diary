@@ -20,13 +20,18 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
   bool _isEnabledButton;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     if (_radioValue == null) {
       _radioValue = widget._viewModel.dish.category != null ? widget._viewModel.dish.category : "soups";
     }
     if (dishNameTextController.text.isEmpty) {
       dishNameTextController.text = widget._viewModel.dish.name != null ? widget._viewModel.dish.name : "";
     }
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     _isEnabledButton = dishNameTextController.text.trim().isNotEmpty;
     return Scaffold(
         resizeToAvoidBottomInset: false,
