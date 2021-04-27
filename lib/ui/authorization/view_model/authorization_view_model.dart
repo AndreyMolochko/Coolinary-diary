@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injector/injector.dart';
@@ -134,7 +135,7 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
           .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
     }).catchError((onError) {
       _isLoadingController.sink.add(false);
-      if (onError is PlatformException) {
+      if (onError is FirebaseAuthException) {
         _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
             onError.message, context);
       } else {
@@ -154,7 +155,7 @@ class AuthorizationViewModel implements AuthorizationViewModelType {
           .pushReplacement(MaterialPageRoute(builder: (context) => HomePage(dishListViewModel)));
     }).catchError((onError) {
       _isLoadingController.sink.add(false);
-      if (onError is PlatformException) {
+      if (onError is FirebaseAuthException) {
         _showDialog(AppTranslations.of(context).text('error_title_general_screen'),
             onError.message, context);
       } else {
