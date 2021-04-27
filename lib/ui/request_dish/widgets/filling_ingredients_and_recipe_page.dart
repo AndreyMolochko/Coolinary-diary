@@ -28,7 +28,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
     }
     if (_recipeTextController.text.isEmpty) {
       _recipeTextController.text = widget._viewModel.dish.recipe != null ? widget._viewModel.dish.recipe : "";
-    }dfsg
+    }
     super.initState();
   }
 
