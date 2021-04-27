@@ -100,12 +100,14 @@ class _DishListPageState extends State<DishListPage> {
   }
 
   Widget _buildDishImage(BuildContext context, String imageUrl) {
-    return Container(
-        width: App.Dimens.sizeDishImageItem,
-        height: App.Dimens.sizeDishImageItem,
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(App.Dimens.sizeDishImageItem / 2.0),
-            child: FadeInImage.assetNetwork(placeholder: 'assets/loading.gif', image: imageUrl)));
+    return CircleAvatar(
+        radius: App.Dimens.sizeDishImageItem / 2,
+        child: Container(width: App.Dimens.sizeDishImageItem,
+            height: App.Dimens.sizeDishImageItem,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, image: DecorationImage(fit: BoxFit.fill, image: NetworkImage(imageUrl)))),
+        backgroundImage: AssetImage('assets/loading.gif'),
+        backgroundColor: Colors.transparent,);
   }
 
   Widget _buildDishName(BuildContext context, String name) {

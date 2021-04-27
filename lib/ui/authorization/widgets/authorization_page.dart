@@ -22,8 +22,11 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   TextEditingController passwordTextController = TextEditingController();
   TextEditingController repeatedPasswordTextController = TextEditingController();
 
+  bool _isEnabled;
+
   @override
   void initState() {
+    _isEnabled = false;
     super.initState();
   }
 
@@ -67,6 +70,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        onChanged: _validateField,
         controller: emailTextController,
         onFieldSubmitted: (value) {
           _changeFocusField(context, _emailFocusNode, _passwordFocusNode);
@@ -95,6 +99,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
         obscureText: true,
+        onChanged: _validateField,
         controller: passwordTextController,
         onFieldSubmitted: (value) {
           if (widget._authorizationViewModel.isSignUpScreen) {
@@ -123,6 +128,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
           right: App.Dimens.bigPadding,
           bottom: App.Dimens.smallPadding),
       child: TextFormField(
+        onChanged: _validateField,
         obscureText: true,
         controller: repeatedPasswordTextController,
         onFieldSubmitted: (value) {
@@ -159,22 +165,29 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   Widget _buildAuthorizationButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-          left: App.Dimens.bigPadding,
-          right: App.Dimens.bigPadding,
-          bottom: App.Dimens.smallPadding),
+          left: App.Dimens.bigPadding, right: App.Dimens.bigPadding, bottom: App.Dimens.smallPadding),
       child: Container(
         decoration: App.Shapes.whiteGradient,
         width: double.maxFinite,
-        child: RaisedButton(
-          child: Text(AppTranslations.of(context).text(
-              widget._authorizationViewModel.textAuthorizationButton),
-            style: App.TextStyles.normalBlackText,),
-          shape: App.Shapes.secondaryButton,
-          onPressed: () {
-            widget._authorizationViewModel.onClickAuthorization(
-                emailTextController.text, passwordTextController.text,
-                repeatedPasswordTextController.text, context);
-          },),
+        child: ElevatedButton(
+            child: Text(
+              AppTranslations.of(context).text(widget._authorizationViewModel.textAuthorizationButton),
+              style: App.TextStyles.normalBlackText,
+            ),
+            style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.disabled)) return Colors.transparent;
+                    else return Colors.transparent;
+                  },
+                )),
+            onPressed: _isEnabled
+                ? () {
+                    widget._authorizationViewModel.onClickAuthorization(emailTextController.text,
+                        passwordTextController.text, repeatedPasswordTextController.text, context);
+                  }
+                : null),
       ),
     );
   }
@@ -196,5 +209,17 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
   void _changeFocusField(BuildContext context, FocusNode currentFocusNode, FocusNode nextFocusNode) {
     FocusScope.of(context).requestFocus(nextFocusNode);
+  }
+
+  void _validateField(String text) {
+    setState(() {
+      if (widget._authorizationViewModel.isSignUpScreen) {
+        _isEnabled = emailTextController.text.trim().isNotEmpty &&
+            passwordTextController.text.trim().isNotEmpty &&
+            repeatedPasswordTextController.text.trim().isNotEmpty;
+      } else {
+        _isEnabled = emailTextController.text.trim().isNotEmpty && passwordTextController.text.trim().isNotEmpty;
+      }
+    });
   }
 }
