@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:injector/injector.dart';
 import 'package:sqflite_worker/core/app_provider.dart';
 import 'package:sqflite_worker/core/application/culinary_diary.dart';
 import 'package:sqflite_worker/localization/app_translations.dart';
 import 'package:sqflite_worker/localization/app_translations_delegate.dart';
+import 'package:sqflite_worker/providers/module.dart';
 import 'package:sqflite_worker/ui/authorization/module.dart';
 import 'package:sqflite_worker/ui/dish_info/module.dart';
 import 'package:sqflite_worker/ui/guide/module.dart';
@@ -15,8 +17,9 @@ import '../applications.dart';
 
 class AppComponent extends StatefulWidget {
   final CulinaryDiary _application;
+  final Injector _injector;
 
-  AppComponent(this._application);
+  AppComponent(this._application, this._injector);
 
   @override
   _AppComponentState createState() => _AppComponentState(_application);
@@ -72,9 +75,7 @@ class _AppComponentState extends State<AppComponent> {
   }
 
   void _setLanguageIfNeed() {
-    AppTranslations.getCurrentLanguage().then((currentLanguage) {
-      application.onLocaleChanged(Locale(currentLanguage));
-    });
+    widget._injector.get<LocaleProviderType>().getLocale().then((value) => application.onLocaleChanged(Locale(value)));
   }
 
   Route<dynamic> onGenerateRoute(RouteSettings settings) {

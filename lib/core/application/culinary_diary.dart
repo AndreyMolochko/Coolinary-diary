@@ -46,7 +46,7 @@ class CulinaryDiary implements Application {
       }
     }
 
-    appComponent = AppComponent(this);
+    appComponent = AppComponent(this, _injector);
   }
 
   @override
