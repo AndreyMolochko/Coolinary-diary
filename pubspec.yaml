@@ -58,7 +58,7 @@ flutter:
   fonts:
     - family: Latine
       fonts:
-        - asset: assets/fonts/Latine.ttf
+        - asset: assets/fonts/PTSerif.ttf
   uses-material-design: true
   assets:
     - assets/locale/localization_en.json
