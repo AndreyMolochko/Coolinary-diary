@@ -114,9 +114,7 @@ class _ChooseNameAndCategoryPageState extends State<ChooseNameAndCategoryPage> {
       child: ElevatedButton(
         child: Text(AppTranslations.of(context).text('name_and_category_screen_continue_button'),
             style: App.TextStyles.normalBlackText),
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
-            backgroundColor: MaterialStateProperty.all(Colors.transparent)),
+        style: App.Shapes.primaryButtonStyle,
         onPressed: _isEnabledButton ? () {
           widget._viewModel.clickContinueNameCategory(context, dishNameTextController.text, _radioValue);
         } : null,

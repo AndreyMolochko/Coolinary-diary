@@ -72,6 +72,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
         right: App.Dimens.normalPadding,
       ),
       child: TextField(
+          style: TextStyle(textBaseline: TextBaseline.alphabetic),
           onChanged: _validateFields,
           controller: _ingredientsTextController,
           maxLines: 15,
@@ -108,9 +109,7 @@ class _IngredientsAndRecipePageState extends State<IngredientsAndRecipePage> {
       child: ElevatedButton(
         child: Text(AppTranslations.of(context).text('ingredients_and_recipe_screen_continue_button'),
             style: App.TextStyles.normalBlackText),
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
-            backgroundColor: MaterialStateProperty.all(Colors.transparent)),
+        style: App.Shapes.primaryButtonStyle,
         onPressed: _isEnabledButton ? () {
           _continueAction(context);
         } : null,

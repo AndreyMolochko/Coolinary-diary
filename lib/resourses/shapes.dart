@@ -14,4 +14,15 @@ class Shapes {
           end: Alignment.bottomRight,
           stops: [0.2, 0.6, 0.85],
           colors: [App.Colors.bianca, App.Colors.gainsboro, App.Colors.white]));
+  static ButtonStyle primaryButtonStyle = ButtonStyle(
+      shape: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) return primaryButton;
+        else return App.Shapes.secondaryButton;
+      }),
+      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) return App.Colors.porcelain;
+          else return App.Colors.gainsboro;
+        },
+      ));
 }

@@ -174,14 +174,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
               AppTranslations.of(context).text(widget._authorizationViewModel.textAuthorizationButton),
               style: App.TextStyles.normalBlackText,
             ),
-            style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
-                backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.disabled)) return Colors.transparent;
-                    else return Colors.transparent;
-                  },
-                )),
+            style: App.Shapes.primaryButtonStyle,
             onPressed: _isEnabled
                 ? () {
                     widget._authorizationViewModel.onClickAuthorization(emailTextController.text,

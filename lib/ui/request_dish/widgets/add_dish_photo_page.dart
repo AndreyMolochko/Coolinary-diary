@@ -112,9 +112,7 @@ class _AddDishPhotoPageState extends State<AddDishPhotoPage> {
       child: ElevatedButton(
         child: Text(AppTranslations.of(context).text('add_dish_photo_screen_save_button'),
             style: App.TextStyles.normalBlackText),
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(App.Shapes.secondaryButton),
-            backgroundColor: MaterialStateProperty.all(Colors.transparent)),
+        style: App.Shapes.primaryButtonStyle,
         onPressed: _isEnabled ? () {
           widget._viewModel.clickOnSave(context, _image != null ? _image.path : path, path != null ? path : "");
           Navigator.of(context).pop();

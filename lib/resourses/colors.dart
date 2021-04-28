@@ -7,4 +7,5 @@ class Colors {
   static const Color gainsboro = Color(0xffE0E0E0);
   static const Color dodgerBlue = Color(0xff2A9DF4);
   static const Color bianca = Color(0xffF4EDDE);
+  static const Color porcelain = Color(0xffDBDAD9);
 }
