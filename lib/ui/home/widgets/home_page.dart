@@ -52,7 +52,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 
   @override
+  @mustCallSuper
   void dispose() {
+    super.dispose();
     _tabController.dispose();
   }
 
