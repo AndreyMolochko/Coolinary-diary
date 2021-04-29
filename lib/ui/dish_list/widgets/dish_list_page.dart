@@ -111,7 +111,10 @@ class _DishListPageState extends State<DishListPage> {
   }
 
   Widget _buildDishName(BuildContext context, String name) {
-    return Text(name, style: App.TextStyles.normalBlackText);
+    return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: Text(name,
+            style: App.TextStyles.normalBlackText, overflow: TextOverflow.ellipsis, maxLines: 1, softWrap: false));
   }
 
   Widget _buildCategory(BuildContext context, String category) {
