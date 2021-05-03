@@ -48,30 +48,35 @@ class _DishInfoPageState extends State<DishInfoPage> {
   }
 
   Widget _buildBody(BuildContext context, Dish dish) {
-    return SingleChildScrollView(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [_buildDishImage(context, dish.path)],
+    return LayoutBuilder(builder: (context, constraints) {
+      return SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [_buildDishImage(context, dish.path)],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+              child: _buildIngredientsLabel(context),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+              child: _buildIngredients(context, dish.ingredientList),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+              child: _buildRecipeLabel(context),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+              child: _buildRecipe(context, dish.recipe),
+            )
+          ]),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-          child: _buildIngredientsLabel(context),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-          child: _buildIngredients(context, dish.ingredientList),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-          child: _buildRecipeLabel(context),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-          child: _buildRecipe(context, dish.recipe),
-        )
-      ]),
-    );
+      );
+    });
   }
 
   Widget _buildEditButton(BuildContext context, Dish dish) {
