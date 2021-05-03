@@ -18,6 +18,7 @@ class _DishInfoPageState extends State<DishInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(title: Text(widget._dishInfoViewModel.dish.name), actions: [
           if (widget._dishInfoViewModel.requestDishListType == RequestDishListType.myDishes)
             _buildEditButton(context, widget._dishInfoViewModel.dish),
@@ -48,36 +49,28 @@ class _DishInfoPageState extends State<DishInfoPage> {
 
   Widget _buildBody(BuildContext context, Dish dish) {
     return SingleChildScrollView(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildDishImage(context, dish.path),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-              child: _buildIngredientsLabel(context),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-              child: _buildIngredients(context, dish.ingredientList),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-              child: _buildRecipeLabel(context),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
-              child: _buildRecipe(context, dish.recipe),
-            )
-          ],
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [_buildDishImage(context, dish.path)],
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+          child: _buildIngredientsLabel(context),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+          child: _buildIngredients(context, dish.ingredientList),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+          child: _buildRecipeLabel(context),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: App.Dimens.smallPadding, left: App.Dimens.normalPadding),
+          child: _buildRecipe(context, dish.recipe),
+        )
+      ]),
     );
   }
 
@@ -111,12 +104,16 @@ class _DishInfoPageState extends State<DishInfoPage> {
 
   Widget _buildDishImage(BuildContext context, String url) {
     return Container(
-        height: 300,
         margin: EdgeInsets.only(
             top: App.Dimens.normalPadding, left: App.Dimens.normalPadding, right: App.Dimens.normalPadding),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(App.Dimens.borderRadiusAddImage),
-            child: FadeInImage.assetNetwork(placeholder: 'assets/loading.gif', image: url)));
+            child: FadeInImage.assetNetwork(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: 300,
+                placeholder: 'assets/loading.gif',
+                image: url,
+                fit: BoxFit.cover)));
   }
 
   Widget _buildIngredientsLabel(BuildContext context) {
